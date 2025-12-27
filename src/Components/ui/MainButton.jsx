@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
-const Mainbutton = () => {
+const MainButton = ({ children, className = "", ...props }) => {
   return (
-    <div className='main-button'>Mainbutton</div>
-  )
-}
+    <button className={`main-button cursor-pointer ${className}`} {...props}>
+      {children}
+    </button>
+  );
+};
 
-export default Mainbutton
+export default MainButton;

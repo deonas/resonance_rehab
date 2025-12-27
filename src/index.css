@@ -22,12 +22,15 @@ body {
 
 @layer components {
   .main-button {
-    @apply bg-button-main text-secondary-color font-medium font-urbanist px-6 py-2 rounded-full transition-colors;
+    @apply bg-button-main text-secondary-color font-semibold font-urbanist px-5 py-2.5 md:px-8 md:py-3 rounded-full transition-colors min-w-[100px] md:min-w-[80px] text-sm md:text-base flex items-center justify-center;
   }
   .Navbar{
-    @apply flex items-center justify-between px-4 py-2;
+    @apply flex items-center justify-between px-6 py-4;
   }
   .back-button{
-    @apply bg-secondary-color text-primary-color font-medium font-urbanist px-6 py-2 rounded-full transition-colors;
+    @apply bg-secondary-color text-primary-color font-semibold font-urbanist px-5 py-2.5 md:px-8 md:py-3 rounded-full transition-colors min-w-[100px] md:min-w-[220px] text-sm md:text-base flex items-center justify-center;
+  }
+  .menu-items{
+    @apply flex flex-col gap-4;
   }
 }

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import HamburgerButton from "../ui/HamburgerButton";
 
+import Sidebar from "../ui/Sidebar";
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -10,25 +12,20 @@ const Navbar = () => {
   };
 
   return (
-    <div className="Navbar relative">
+    <div className="Navbar fixed top-0 left-0 w-full z-50 bg-transparent">
       <Link
-        className="text-primary-color font-editorial text-2xl md:absolute md:left-1/2 md:-translate-x-1/2"
+        className="text-primary-color mt-0 md:mt-3 font-editorial text-2xl md:absolute md:left-1/2 md:-translate-x-1/2 z-[60]"
         to="/"
       >
         Resonance Rehab
       </Link>
       <HamburgerButton
-        className="md:ml-auto md:pr-7"
+        className="md:ml-auto md:pr-7 z-[60]"
         isOpen={isOpen}
         toggle={toggleMenu}
       />
 
-      {/* Mobile Menu Overlay (Optional, for visualization) */}
-      {isOpen && (
-        <div className="absolute top-full left-0 w-full p-4 border-t border-primary-color/10">
-          {/* Menu items would go here. For now, just showing the state change visually. */}
-        </div>
-      )}
+      <Sidebar isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </div>
   );
 };

@@ -5,7 +5,7 @@ const HamburgerButton = ({ isOpen, toggle, className = "" }) => {
   return (
     <button
       onClick={toggle}
-      className={`${className} flex flex-col justify-center items-center w-10 h-10 space-y-1 focus:outline-none z-50 relative`}
+      className={`flex flex-col justify-center items-center w-10 h-10 space-y-1 focus:outline-none relative cursor-pointer ${className}`}
       aria-label="Toggle menu"
     >
       <motion.span
