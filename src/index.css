@@ -16,8 +16,22 @@
   src: url('/fonts/Urbanist.ttf') format('truetype');
 }
 
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  overflow-x: hidden;
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
 body {
-  @apply font-urbanist bg-background text-primary-color overflow-x-hidden overflow-y-auto;
+  @apply font-urbanist bg-background text-primary-color overflow-x-hidden;
+}
+
+#root {
+  @apply h-full;
 }
 
 @layer components {
