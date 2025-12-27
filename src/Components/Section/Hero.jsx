@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import MainButton from "../ui/MainButton";
 import { gsap } from "gsap";
@@ -10,83 +10,220 @@ const Hero = () => {
   const navigate = useNavigate();
   const heroRef = useRef(null);
   const imageContainerRef = useRef(null);
+  const doodleOverlayRef = useRef(null);
   const overlayRef = useRef(null);
   const splashTitleRef = useRef(null);
   const splashOverlayRef = useRef(null);
   const contentRef = useRef(null);
   const socialRef = useRef(null);
 
+  const bgImageRef = useRef(null);
+
+  // Calculate Aspect Ratio Box - Standardized to CENTER alignment
+  const updateDoodleContainer = useCallback(() => {
+    if (!imageContainerRef.current || !doodleOverlayRef.current) return;
+
+    // Get Parent Dimensions (Layout Size, ignoring Transforms)
+    const pW = imageContainerRef.current.offsetWidth;
+    const pH = imageContainerRef.current.offsetHeight;
+
+    // Get Aspect Ratio
+    let aspect = 16 / 9;
+    if (bgImageRef.current && bgImageRef.current.naturalWidth) {
+      aspect =
+        bgImageRef.current.naturalWidth / bgImageRef.current.naturalHeight;
+    } else {
+      const isMobile = window.innerWidth < 768;
+      aspect = isMobile ? 9 / 16 : 16 / 9;
+    }
+
+    let w, h, top, left;
+
+    // Object-Cover Logic
+    w = pW;
+    h = w / aspect;
+
+    if (h < pH) {
+      h = pH;
+      w = h * aspect;
+    }
+
+    // Always Bottom Align (Matching object-bottom CSS per user request)
+    top = pH - h;
+    left = (pW - w) / 2;
+
+    gsap.set(doodleOverlayRef.current, {
+      width: w,
+      height: h,
+      top: top,
+      left: left,
+      position: "absolute",
+      overwrite: "auto",
+    });
+  }, []);
+
+  useEffect(() => {
+    // Run on every frame to handle Resize + Scroll Scrub Lag perfectly
+    gsap.ticker.add(updateDoodleContainer);
+    return () => {
+      gsap.ticker.remove(updateDoodleContainer);
+    };
+  }, [updateDoodleContainer]);
+
+  const doodles = [
+    {
+      id: "star",
+      src: "/images/Hero/star.png",
+      alt: "Star Doodle",
+      className: "animate-pulse",
+      top: 76.01,
+      left: 48.65,
+      width: 4,
+      scale: 1.4,
+      rotation: -11,
+    },
+    {
+      id: "circle",
+      src: "/images/Hero/AroundCircle.png",
+      alt: "Circle Doodle",
+      className: "opacity-80",
+      top: 66.3,
+      left: 25.52,
+      width: 50,
+      scale: 0.45,
+      rotation: 0,
+      isCentered: false,
+    },
+    {
+      id: "heart",
+      src: "/images/Hero/love.png",
+      alt: "Heart Doodle",
+      className: "opacity-90",
+      top: 73.15,
+      left: 57.92,
+      width: 3,
+      scale: 1,
+      rotation: 0,
+    },
+    {
+      id: "heart-2",
+      src: "/images/Hero/love.png",
+      alt: "Heart Doodle",
+      className: "opacity-90",
+      top: 69.66,
+      left: 39.87,
+      width: 3,
+      scale: 1,
+      rotation: -44,
+    },
+    {
+      id: "white-circle",
+      src: "/images/Hero/white cricel.png",
+      alt: "White Circle Doodle",
+      className: "opacity-60",
+      top: 79.21,
+      left: 51.9,
+      width: 8,
+      scale: 0.8,
+      rotation: 0,
+    },
+    {
+      id: "boy-head",
+      src: "/images/Hero/Boy_Head.png",
+      alt: "Boy Head Doodle",
+      className: "",
+      top: 61.94,
+      left: 43.49,
+      width: 6,
+      scale: 1.25,
+      rotation: 0,
+    },
+    {
+      id: "girl-head",
+      src: "/images/Hero/Girl_Head.png",
+      alt: "Girl Head Doodle",
+      className: "",
+      top: 67.36,
+      left: 52.04,
+      width: 6,
+      scale: 1,
+      rotation: 0,
+    },
+  ];
+
+  // ---------------------------
+
+  // Existing GSAP Logic (LayoutEffect)...
   useLayoutEffect(() => {
+    // ... (Existing GSAP Code, ensure it targets .hero-doodles children if generic, or we add classNames)
+    // Since we replace the doodle render, we must ensure class "hero-doodles" exists.
     const ctx = gsap.context(() => {
-      // Only enable ScrollTrigger on Desktop
+      // ... MatchMedia ...
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 768px)", () => {
-        // Set Initial States for Desktop Only
-        gsap.set(overlayRef.current, { y: "-100%" }); // Hide overlay up
+        // ... existing setup ...
+        gsap.set(overlayRef.current, { y: "-100%" });
         gsap.set(imageContainerRef.current, {
           inset: 0,
           top: 0,
           height: "100%",
-          scale: 1.5, // Zoomed in initially
-          transformOrigin: "bottom center", // Anchor zoom to bottom
-        }); // Full screen image
+          scale: 1.5,
+          transformOrigin: "bottom center",
+        });
 
-        // Navbar is a sibling component, so we must select it globally, not scoped to heroRef
         const navbar = document.querySelector(".main-navbar");
-        if (navbar) gsap.set(navbar, { autoAlpha: 0 }); // Hide Navbar initially
-        gsap.set(".hero-doodles", { autoAlpha: 0 }); // Hide Doodles initially
-        gsap.set(".hero-footer-caption", { autoAlpha: 0 }); // Hide Footer Caption initially
+        if (navbar) gsap.set(navbar, { autoAlpha: 0 });
+        gsap.set(".hero-doodles", { autoAlpha: 0 }); // Hidden initially (in Splash)
+        gsap.set(".hero-footer-caption", { autoAlpha: 0 });
 
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: heroRef.current,
             start: "top top",
-            end: "+=150%", // Scroll distance to complete animation
+            end: "+=150%",
             scrub: 1,
             pin: true,
-            // markers: true, // Uncomment for debugging
+            onUpdate: updateDoodleContainer, // Sync doodles with scroll animation
           },
         });
 
-        // Initial States set by CSS/Tailwind (Image full, Overlay hidden up, Splash Title Visible)
-
-        // 1. Splash Text & Overlay Animation
-        // Overlay Fades Out
+        // ... Timeline animations ...
         tl.to(splashOverlayRef.current, {
           opacity: 0,
           duration: 1,
           ease: "power1.out",
         });
 
-        // Title Fades Out & Moves Up
-        tl.to(
-          splashTitleRef.current,
+        // Reveal Doodles as Splash fades (Scale is still 1.5 here)
+        tl.to(".hero-doodles", { autoAlpha: 1, duration: 0.1 }, "<");
+
+        // "Big to Small" Animation synced with scroll
+        // Starts at Scale 5 (huge) -> Shrinks to natural scale defined in style prop
+        tl.from(
+          ".hero-doodles img",
           {
+            scale: 5,
             opacity: 0,
-            y: -100,
-            scale: 0.9,
-            duration: 1,
-            ease: "power1.out",
+            duration: 2, // Matches the image zoom duration
+            stagger: 0.05,
+            ease: "power2.out",
           },
           "<"
         );
 
-        // 2. Navbar Fades In
-        if (navbar) {
+        tl.to(
+          splashTitleRef.current,
+          { opacity: 0, y: -100, scale: 0.9, duration: 1, ease: "power1.out" },
+          "<"
+        );
+        if (navbar)
           tl.to(
             navbar,
-            {
-              autoAlpha: 1,
-              duration: 1,
-              ease: "power1.inOut",
-            },
+            { autoAlpha: 1, duration: 1, ease: "power1.inOut" },
             "<+=0.5"
           );
-        }
 
-        // 3. Image Moves/Scales to Bottom Position
-        // Animate container to top: 55vh, height: 45vh, scale: 1
         tl.to(
           imageContainerRef.current,
           {
@@ -98,61 +235,32 @@ const Hero = () => {
           },
           "<"
         );
-
-        // 4. White Overlay Slides Down
-        // Initial: y: -100%. Target: y: 0%
         tl.to(
           overlayRef.current,
-          {
-            y: "0%",
-            duration: 2,
-            ease: "power2.inOut",
-          },
+          { y: "0%", duration: 2, ease: "power2.inOut" },
           "<"
         );
 
-        // 5. Content Reveals
         tl.from(
           [".hero-text-item", ".hero-description", ".hero-button"],
-          {
-            y: 20,
-            opacity: 0,
-            stagger: 0.1,
-            duration: 1,
-          },
+          { y: 20, opacity: 0, stagger: 0.1, duration: 1 },
           "-=0.5"
         );
 
-        // 6. Doodles, Social Icons & Footer Caption Reveal
-        tl.to(
-          [".hero-doodles", ".hero-footer-caption"],
-          {
-            autoAlpha: 1,
-            duration: 1,
-          },
-          "-=1"
-        );
-
-        tl.from(
-          socialRef.current,
-          {
-            x: 50,
-            opacity: 0,
-            duration: 1,
-          },
-          "-=1"
-        );
+        tl.to([".hero-footer-caption"], { autoAlpha: 1, duration: 1 }, "-=1");
+        tl.from(socialRef.current, { x: 50, opacity: 0, duration: 1 }, "-=1");
       });
     }, heroRef);
-
     return () => ctx.revert();
-  }, []);
+  }, []); // End LayoutEffect
 
   return (
     <div
       ref={heroRef}
-      className="relative w-full h-screen bg-background overflow-hidden flex flex-col md:block"
+      className="relative w-full min-h-screen md:h-screen bg-background overflow-x-hidden md:overflow-hidden flex flex-col md:block"
     >
+      {/* ------------------------------------------ */}
+
       {/* Splash Title (Desktop Only) */}
       <div className="hidden md:flex absolute inset-0 z-40 items-center justify-center pointer-events-none">
         {/* Gradient Overlay */}
@@ -179,9 +287,11 @@ const Hero = () => {
         <picture className="w-full h-full block">
           <source media="(min-width: 768px)" srcSet="/images/Hero.png" />
           <img
+            ref={bgImageRef}
             src="/images/Hero/HeroMobBg.png"
             alt="Children Playing"
-            className="w-full h-full object-cover object-top md:object-bottom"
+            className="w-full h-full object-cover object-bottom"
+            onLoad={updateDoodleContainer}
           />
         </picture>
 
@@ -199,7 +309,7 @@ const Hero = () => {
               <img
                 src={`/icons/${icon}.svg`}
                 alt={icon}
-                className="w-5 h-5 opacity-80 hover:opacity-100"
+                className="w-5 h-5 opacity-80 hover:opacity-100 brightness-0 invert"
               />
             </a>
           ))}
@@ -224,39 +334,37 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Doodles Overlay */}
-        <div className="hero-doodles absolute inset-0 pointer-events-none md:z-20">
-          {/* Star */}
-          <img
-            src="/images/Hero/star.png"
-            alt="Star Doodle"
-            className="absolute top-[20%] left-[10%] w-8 h-8 md:w-12 md:h-12 animate-pulse"
-          />
-          {/* Circle around */}
-          <img
-            src="/images/Hero/AroundCircle.png"
-            alt="Circle Doodle"
-            className="absolute top-[40%] left-[50%] -translate-x-1/2 w-[90%] md:w-[50%] opacity-80"
-          />
-          {/* Love/Heart */}
-          <img
-            src="/images/Hero/love.png"
-            alt="Heart Doodle"
-            className="absolute top-[30%] right-[15%] w-6 h-6 md:w-10 md:h-10 opacity-90"
-          />
-          {/* White Circle */}
-          <img
-            src="/images/Hero/white cricel.png"
-            alt="White Circle Doodle"
-            className="absolute bottom-[30%] right-[20%] w-16 h-16 md:w-24 md:h-24 opacity-60"
-          />
+        {/* Doodles Overlay (Dynamic) */}
+        <div
+          ref={doodleOverlayRef}
+          className="hero-doodles absolute md:z-20 hidden md:block pointer-events-none"
+        >
+          {doodles.map((doodle) => (
+            <img
+              key={doodle.id}
+              src={doodle.src}
+              alt={doodle.alt}
+              className={`absolute ${doodle.className}`}
+              style={{
+                top: `${doodle.top}%`,
+                left: `${doodle.left}%`,
+                width: `${doodle.width || 10}%`,
+                // Combine transforms: Centering + User Scale/Rotation
+                transform: `
+                  ${doodle.isCentered ? "translate(-50%, -50%)" : ""} 
+                  scale(${doodle.scale || 1}) 
+                  rotate(${doodle.rotation || 0}deg)
+                `,
+              }}
+            />
+          ))}
         </div>
 
         {/* Bottom Caption */}
-        <div className="hero-footer-caption absolute bottom-8 w-full text-center px-4 md:text-left md:left-24 md:bottom-12 md:w-auto md:z-20">
-          <p className="text-white text-sm md:text-base font-urbanist drop-shadow-md">
+        <div className="hero-footer-caption absolute bottom-8 left-0 right-0 w-full flex justify-center md:bottom-12 md:z-20">
+          <p className="text-white text-center text-sm md:text-lg font-medium font-urbanist drop-shadow-md leading-relaxed px-4 max-w-[90%] md:max-w-none md:px-0">
             Safe, simple, and supportive therapy,
-            <br />
+            <br className="block md:hidden" />
             from our hearts to your home.
           </p>
         </div>
