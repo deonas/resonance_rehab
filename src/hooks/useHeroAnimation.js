@@ -24,12 +24,19 @@ export const useHeroAnimation = ({
   }, []);
 
   useEffect(() => {
-    // Optimized: Only update on resize, not every frame
-    window.addEventListener("resize", handleResize);
+    // Run on every frame to handle Resize + Scroll Scrub Lag perfectly
+    const tickerCallback = () => {
+         updateDoodleContainer(
+            imageContainerRef.current,
+            doodleOverlayRef.current,
+            bgImageRef.current
+        );
+    }
+    gsap.ticker.add(tickerCallback);
     return () => {
-      window.removeEventListener("resize", handleResize);
+      gsap.ticker.remove(tickerCallback);
     };
-  }, [handleResize]);
+  }, []);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -57,12 +64,6 @@ export const useHeroAnimation = ({
             end: "+=150%",
             scrub: 1,
             pin: true,
-            snap: {
-              snapTo: 1,
-              duration: { min: 0.5, max: 1 },
-              delay: 0,
-              ease: "power1.inOut",
-            },
             onUpdate: () => updateDoodleContainer(
                  imageContainerRef.current,
                  doodleOverlayRef.current,
