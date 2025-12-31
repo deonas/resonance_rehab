@@ -35,21 +35,22 @@ const Hero = () => {
       ref={heroRef}
       className="relative w-full min-h-screen md:h-screen bg-background overflow-x-hidden md:overflow-hidden flex flex-col md:block"
     >
-      <HeroSplash titleRef={splashTitleRef} overlayRef={splashOverlayRef} />
+      <div className="sticky top-0 h-dvh flex flex-col w-full z-0 md:contents">
+        <HeroSplash titleRef={splashTitleRef} overlayRef={splashOverlayRef} />
 
-      <HeroBackground
-        containerRef={imageContainerRef}
-        bgImageRef={bgImageRef}
-        socialRef={socialRef}
-        doodleOverlayRef={doodleOverlayRef}
-        doodles={DOODLES}
-        onImageLoad={handleResize}
-      />
+        <HeroBackground
+          containerRef={imageContainerRef}
+          bgImageRef={bgImageRef}
+          socialRef={socialRef}
+          doodleOverlayRef={doodleOverlayRef}
+          doodles={DOODLES}
+          onImageLoad={handleResize}
+        />
 
-      <HeroContent overlayRef={overlayRef} contentRef={contentRef} />
+        <HeroContent overlayRef={overlayRef} contentRef={contentRef} />
+      </div>
 
-      {/* About Us Content layered into the same scroll context */}
-      <div className="absolute top-[100vh] left-0 w-full z-20 md:block md:top-[40vh] md:min-h-screen md:pointer-events-none md:z-10 flex flex-col justify-start">
+      <div className="relative w-full z-20 bg-background md:bg-transparent md:absolute md:top-[45vh] md:min-h-[55vh] md:pointer-events-none md:z-10 flex flex-col justify-start">
         <AboutUs ref={aboutRef} />
       </div>
     </div>

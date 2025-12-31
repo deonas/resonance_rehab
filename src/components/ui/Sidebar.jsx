@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, memo } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
@@ -23,7 +23,7 @@ const socialIcons = [
 ];
 
 const Sidebar = ({ isOpen, onClose }) => {
-  console.log("Sidebar rendered, isOpen:", isOpen);
+  // console.log("Sidebar rendered, isOpen:", isOpen);
   const sidebarRef = useRef(null);
   const menuRef = useRef(null);
   const socialRef = useRef(null);
@@ -174,4 +174,4 @@ const Sidebar = ({ isOpen, onClose }) => {
   );
 };
 
-export default Sidebar;
+export default memo(Sidebar);
