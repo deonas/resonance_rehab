@@ -1,4 +1,4 @@
-import React, { useState, useCallback, memo } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import HamburgerButton from "../ui/HamburgerButton";
 
@@ -8,17 +8,13 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
+    console.log("Navbar: toggleMenu called, current isOpen:", isOpen);
     setIsOpen(!isOpen);
   };
 
-  const handleClose = useCallback(() => {
-    setIsOpen(false);
-  }, []);
-
   return (
     <div
-      style={{ zIndex: 9999 }}
-      className={`navbar main-navbar fixed top-0 left-0 w-full bg-background/80 backdrop-blur-md transition-colors duration-300 ${
+      className={`navbar main-navbar fixed top-0 left-0 w-full z-[9999] bg-transparent ${
         isOpen ? "nav-open" : ""
       }`}
     >
@@ -40,9 +36,9 @@ const Navbar = () => {
         toggle={toggleMenu}
       />
 
-      <Sidebar isOpen={isOpen} onClose={handleClose} />
+      <Sidebar isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </div>
   );
 };
 
-export default memo(Navbar);
+export default Navbar;
