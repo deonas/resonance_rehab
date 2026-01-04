@@ -14,7 +14,7 @@ const HeroBackground = ({
   return (
     <div
       ref={containerRef}
-      className={`relative w-full flex-1 min-h-0 md:mt-0 md:absolute md:inset-0 md:z-0 order-2 ${
+      className={`relative w-full flex-1 min-h-0 md:mt-0 md:absolute md:inset-0 md:z-10 order-2 ${
         // Removed min-h-[40vh] to allow flex shrinking if necessary, but flex-1 should fill
         simple ? "h-full" : ""
       }`}

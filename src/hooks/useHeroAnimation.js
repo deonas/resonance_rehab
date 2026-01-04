@@ -18,6 +18,10 @@ export const useHeroAnimation = ({
   socialRef,
   bgImageRef,
   aboutRef,
+  whyChooseUsRef,
+  servicesRef,
+  approachRef,
+  conditionsRef,
 }) => {
   const handleResize = useCallback(() => {
     updateDoodleContainer(
@@ -75,7 +79,7 @@ export const useHeroAnimation = ({
           scrollTrigger: {
             trigger: heroRef.current,
             start: "top top",
-            end: "+=300%", // Extended for About Us section
+            end: "+=2000%", // Extended for About, Why, Services (Horizontal), Approach, Conditions
             scrub: 1,
             pin: true,
             onUpdate: () => updateDoodleContainer(
@@ -156,9 +160,9 @@ export const useHeroAnimation = ({
         tl.to(imageContainerRef.current, {
              top: "0%",
              height: "40vh", // Using 40vh as requested in Step 211
-             zIndex: 5, // Force z-index to ensure visibility
+             zIndex: 10, // Force z-index to ensure visibility
              opacity: 1, // Ensure opacity is full
-             duration: 2,
+             duration: 1.5,
              ease: "power2.inOut"
         }, "<");
 
@@ -176,7 +180,7 @@ export const useHeroAnimation = ({
         // Here we slide the About Content Up (Reveal)
          tl.to(
             aboutRef.current,
-            { opacity: 1, y: 0, duration: 2, ease: "power2.out", pointerEvents: "all" },
+            { opacity: 1, y: 0, duration: 3, ease: "power2.out", pointerEvents: "all" },
             "<+=0.5"
          );
          
@@ -214,6 +218,59 @@ export const useHeroAnimation = ({
          if (navHamburgerLines.length > 0) {
             tl.to(navHamburgerLines, { backgroundColor: PRIMARY_COLOR, duration: 2, ease: "none" }, "<");
          }
+
+         // --- Step 4: Why Choose Us Card Stack ---
+         tl.to(whyChooseUsRef.current, {
+           y: "0%",
+           duration: 2,
+           ease: "power2.out",
+           pointerEvents: "all"
+         });
+ 
+
+
+         // --- Step 5: Services Card Stack ---
+         tl.to(servicesRef.current, {
+           y: "0%",
+           duration: 2,
+           ease: "power2.out",
+           pointerEvents: "all"
+         });
+
+         // --- Step 5.5: Horizontal Scroll for Services Cards ---
+         tl.to(
+             servicesRef.current.querySelector('.services-track'), 
+             {
+                 x: () => {
+                     const track = servicesRef.current.querySelector('.services-track');
+                     const container = servicesRef.current.querySelector('.hide-scrollbar');
+                     if (!track || !container) return 0;
+                     const scrollAmount = track.scrollWidth - container.clientWidth;
+                     return -scrollAmount > 0 ? 0 : -scrollAmount;
+                 },
+                 duration: 4, 
+                 ease: "none"
+             }
+         );
+
+
+         // --- Step 6: Approach Card Stack ---
+         tl.to(approachRef.current, {
+           y: "0%",
+           duration: 2,
+           ease: "power2.out",
+           pointerEvents: "all"
+         });
+
+
+         // --- Step 7: Conditions Card Stack ---
+         tl.to(conditionsRef.current, {
+           y: "0%",
+           duration: 2,
+           ease: "power2.out",
+           pointerEvents: "all"
+         });
+
       });
       
       // Fix: Adjusted subpixel precision coverage
@@ -278,19 +335,19 @@ export const useHeroAnimation = ({
          if (navbar) entryTl.to(navbar, { autoAlpha: 1, duration: 0.5 }, "<");
          
          // --- Mobile Scroll Transition Logic ---
-         if (aboutContainer) {
-             const scrollTl = gsap.timeline({
-                 scrollTrigger: {
-                     trigger: heroContainer,
-                     start: "top top",
-                     end: "+=100%", // Scroll 1 viewport height to transition
-                     scrub: true,   // Sync with scroll
-                     pin: true,     // Pin the Hero
-                     anticipatePin: 1, // Smooth pinning
-                     invalidateOnRefresh: true, // Recalculate on resize/refresh
-                 }
-             });
+         const scrollTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: heroContainer,
+                start: "top top",
+                end: "+=500%", // Scroll 5 viewport heights (Hero->About->Why->Services->Approach->Conditions)
+                scrub: true,   // Sync with scroll
+                pin: true,     // Pin the Hero
+                anticipatePin: 1, // Smooth pinning
+                invalidateOnRefresh: true, // Recalculate on resize/refresh
+            }
+         });
 
+         if (aboutContainer) {
              // Slide About Up (y: 100% -> 0%)
              // Hero stays pinned underneath, creating the overlay effect.
              scrollTl.to(aboutContainer.parentElement, {
@@ -308,6 +365,86 @@ export const useHeroAnimation = ({
              if (navHamburgerLines.length > 0) {
                scrollTl.to(navHamburgerLines, { backgroundColor: "#ffffff", ease: "none" }, "<");
              }
+         }
+
+         if (whyChooseUsRef.current) {
+             // Init WhyChooseUs for Mobile
+             gsap.set(whyChooseUsRef.current, {
+                 position: "absolute",
+                 top: 0,
+                 left: 0,
+                 width: "100%",
+                 height: "100dvh",
+                 zIndex: 30,
+                 y: "100%",
+                 overflow: "hidden"
+             });
+
+             // Slide WhyChooseUs Up (Card Stack)
+             scrollTl.to(whyChooseUsRef.current, {
+                 y: "0%",
+                 ease: "none"
+             });
+         }
+
+         if (servicesRef.current) {
+             // Init Services for Mobile
+             gsap.set(servicesRef.current, {
+                 position: "absolute",
+                 top: 0,
+                 left: 0,
+                 width: "100%",
+                 height: "100dvh",
+                 zIndex: 40,
+                 y: "100%",
+                 overflow: "hidden"
+             });
+
+             // Slide Services Up (Card Stack)
+             scrollTl.to(servicesRef.current, {
+                 y: "0%",
+                 ease: "none"
+             });
+         }
+
+         if (approachRef.current) {
+             // Init Approach for Mobile
+             gsap.set(approachRef.current, {
+                 position: "absolute",
+                 top: 0,
+                 left: 0,
+                 width: "100%",
+                 height: "100dvh",
+                 zIndex: 50,
+                 y: "100%",
+                 overflow: "hidden"
+             });
+
+             // Slide Approach Up (Card Stack)
+             scrollTl.to(approachRef.current, {
+                 y: "0%",
+                 ease: "none"
+             });
+         }
+
+         if (conditionsRef.current) {
+             // Init Conditions for Mobile
+             gsap.set(conditionsRef.current, {
+                 position: "absolute",
+                 top: 0,
+                 left: 0,
+                 width: "100%",
+                 height: "100dvh",
+                 zIndex: 60,
+                 y: "100%",
+                 overflow: "hidden"
+             });
+
+             // Slide Conditions Up (Card Stack)
+             scrollTl.to(conditionsRef.current, {
+                 y: "0%",
+                 ease: "none"
+             });
          }
       });
       

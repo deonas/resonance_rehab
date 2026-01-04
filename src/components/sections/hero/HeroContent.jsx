@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../../ui/Button";
+import Container from "../../ui/Container";
 import { useNavigate } from "react-router-dom";
 
 const HeroContent = ({ overlayRef, contentRef }) => {
@@ -8,12 +9,9 @@ const HeroContent = ({ overlayRef, contentRef }) => {
   return (
     <div
       ref={overlayRef}
-      className="relative z-10 w-full py-2 pb-6 flex flex-col items-start pt-20 px-6 md:absolute md:top-0 md:left-0 md:h-[55vh] md:bg-white md:pt-[75px] md:justify-center md:items-start md:px-12 lg:px-24 order-1 shadow-xl"
+      className="relative z-10 w-full py-2 pb-6 flex flex-col items-start pt-20 md:absolute md:top-0 md:left-0 md:h-[55vh] md:bg-white md:pt-[75px] md:justify-center md:items-start order-1 shadow-xl"
     >
-      <div
-        ref={contentRef}
-        className="w-full max-w-7xl mx-auto flex flex-col md:items-start"
-      >
+      <Container ref={contentRef} className="flex flex-col md:items-start">
         <h2 className="text-5xl leading-[0.95] md:text-7xl lg:text-[6rem] font-autumn text-secondary-color font-bold tracking-tight text-left">
           <span className="hero-text-item block md:inline text-primary-color mb-0 md:mb-0 md:mr-4">
             Empowering
@@ -43,7 +41,7 @@ const HeroContent = ({ overlayRef, contentRef }) => {
             Book a Session
           </Button>
         </div>
-      </div>
+      </Container>
     </div>
   );
 };
