@@ -22,6 +22,8 @@ export const useHeroAnimation = ({
   servicesRef,
   approachRef,
   conditionsRef,
+  meetTeamRef,
+  contactRef,
 }) => {
   const handleResize = useCallback(() => {
     updateDoodleContainer(
@@ -83,7 +85,7 @@ export const useHeroAnimation = ({
           scrollTrigger: {
             trigger: heroRef.current,
             start: "top top",
-            end: "+=2000%", // Extended for About, Why, Services (Horizontal), Approach, Conditions
+            end: "+=2800%", // Extended for Contact
             scrub: 1,
             pin: true,
             onUpdate: () => updateDoodleContainer(
@@ -333,11 +335,51 @@ export const useHeroAnimation = ({
          }, "<"); // Synced with content scroll
 
 
-         // --- Step 7: Conditions Card Stack ---
+         // --- Step 7: Conditions Card Stack (Slide Up) ---
          tl.to(conditionsRef.current, {
            y: "0%",
            duration: 2,
-           ease: "power2.out",
+           ease: "power2.inOut",
+           pointerEvents: "all"
+         });
+
+         // --- Step 7.1: Vertical Scroll for Conditions Content ---
+         tl.to(conditionsRef.current.querySelector('.conditions-content-inner'), {
+            y: () => {
+                const container = conditionsRef.current.querySelector('.conditions-content-inner');
+                if (!container) return 0;
+                
+                const rect = container.getBoundingClientRect();
+                const viewHeight = window.innerHeight;
+                
+                // Similar logic to Approach: Scroll until bottom meets target
+                // Since this runs AFTER the section has slid up (y=0), we can rely on layout height
+                // However, getBoundingClientRect might be tricky if it's off-screen or scaled.
+                // But simplified:
+                const containerHeight = container.offsetHeight;
+                
+                if (containerHeight > viewHeight) {
+                     return -(containerHeight - viewHeight + 150); // +150 padding/footer
+                }
+                return 0;
+            },
+            duration: 8, // Extended scroll for long content
+            ease: "none"
+         });
+
+         // --- Step 8: Meet Our Team Card Stack (Slide Up) ---
+         tl.to(meetTeamRef.current, {
+           y: "0%", 
+           duration: 2,
+           ease: "power2.inOut", 
+           pointerEvents: "all"
+         });
+
+         // --- Step 9: Contact Card Stack (Slide Up) ---
+         tl.to(contactRef.current, {
+           y: "0%", 
+           duration: 2,
+           ease: "power2.inOut", 
            pointerEvents: "all"
          });
 
@@ -409,7 +451,7 @@ export const useHeroAnimation = ({
             scrollTrigger: {
                 trigger: heroContainer,
                 start: "top top",
-                end: "+=500%", // Scroll 5 viewport heights (Hero->About->Why->Services->Approach->Conditions)
+                end: "+=700%", // Scroll 7 viewport heights
                 scrub: true,   // Sync with scroll
                 pin: true,     // Pin the Hero
                 anticipatePin: 1, // Smooth pinning
@@ -512,6 +554,46 @@ export const useHeroAnimation = ({
 
              // Slide Conditions Up (Card Stack)
              scrollTl.to(conditionsRef.current, {
+                 y: "0%",
+                 ease: "none"
+             });
+         }
+
+         if (meetTeamRef.current) {
+             // Init MeetTeam for Mobile
+             gsap.set(meetTeamRef.current, {
+                 position: "absolute",
+                 top: 0,
+                 left: 0,
+                 width: "100%",
+                 height: "100dvh",
+                 zIndex: 70,
+                 y: "100%",
+                 overflow: "hidden"
+             });
+
+             // Slide MeetTeam Up (Card Stack)
+             scrollTl.to(meetTeamRef.current, {
+                 y: "0%",
+                 ease: "none"
+             });
+         }
+
+         if (contactRef.current) {
+             // Init Contact for Mobile
+             gsap.set(contactRef.current, {
+                 position: "absolute",
+                 top: 0,
+                 left: 0,
+                 width: "100%",
+                 height: "100dvh",
+                 zIndex: 80,
+                 y: "100%",
+                 overflow: "hidden"
+             });
+
+             // Slide Contact Up (Card Stack)
+             scrollTl.to(contactRef.current, {
                  y: "0%",
                  ease: "none"
              });

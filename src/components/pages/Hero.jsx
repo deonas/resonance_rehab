@@ -9,6 +9,8 @@ import WhyChooseUs from "./WhyChooseUs";
 import Services from "./Services";
 import Approach from "./Approach";
 import ConditionsWeSupport from "./ConditionsWeSupport";
+import MeetOurTeam from "./MeetOurTeam";
+import Contact from "./Contact";
 
 const Hero = () => {
   const heroRef = useRef(null);
@@ -25,6 +27,8 @@ const Hero = () => {
   const servicesRef = useRef(null);
   const approachRef = useRef(null);
   const conditionsRef = useRef(null);
+  const meetTeamRef = useRef(null);
+  const contactRef = useRef(null);
 
   const { handleResize } = useHeroAnimation({
     heroRef,
@@ -40,6 +44,8 @@ const Hero = () => {
     servicesRef,
     approachRef,
     conditionsRef,
+    meetTeamRef,
+    contactRef,
   });
 
   return (
@@ -95,6 +101,22 @@ const Hero = () => {
         ref={conditionsRef}
       >
         <ConditionsWeSupport />
+      </div>
+
+      {/* Meet Our Team Content - Card Stack Effect */}
+      <div
+        className="absolute top-0 left-0 w-full z-[70] h-screen translate-y-full"
+        ref={meetTeamRef}
+      >
+        <MeetOurTeam />
+      </div>
+
+      {/* Contact Content - Card Stack Effect */}
+      <div
+        className="absolute top-0 left-0 w-full z-[80] h-screen translate-y-full"
+        ref={contactRef}
+      >
+        <Contact />
       </div>
     </div>
   );

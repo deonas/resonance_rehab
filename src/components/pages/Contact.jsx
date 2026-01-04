@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { forwardRef } from "react";
 
-const Contact = () => {
+const Contact = forwardRef((props, ref) => {
   return (
-    <div>Contact</div>
-  )
-}
+    <div
+      ref={ref}
+      className="h-screen bg-amber-900 w-full flex items-center justify-center text-white text-4xl"
+    >
+      Contact
+    </div>
+  );
+});
 
-export default Contact
+export default Contact;
