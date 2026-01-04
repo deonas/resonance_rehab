@@ -287,6 +287,51 @@ export const useHeroAnimation = ({
            pointerEvents: "all"
          });
 
+         // --- Scale In for Approach Circles ---
+         tl.from(approachRef.current.querySelector('.approach-circles'), {
+            scale: 0.5,
+            opacity: 0, 
+            duration: 2,
+            ease: "power2.out"
+         }, "<+=1");
+
+         // --- Step 6.1: Vertical Scroll for Approach Content ---
+         tl.to(approachRef.current.querySelector('.approach-content-inner'), { 
+            y: () => {
+                const container = approachRef.current.querySelector('.approach-content-inner');
+                if (!container) return 0;
+                
+                const rect = container.getBoundingClientRect();
+                const viewHeight = window.innerHeight;
+                
+                // Current Top is rect.top
+                // Target: We want the Bottom of the container to be at viewHeight - 100 (padding)
+                // If container bottom is already above target, no scroll needed.
+                
+                // But container is pinned, so logic:
+                // We want to translate it UP by X so that:
+                // (rect.bottom - X) <= viewHeight - 100
+                // X >= rect.bottom - (viewHeight - 100)
+                
+                const currentBottom = rect.bottom;
+                const targetBottom = viewHeight - 100;
+                
+                if (currentBottom > targetBottom) {
+                    return -(currentBottom - targetBottom);
+                }
+                return 0;
+            },
+            duration: 8, // Increase duration to give user more scroll distance to read
+            ease: "none"
+         });
+
+         // --- Step 6.2: Rotate Circles on Scroll ---
+         tl.to(approachRef.current.querySelector('.approach-circles'), {
+            rotation: 120, // Rotate 120 degrees during the scroll
+            duration: 8, // Match the content scroll duration
+            ease: "none"
+         }, "<"); // Synced with content scroll
+
 
          // --- Step 7: Conditions Card Stack ---
          tl.to(conditionsRef.current, {
