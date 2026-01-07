@@ -51,7 +51,6 @@ const Hero = () => {
     servicesRef,
     approachRef,
     conditionsRef,
-    conditionsRef,
     meetTeamRef,
     contactRef,
     faqRef,

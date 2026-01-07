@@ -23,7 +23,6 @@ const socialIcons = [
 ];
 
 const Sidebar = ({ isOpen, onClose }) => {
-  console.log("Sidebar rendered, isOpen:", isOpen);
   const sidebarRef = useRef(null);
   const menuRef = useRef(null);
   const socialRef = useRef(null);

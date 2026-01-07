@@ -7,8 +7,6 @@ const DOODLES = {
   halo: "/icons/WhyChooseUS/Ring.svg",
   squiggle: "/icons/WhyChooseUS/Ring2.svg",
   heart: "/icons/WhyChooseUS/Love.svg",
-  divider:
-    "http://localhost:3845/assets/bb6a0d2a9b3f24cdfb59dac236650cc6e27464a8.svg",
 };
 
 const CARDS = [

@@ -46,7 +46,8 @@ const MeetOurTeam = forwardRef((props, ref) => {
         <div className="text-center">
           <button
             onClick={handleViewFullTeam}
-            className="bg-button-main text-primary-color font-urbanist font-bold px-8 py-3 rounded-full hover:opacity-90 transition-opacity text-sm"
+            className="bg-button-main text-primary-color font-urbanist font-bold px-8 py-3 rounded-full hover:opacity-90 transition-opacity text-sm focus-ring"
+            aria-label="View complete team member directory"
           >
             View Full Team
           </button>

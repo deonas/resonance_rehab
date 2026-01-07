@@ -1,8 +1,5 @@
 import React, { forwardRef } from "react";
 
-const imgVector81 =
-  "http://localhost:3845/assets/f6ae8805062db4a3ab20d40bd6ac078e6ffa67be.svg";
-
 const Contact = forwardRef((props, ref) => {
   return (
     <div
@@ -11,11 +8,20 @@ const Contact = forwardRef((props, ref) => {
     >
       {/* Scribble Decoration */}
       <div className="absolute top-1/3 left-1/2 transform -translate-x-[40%] -translate-y-[20%] w-[335px] pointer-events-none z-0">
-        <img
-          src={imgVector81}
-          alt=""
+        <svg
+          viewBox="0 0 335 335"
           className="w-full rotate-[347deg] opacity-80"
-        />
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            d="M50 167.5C50 100 100 50 167.5 50C235 50 285 100 285 167.5C285 235 235 285 167.5 285C100 285 50 235 50 167.5Z"
+            stroke="#6942B5"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+          />
+        </svg>
       </div>
 
       {/* Main Text */}
@@ -37,10 +43,16 @@ const Contact = forwardRef((props, ref) => {
 
       {/* Buttons */}
       <div className="relative z-10 flex gap-6 mt-4">
-        <button className="bg-button-main text-primary-color font-urbanist font-bold text-[16px] px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105">
+        <button
+          className="bg-button-main text-primary-color font-urbanist font-bold text-[16px] px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 focus-ring"
+          aria-label="Book a therapy session"
+        >
           Book a Session
         </button>
-        <button className="bg-[#bbb5fd] text-primary-color font-urbanist font-medium text-[16px] px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105">
+        <button
+          className="bg-[#bbb5fd] text-primary-color font-urbanist font-medium text-[16px] px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 focus-ring"
+          aria-label="Talk to our team"
+        >
           Talk to Us
         </button>
       </div>
