@@ -2,15 +2,6 @@ import React, { forwardRef } from "react";
 import Container from "../ui/Container";
 import Button from "../ui/Button";
 
-// Assets from Figma context
-// Rotated text labels (assuming mappings based on visual hierarchy)
-const imgLabelApproach =
-  "http://localhost:3845/assets/3d1d1df15218a22a716b30121b3805b41625258d.svg";
-const imgLabelVision =
-  "http://localhost:3845/assets/fa3607c98c22e4e92f5b4d68b7b9f873c33d3a79.svg";
-const imgLabelMission =
-  "http://localhost:3845/assets/f3dece5e9a7297ab1b1b6f3cc08e4bdee3f4715a.svg";
-
 const Approach = forwardRef((props, ref) => {
   return (
     <section

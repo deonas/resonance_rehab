@@ -3,7 +3,11 @@ import React from "react";
 const HomeTeamCard = ({ member, onClick }) => (
   <div
     onClick={onClick}
-    className="bg-cream rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-1 w-full"
+    role="button"
+    tabIndex={0}
+    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onClick(); }}
+    className="bg-cream rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-1 w-full focus-ring"
+    aria-label={`View ${member.name}'s profile - ${member.title}`}
   >
     <img
       src={member.image}

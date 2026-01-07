@@ -7,43 +7,37 @@ const SERVICE_CARDS = [
     title: "Counselling & Psychotherapy",
     description:
       "Supporting children, individuals, couples, and families with evidence-based online counselling that builds emotional strength, clarity, and balance.",
-    image:
-      "http://localhost:3845/assets/c9e56a359e801d96fb0a56fb9ad091f95c716cc1.png",
+    image: "/images/services/counselling.png",
   },
   {
     title: "Occupational Therapy",
     description:
       "Helping children strengthen daily living skills, sensory processing, and independence through structured, personalised therapy from home.",
-    image:
-      "http://localhost:3845/assets/9ac69ec78b5afd97a843be5c6ad1792387c2a9bd.png",
+    image: "/images/services/occupational.png",
   },
   {
     title: "Behavioral Therapy",
     description:
       "Guiding children toward positive behaviour, emotional regulation, and social confidence through supportive, evidence-based interventions.",
-    image:
-      "http://localhost:3845/assets/c4746d948a27749152938cf2e04bc24afe52dc65.png",
+    image: "/images/services/behavioral.png",
   },
   {
     title: "Developmental Therapy",
     description:
       "Supporting early childhood growth with play-based, milestone-focused intervention that nurtures motor, language, and social-emotional development.",
-    image:
-      "http://localhost:3845/assets/e93deb8d09d3acd72eac7180680176173f84de76.png",
+    image: "/images/services/developmental.png",
   },
   {
     title: "Speech Therapy",
     description:
       "Helping children improve their communication skills, including speech, language, and social interaction, with expert guidance.",
-    image:
-      "http://localhost:3845/assets/42cbab0ba6d068cc0c810241158db0397cd77808.png",
+    image: "/images/services/speech.png",
   },
   {
     title: "Physiotherapy",
     description:
       "Physical therapy to help children develop their motor skills, balance, and coordination through personalized exercises.",
-    image:
-      "http://localhost:3845/assets/42cbab0ba6d068cc0c810241158db0397cd77808.png", // Using duplicate placeholder if original unavailable, or update
+    image: "/images/services/physiotherapy.png",
   },
 ];
 

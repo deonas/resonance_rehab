@@ -71,7 +71,7 @@ export const useHeroAnimation = ({
              window.scrollTo({ top: scrollPos, behavior });
         }
     } catch (e) {
-        console.error("Error scrolling to label:", label, e);
+        // Silently handle scroll errors in production
     }
   }, []);
 

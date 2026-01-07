@@ -20,30 +20,12 @@ const MeetOurTeam = forwardRef((props, ref) => {
         <div className="text-center mb-12 mt-16">
           <h1 className="font-autumn text-4xl md:text-5xl lg:text-6xl mb-4 relative inline-block">
             <span className="text-primary-color">Meet Our </span>
-            <span className="text-secondary-color italic relative">
-              Expert Team
-              <svg
-                className="absolute -bottom-2 left-0 w-full h-8"
-                viewBox="0 0 400 20"
-                preserveAspectRatio="none"
-              >
-                <path
-                  d="M10,15 Q100,8 200,12 T390,15"
-                  stroke="#DAE562"
-                  strokeWidth="4"
-                  fill="none"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M20,18 Q110,11 210,15 T400,18"
-                  stroke="#DAE562"
-                  strokeWidth="3"
-                  fill="none"
-                  strokeLinecap="round"
-                  opacity="0.7"
-                />
-              </svg>
-            </span>
+            <span className="text-secondary-color italic">Expert Team</span>
+            <img
+              src="/images/ConditionsWeSupport/underline.svg"
+              alt=""
+              className="absolute -bottom-4 left-0 w-full h-4.5"
+            />
           </h1>
           <p className="font-urbanist text-secondary-color text-sm max-w-2xl mx-auto mt-6">
             Our certified therapists are here to guide, support, and help your
@@ -64,7 +46,8 @@ const MeetOurTeam = forwardRef((props, ref) => {
         <div className="text-center">
           <button
             onClick={handleViewFullTeam}
-            className="bg-button-main text-primary-color font-urbanist font-bold px-8 py-3 rounded-full hover:opacity-90 transition-opacity text-sm"
+            className="bg-button-main text-primary-color font-urbanist font-bold px-8 py-3 rounded-full hover:opacity-90 transition-opacity text-sm focus-ring"
+            aria-label="View complete team member directory"
           >
             View Full Team
           </button>

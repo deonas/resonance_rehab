@@ -6,7 +6,11 @@ import { teamData } from "../../data/teamData";
 const TeamCard = ({ member, onClick }) => (
   <div
     onClick={onClick}
-    className="bg-cream rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1"
+    role="button"
+    tabIndex={0}
+    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onClick(); }}
+    className="bg-cream rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 focus-ring"
+    aria-label={`View ${member.name}'s profile - ${member.title}`}
   >
     <img
       src={member.image}
@@ -43,9 +47,10 @@ const TeamList = () => {
       <div className="container-custom py-8 mt-16">
         <button
           onClick={handleBack}
-          className="flex items-center gap-2 bg-secondary-color text-white px-5 py-2 rounded-full font-urbanist font-medium text-sm mb-12 hover:opacity-90 transition-opacity"
+          className="flex items-center gap-2 bg-secondary-color text-white px-5 py-2 rounded-full font-urbanist font-medium text-sm mb-12 hover:opacity-90 transition-opacity focus-ring"
+          aria-label="Go back to Meet Our Team section"
         >
-          <ArrowLeft size={16} />
+          <ArrowLeft size={16} aria-hidden="true" />
           Back
         </button>
 

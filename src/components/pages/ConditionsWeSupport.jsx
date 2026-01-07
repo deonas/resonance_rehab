@@ -3,20 +3,18 @@ import Container from "../ui/Container";
 import Button from "../ui/Button";
 
 // Assets
-const imgSwirl =
-  "http://localhost:3845/assets/e589df0f099a0a65a8677875b49f180327a2877d.svg"; // Group 20
-const imgUnderline =
-  "http://localhost:3845/assets/2f351bd475124bf295bb09526e3479cc70740bf8.svg"; // Vector 80
-const imgStar =
-  "http://localhost:3845/assets/ce5863cac9475dd8ecd0be10018e22f51f68a990.svg"; // Group 1 (Assumed Star)
-const imgLightning =
-  "http://localhost:3845/assets/f9c1b544213423c36b971160002008c32ea4dc23.svg"; // Vector 83 (Assumed Lightning)
-const imgBook =
-  "http://localhost:3845/assets/071f9309b9c3be7bdceff76465bca4a4cd15c594.svg"; // Vector 86 (Assumed Book)
-const imgFace =
-  "http://localhost:3845/assets/d39ef0af816cb039cf9bd3e7f180fb427ea3308e.svg"; // Group 29 (Assumed Face)
-// Missing explicit assets for others, reusing or omitting for strictness if not found.
-// Based on count, I might have mis-mapped, but will use what I have.
+// Assets
+const imgSwirl = "/images/ConditionsWeSupport/swril.svg";
+const imgUnderline = "/images/ConditionsWeSupport/underline.svg";
+const imgStar = "/images/ConditionsWeSupport/star.svg";
+const imgLightning = "/images/ConditionsWeSupport/Ligthing.svg";
+const imgBook = "/images/ConditionsWeSupport/book.svg";
+const imgFace = "/images/ConditionsWeSupport/face.svg";
+const imgSpeechBubbleLarge =
+  "/images/ConditionsWeSupport/speech_bubble_large.svg";
+const imgSpeechBubbleSmall =
+  "/images/ConditionsWeSupport/speech_bubble_small.svg";
+const imgSquiggles = "/images/ConditionsWeSupport/squiggles.svg";
 
 const conditions = [
   {
@@ -82,10 +80,15 @@ const ConditionsWeSupport = forwardRef((props, ref) => {
       <Container className="relative z-10 flex flex-col items-center">
         <div className="conditions-content-inner w-full flex flex-col items-center gap-10">
           {/* Header */}
-          <div className="relative mb-8 text-center">
+          <div className="relative mb-8 text-center px-4">
             {/* Top Star Doodle */}
+            <img
+              src={imgStar}
+              alt=""
+              className="absolute -top-12 left-0 w-16 md:w-20 -rotate-12"
+            />
 
-            <h2 className="font-autumn text-5xl md:text-7xl lg:text-[64px] leading-[1.2] text-primary-color">
+            <h2 className="font-autumn text-5xl md:text-7xl lg:text-[64px] leading-[1.2] text-primary-color relative z-10">
               Conditions <span className="text-[#6942b5]">We</span> Support
             </h2>
 
@@ -93,46 +96,63 @@ const ConditionsWeSupport = forwardRef((props, ref) => {
             <img
               src={imgUnderline}
               alt=""
-              className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-48 md:w-64"
+              className="absolute z-10 -bottom-4 left-1/2 -translate-x-1/2 w-48 md:w-64 z-0"
             />
           </div>
 
           {/* Cards Grid/Stack */}
-          <div className="w-full max-w-4xl space-y-6 relative">
-            {/* Doodles Layout - Absolute to this container or relative to cards */}
+          <div className="w-full max-w-4xl space-y-6 relative px-4">
+            {/* Doodles Layout */}
 
             {/* Swirl for Autism (Card 1) - Left */}
             <img
               src={imgSwirl}
               alt=""
-              className="absolute -left-16 top-0 w-20 h-20 md:w-24 md:h-24 hidden md:block"
+              className="absolute z-20 -left-16 top-0 w-20 h-20 md:w-24 md:h-24 hidden lg:block"
             />
 
             {/* Lightning for ADHD (Card 2) - Right */}
             <img
               src={imgLightning}
               alt=""
-              className="absolute -right-12 top-[200px] w-12 h-20 md:w-16 md:h-24 hidden md:block"
+              className="absolute -right-12 top-[200px] w-12 h-20 md:w-16 md:h-24 hidden lg:block"
             />
 
             {/* Book for Learning (Card 3) - Left */}
             <img
               src={imgBook}
               alt=""
-              className="absolute -left-16 top-[450px] w-16 h-16 md:w-20 md:h-20 hidden md:block"
+              className="absolute -left-16 top-[450px] z-10 w-16 h-16 md:w-20 md:h-20 hidden lg:block"
             />
 
             {/* Face for Behavioral (Card 4) - Right */}
             <img
-              src={imgFace}
+              src={imgSpeechBubbleSmall}
               alt=""
-              className="absolute -right-16 top-[700px] w-20 h-20 md:w-24 md:h-24 hidden md:block"
+              className="absolute -right-16 top-[700px] z-20 w-20 h-20 md:w-24 md:h-24 hidden lg:block"
+            />
+
+            {/* Speech Bubbles for Speech Delay (Card 5) - Right */}
+            <div className="absolute -right-20 top-[950px] hidden lg:block">
+              <img src={imgSpeechBubbleLarge} alt="" className="w-24 h-24" />
+              <img
+                src={imgSpeechBubbleLarge}
+                alt=""
+                className="w-12 h-12 absolute -right-4 top-12 block md:hidden"
+              />
+            </div>
+
+            {/* Squiggles for Stammering (Card 6) - Left */}
+            <img
+              src={imgSquiggles}
+              alt=""
+              className="absolute -left-10 bottom-0 w-24 h-24 hidden z-20 lg:block rotate-[-115deg]"
             />
 
             {conditions.map((condition, index) => (
               <div
                 key={index}
-                className="bg-[#faf9ff] rounded-[20px] p-8 md:p-10 w-full shadow-sm"
+                className="bg-[#faf9ff] rounded-[20px] p-8 md:p-10 w-full shadow-sm relative z-10"
               >
                 <h3 className="font-urbanist font-bold text-2xl md:text-3xl text-primary-color mb-4 leading-tight">
                   {condition.title}

@@ -7,7 +7,7 @@ const burgerIcon = "/images/sidebar/burger.svg";
 const smileyDoodle = "/images/sidebar/Happyface.svg";
 const underlineDoodle = "/images/sidebar/Underline.svg";
 
-// Social Icons - using correct paths from public/icons
+
 const socialLinks = [
   { name: "Linkedin", url: "#", icon: "/icons/Linkedin.svg" },
   { name: "X", url: "#", icon: "/icons/X.svg" },
@@ -20,7 +20,7 @@ const socialLinks = [
 const Footer = forwardRef((props, ref) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // Scroll to top on mount
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -31,11 +31,11 @@ const Footer = forwardRef((props, ref) => {
         ref={ref}
         className="relative w-full px-12 mx-auto bg-background overflow-hidden min-h-screen mb-4 text-primary-color"
       >
-        {/* Main Content Area */}
+        
         <div className="flex flex-col items-start justify-center pt-[150px] pb-[100px] relative h-full min-h-[500px]">
-          {/* Central Logo & Doodles */}
+        
           <div className="relative mb-20">
-            {/* Smiley Doodle */}
+            
             <div className="absolute -top-12 -right-12 w-[64px] h-[65px] rotate-[20.84deg]">
               <img src={smileyDoodle} alt="Smile" className="w-full h-full" />
             </div>
@@ -44,7 +44,7 @@ const Footer = forwardRef((props, ref) => {
               Resonance Rehab
             </h2>
 
-            {/* Underline Doodle */}
+          
             <div className="absolute -bottom-4 left-1/2 -translate-x-[45%] w-[337px] h-[28px] pointer-events-none">
               <img
                 src={underlineDoodle}
@@ -54,7 +54,7 @@ const Footer = forwardRef((props, ref) => {
             </div>
           </div>
 
-          {/* Social Icons - Right Side Vertical Stack */}
+          
           <div className="absolute right-[60px] top-[400px] -translate-y-1/2 hidden md:flex flex-col gap-6">
             {socialLinks.map((link) => (
               <a
@@ -72,9 +72,9 @@ const Footer = forwardRef((props, ref) => {
           </div>
         </div>
 
-        {/* Bottom Section: Links & Info */}
+        
         <div className="absolute bottom-[50px] left-[60px] w-[calc(100%-120px)] flex flex-col md:flex-row justify-between items-end md:items-end text-primary-color font-urbanist text-base leading-normal">
-          {/* Left Column: Quick Links */}
+          
           <div className="flex flex-col gap-2">
             <h3 className="mb-4 text-secondary-color font-medium text-[20px]">
               Quick Links
@@ -122,7 +122,7 @@ const Footer = forwardRef((props, ref) => {
             </div>
           </div>
 
-          {/* Middle/Center: Contact Info */}
+        
           <div className="flex flex-col gap-2 md:ml-20 mt-8 md:mt-0">
             <h3 className="mb-4 text-secondary-color font-medium text-[20px]">
               Contact
@@ -134,7 +134,7 @@ const Footer = forwardRef((props, ref) => {
             </div>
           </div>
 
-          {/* Right: Copyright */}
+          
           <div className="mt-8 md:mt-0 text-right text-sm opacity-60 self-end font-medium">
             <p>© 2025 Resonance Rehab.</p>
             <p>All rights reserved.</p>

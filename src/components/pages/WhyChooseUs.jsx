@@ -2,16 +2,11 @@ import React, { forwardRef } from "react";
 import Container from "../ui/Container";
 
 const DOODLES = {
-  underline:
-    "http://localhost:3845/assets/1a53c549cf91bac21889fb93c8e5397c4f95811f.svg",
-  star: "http://localhost:3845/assets/adbf1ce21b09fe26e4df1a72fe6ed8a871a2a62d.svg",
-  halo: "http://localhost:3845/assets/19dcffb99182412faa2f6f2618bbdc260d438b24.svg",
-  squiggle:
-    "http://localhost:3845/assets/544ed72ac80c251045b9e868f3a4f4c9f38265f6.svg",
-  heart:
-    "http://localhost:3845/assets/1264a9ddf783547afe35298ea7dffae31f07f6d4.svg",
-  divider:
-    "http://localhost:3845/assets/bb6a0d2a9b3f24cdfb59dac236650cc6e27464a8.svg",
+  underline: "/icons/WhyChooseUS/Underline.svg",
+  star: "/icons/WhyChooseUS/Star.svg",
+  halo: "/icons/WhyChooseUS/Ring.svg",
+  squiggle: "/icons/WhyChooseUS/Ring2.svg",
+  heart: "/icons/WhyChooseUS/Love.svg",
 };
 
 const CARDS = [
@@ -21,7 +16,7 @@ const CARDS = [
       "We care deeply for every child and family, offering a safe space where healing feels natural and supported.",
     rotation: "-6deg",
     doodle: DOODLES.halo,
-    doodleClass: "w-[120px] -top-10 -left-6 rotate-[-15deg] opacity-70",
+    doodleClass: "w-[280px] -top-30 -left-28 rotate-[-15deg] opacity-70",
   },
   {
     title: "Expertise",
@@ -29,7 +24,7 @@ const CARDS = [
       "Our team consists of certified child specialists with proven experience in therapy and developmental support.",
     rotation: "4deg",
     doodle: DOODLES.squiggle, // Using available doodle
-    doodleClass: "w-[40px] -top-6 -right-4 rotate-[15deg]",
+    doodleClass: "w-[180px] -top-12 -right-20 rotate-[15deg]",
   },
   {
     title: "Accessibility",
@@ -37,15 +32,15 @@ const CARDS = [
       "Online sessions make therapy easy, flexible, and reachable from anywhere, directly from home.",
     rotation: "-3deg",
     doodle: DOODLES.heart, // Bottom card often has heart
-    doodleClass: "w-[40px] top-1/2 -left-12 rotate-[-20deg]",
+    doodleClass: "w-[50px] top-1/2 -left-20 rotate-[-20deg]",
   },
   {
     title: "Growth",
     description:
       "Every child receives personalised guidance that supports steady, meaningful progress.",
     rotation: "5deg",
-    doodle: null, // Central star is separate
-    doodleClass: "",
+    doodle:  DOODLES.heart, // Central star is separate
+    doodleClass: "w-[50px] top-1/2 -right-20 rotate-[60deg]",
   },
 ];
 
@@ -64,7 +59,7 @@ const WhyChooseUs = forwardRef((props, ref) => {
           <img
             src={DOODLES.underline}
             alt="underline"
-            className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-3/4 md:w-full max-w-[400px] opacity-80"
+            className="absolute -bottom-4 left-1/2 z-20 -translate-x-1/2 translate-y-1/2 w-3/4 md:w-full max-w-[400px] opacity-80 mt-8"
           />
         </div>
 
@@ -74,7 +69,7 @@ const WhyChooseUs = forwardRef((props, ref) => {
           <img
             src={DOODLES.star}
             alt="star"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100px] md:w-[150px] z-0 opacity-80"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100px] md:w-[200px] z-40 opacity-80"
           />
 
           {CARDS.map((card, index) => (

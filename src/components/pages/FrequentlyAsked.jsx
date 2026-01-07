@@ -52,7 +52,8 @@ const FrequentlyAsked = forwardRef((props, ref) => {
             <div className="absolute inset-0 flex items-end justify-center pb-4 md:pb-6">
               <button
                 onClick={() => setShowFullFAQ(true)}
-                className="bg-button-main text-primary-color font-urbanist font-bold px-5 md:px-6 py-2 md:py-2.5 rounded-full shadow-lg hover:opacity-90 transition text-sm md:text-base"
+                className="bg-button-main text-primary-color font-urbanist font-bold px-5 md:px-6 py-2 md:py-2.5 rounded-full shadow-lg hover:opacity-90 transition text-sm md:text-base focus-ring"
+                aria-label="View complete frequently asked questions"
               >
                 View Full FAQ
               </button>
