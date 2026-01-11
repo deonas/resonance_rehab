@@ -5,11 +5,11 @@ import gsap from "gsap";
 import Button from "./Button";
 
 const menuItems = [
-  { label: "Home", path: "/" },
-  { label: "About Us", path: "/about" },
-  { label: "Therapy Services", path: "/services" },
+  { label: "Home", path: "/home" },
+  { label: "About Us", path: "/About-us" },
+  { label: "Therapy Services", path: "/Services" },
   { label: "Conditions We Support", path: "/conditions" },
-  { label: "Meet Our Team", path: "/team" },
+  { label: "Meet Our Team", path: "/meet-our-team" },
   { label: "Contact", path: "/contact" },
 ];
 

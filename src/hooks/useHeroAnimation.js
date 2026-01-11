@@ -53,6 +53,7 @@ export const useHeroAnimation = ({
     let label;
     switch(path) {
       case '/': label = 'hero'; break;
+      case '/home': label = 'home'; break;
       case '/About-us': label = 'about'; break;
       case '/Why-choose-us': label = 'whyChooseUs'; break;
       case '/Services': label = 'services'; break;
@@ -202,6 +203,8 @@ export const useHeroAnimation = ({
 
         tl.to([".hero-footer-caption"], { autoAlpha: 1, duration: 1 }, "-=1");
         tl.from(socialRef.current, { x: 50, opacity: 0, duration: 1 }, "-=1");
+
+        tl.addLabel("home"); // Label for /home route - after splash, showing hero content
 
         // --- Step 2: Transition to About Us (Image Bottom -> Top) ---
         // Fade out Hero Content AND Container (to remove white bg)
