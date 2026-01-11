@@ -445,6 +445,25 @@ export const useHeroAnimation = ({
 
          tl.addLabel("meetTeam");
          tl.call(() => updateUrl("/meet-our-team"), null, "<");
+         //8.1
+          tl.to(meetTeamRef.current.querySelector('.container-custom'), {
+            y: () => {
+                const container = meetTeamRef.current.querySelector('.container-custom');
+                if (!container) return 0;
+                
+                const containerHeight = container.offsetHeight;
+                const viewHeight = window.innerHeight;
+                
+                // Calculate scroll needed to show the bottom of content (including button)
+                // We want bottom of container to align near bottom of viewport
+                if (containerHeight > viewHeight) {
+                     return -(containerHeight - viewHeight + 100); // +100 padding for breathing room
+                }
+                return 0;
+            },
+            duration: 8, // Smooth scroll duration
+            ease: "none"
+         });
 
          // --- Step 9: Contact Card Stack (Slide Up) ---
          tl.to(contactRef.current, {
