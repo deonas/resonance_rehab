@@ -10,19 +10,19 @@ export default function VisionMission() {
       />
 
       <div className="mb-16">
-        <h3 className="font-['Urbanist',sans-serif] font-bold text-[#19083B] text-center mb-6" style={{ fontSize: '36px', lineHeight: '90px' }}>
+        <h3 className="font-['Urbanist',sans-serif] font-bold text-[#19083B] text-center mb-6 text-4xl">
           Our Vision
         </h3>
-        <p className="text-[#19083B] font-['Urbanist',sans-serif] font-light text-center max-w-3xl mx-auto" style={{ fontSize: '16px', lineHeight: '100%' }}>
+        <p className="text-[#19083B]/80 font-['Urbanist',sans-serif] font-light text-center max-w-3xl mx-auto text-base md:text-lg leading-relaxed">
           To be a trusted leader in child and adolescent mental health care, where every child feels understood, supported, and empowered to grow confidently, one step at a time.
         </p>
       </div>
 
       <div className="relative">
-        <h3 className="font-['Urbanist',sans-serif] font-bold text-[#19083B] text-center mb-6" style={{ fontSize: '36px', lineHeight: '90px' }}>
+        <h3 className="font-['Urbanist',sans-serif] font-bold text-[#19083B] text-center mb-6 text-4xl">
           Our Mission
         </h3>
-        <p className="text-[#19083B] font-['Urbanist',sans-serif] font-light text-center max-w-3xl mx-auto" style={{ fontSize: '16px', lineHeight: '100%' }}>
+        <p className="text-[#19083B]/80 font-['Urbanist',sans-serif] font-light text-center max-w-3xl mx-auto text-base md:text-lg leading-relaxed">
           To make expert therapy accessible, compassionate, and impactful for every family. We combine certified guidance with heartfelt care to help children build resilience, confidence, and joy through personalised online therapy.
         </p>
         

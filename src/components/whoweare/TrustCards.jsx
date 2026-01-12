@@ -1,10 +1,11 @@
 import React from 'react';
+
 const trustCards = [
   {
     title: 'Compassion',
     description: 'We care deeply for every child and family, offering a safe space where healing feels natural and supported.',
     width: '383px',
-    height: '189px',
+    height: '240px',
     top: '60px',
     left: '80px',
     rotation: '-12deg'
@@ -13,7 +14,7 @@ const trustCards = [
     title: 'Expertise',
     description: 'Our team consists of certified child specialists with proven experience in therapy and developmental support.',
     width: '383px',
-    height: '189px',
+    height: '240px',
     top: '80px',
     left: '520px',
     rotation: '8deg'
@@ -22,8 +23,8 @@ const trustCards = [
     title: 'Accessibility',
     description: 'Online sessions make therapy easy, flexible, and reachable from anywhere, directly from home.',
     width: '320px',
-    height: '189px',
-    top: '310px',
+    height: '240px',
+    top: '340px',
     left: '140px',
     rotation: '-8deg'
   },
@@ -31,8 +32,8 @@ const trustCards = [
     title: 'Growth',
     description: 'Every child receives personalised guidance that supports steady, meaningful progress.',
     width: '320px',
-    height: '189px',
-    top: '295px',
+    height: '220px',
+    top: '325px',
     left: '530px',
     rotation: '6deg'
   }
@@ -60,7 +61,7 @@ export default function TrustCards() {
         />
       </h3>
 
-      <div className="relative mt-16" style={{ height: '550px' }}>
+      <div className="relative mt-16" style={{ height: '620px' }}>
         {/* Decorative elements */}
         <img
           src="/icons/Group 26.svg"
@@ -83,10 +84,10 @@ export default function TrustCards() {
               gap: '35px'
             }}
           >
-            <h4 className="font-['Urbanist',sans-serif] font-bold text-[#19083B] mb-9" style={{ fontSize: '36px', lineHeight: '90%' }}>
+            <h4 className="font-['Urbanist',sans-serif] font-bold text-[#19083B] mb-6 text-3xl leading-tight">
               {card.title}
             </h4>
-            <p className="text-[#19083B] font-['Urbanist',sans-serif] font-light" style={{ fontSize: '16px', lineHeight: '100%' }}>
+            <p className="text-[#19083B]/80 font-['Urbanist',sans-serif] font-light text-sm md:text-base leading-relaxed">
               {card.description}
             </p>
           </div>

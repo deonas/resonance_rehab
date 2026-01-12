@@ -26,11 +26,11 @@ export default function HeroSection() {
         </h2>
       </div>
 
-      <p className="text-[#19083B] font-['Urbanist',sans-serif] font-light leading-relaxed mb-6 text-center" style={{ fontSize: '16px', lineHeight: '100%' }}>
+      <p className="text-[#19083B]/80 font-['Urbanist',sans-serif] font-light leading-relaxed mb-6 text-center text-base md:text-lg">
         Resonance Rehab is a trusted online therapy platform dedicated to children, teens, and families. We offer evidence-based, personalized care through certified specialists who understand the emotional, developmental and behavioral needs of young minds.
       </p>
 
-      <p className="text-[#19083B] font-['Urbanist',sans-serif] font-light leading-relaxed mb-16 text-center" style={{ fontSize: '16px', lineHeight: '100%' }}>
+      <p className="text-[#19083B]/80 font-['Urbanist',sans-serif] font-light leading-relaxed mb-16 text-center text-base md:text-lg">
         Our mission is simple: to make therapy warm, accessible, and meaningful, right from the comfort of home.
       </p>
 
@@ -39,7 +39,7 @@ export default function HeroSection() {
         Our Approach
       </h3>
       
-      <p className="text-[#19083B] font-['Urbanist',sans-serif] font-light mb-10" style={{ fontSize: '16px', lineHeight: '100%' }}>
+      <p className="text-[#19083B]/80 font-['Urbanist',sans-serif] font-light leading-relaxed text-base md:text-lg">
         We believe therapy should feel safe, engaging, and supportive, not overwhelming. Our therapists use structured, child-paced methods that encourage emotional expression, confidence, and steady growth.
       </p>
     </section>

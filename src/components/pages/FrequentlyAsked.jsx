@@ -38,27 +38,30 @@ const FrequentlyAsked = forwardRef((props, ref) => {
           </div>
 
           <div className="relative mt-4 md:mt-6">
-            <div className="bg-white rounded-2xl p-4 md:p-6 shadow-sm max-h-[100px] md:max-h-[120px] overflow-hidden">
-              <h3 className="font-urbanist text-primary-color font-bold text-sm md:text-base mb-2">
+            <div className="bg-white rounded-2xl p-4 md:p-6 shadow-sm max-h-[120px] md:max-h-[150px] overflow-hidden">
+              <h3 className="font-urbanist text-primary-color font-bold text-2xl md:text-3xl mb-2">
                 {questions[3].question}
               </h3>
-              <p className="font-urbanist text-primary-color/80 text-xs md:text-sm leading-relaxed">
+              <p className="font-urbanist text-primary-color/80 font-light text-base md:text-[16px] leading-relaxed">
                 {questions[3].answer}
               </p>
             </div>
 
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 md:h-20 bg-gradient-to-t from-background via-background/80 to-transparent rounded-b-2xl" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 md:h-28 bg-gradient-to-t from-background via-background/90 to-transparent rounded-b-2xl" />
 
-            <div className="absolute inset-0 flex items-end justify-center pb-4 md:pb-6">
+            <div className="absolute inset-0 flex items-end justify-center pb-6 md:pb-8">
               <button
                 onClick={() => setShowFullFAQ(true)}
-                className="bg-button-main text-primary-color font-urbanist font-bold px-5 md:px-6 py-2 md:py-2.5 rounded-full shadow-lg hover:opacity-90 transition text-sm md:text-base focus-ring"
+                className="bg-button-main text-primary-color font-urbanist font-bold px-5 md:px-6 py-2 md:py-2.5 rounded-full shadow-lg hover:opacity-90 transition text-sm md:text-base focus-ring z-10"
                 aria-label="View complete frequently asked questions"
               >
                 View Full FAQ
               </button>
             </div>
           </div>
+
+          {/* Extra padding to ensure button is visible during scroll */}
+          <div className="h-32"></div>
         </div>
       </div>
     </div>
@@ -66,6 +69,7 @@ const FrequentlyAsked = forwardRef((props, ref) => {
 });
 
 FrequentlyAsked.displayName = "FrequentlyAsked";
+
 const FullFAQPage = ({ onBack }) => {
   return (
     <div className="fixed inset-0 z-[100] overflow-y-auto bg-background animate-in fade-in duration-300">

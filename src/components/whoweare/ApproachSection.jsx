@@ -21,14 +21,14 @@ export default function ApproachSection() {
       <div className="grid md:grid-cols-2 gap-10">
         {/* Our Approach Includes */}
         <div>
-          <h4 className="font-['Urbanist',sans-serif] font-semibold text-[#19083B] mb-10" style={{ fontSize: '24px', lineHeight: '100%' }}>
+          <h4 className="font-['Urbanist',sans-serif] font-semibold text-[#19083B] mb-10 text-2xl">
             Our approach includes:
           </h4>
           <ul className="space-y-6">
             {approachItems.map((item, index) => (
               <li key={index} className="flex items-start gap-3">
                 <div className="w-3 h-3 rounded-full bg-[#6942B5] mt-2 flex-shrink-0" />
-                <span className="text-[#19083B] font-['Urbanist',sans-serif] font-light" style={{ fontSize: '16px', lineHeight: '100%' }}>{item}</span>
+                <span className="text-[#19083B]/80 font-['Urbanist',sans-serif] font-light text-base md:text-lg leading-relaxed">{item}</span>
               </li>
             ))}
           </ul>
@@ -36,14 +36,14 @@ export default function ApproachSection() {
 
         {/* Our Core Values */}
         <div>
-          <h4 className="font-['Urbanist',sans-serif] font-semibold text-[#19083B] mb-10" style={{ fontSize: '24px', lineHeight: '100%' }}>
+          <h4 className="font-['Urbanist',sans-serif] font-semibold text-[#19083B] mb-10 text-2xl">
             Our Core Values
           </h4>
           <ul className="space-y-6">
             {coreValues.map((item, index) => (
               <li key={index} className="flex items-start gap-3">
                 <div className="w-3 h-3 rounded-full bg-[#6942B5] mt-2 flex-shrink-0" />
-                <span className="text-[#19083B] font-['Urbanist',sans-serif] font-light" style={{ fontSize: '16px', lineHeight: '100%' }}>{item}</span>
+                <span className="text-[#19083B]/80 font-['Urbanist',sans-serif] font-light text-base md:text-lg leading-relaxed">{item}</span>
               </li>
             ))}
           </ul>
