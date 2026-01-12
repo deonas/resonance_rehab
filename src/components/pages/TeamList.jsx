@@ -42,6 +42,12 @@ const TeamList = () => {
     navigate("/meet-our-team");
   };
 
+  // Get members by category
+  const clinicalPsychologistsAndBehaviourTherapists = teamData.clinicalPsychologistsAndBehaviourTherapists;
+  const occupationalTherapists = teamData.occupationalTherapists;
+  const speechPathologists = teamData.speechLanguagePathologists;
+  const specialEducators = teamData.specialEducators;
+
   return (
     <div className="min-h-screen bg-background">
       <div className="container-custom py-8 mt-16">
@@ -90,10 +96,10 @@ const TeamList = () => {
 
         <section className="mb-16">
           <h2 className="font-urbanist text-secondary-color font-semibold text-center mb-8 text-lg">
-            Clinical psychologist & Behaviour Therapist
+            Clinical Psychologist & Behaviour Therapist
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {teamData.psychologists.map((member) => (
+            {clinicalPsychologistsAndBehaviourTherapists.map((member) => (
               <TeamCard
                 key={member.id}
                 member={member}
@@ -108,7 +114,7 @@ const TeamList = () => {
             Occupational Therapist
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {teamData.psychologists.slice(0, 3).map((member) => (
+            {teamData.occupationalTherapists.map((member) => (
               <TeamCard
                 key={member.id}
                 member={member}
@@ -120,10 +126,10 @@ const TeamList = () => {
 
         <section className="mb-16">
           <h2 className="font-urbanist text-secondary-color font-semibold text-center mb-8 text-lg">
-            Speech and hearing language pathologist
+            Speech and Hearing Language Pathologist
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {teamData.psychologists.map((member) => (
+            {speechPathologists.map((member) => (
               <TeamCard
                 key={member.id}
                 member={member}
@@ -133,35 +139,22 @@ const TeamList = () => {
           </div>
         </section>
 
-        <section className="mb-16">
-          <h2 className="font-urbanist text-secondary-color font-semibold text-center mb-8 text-lg">
-            Special educator
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {teamData.psychologists.map((member) => (
-              <TeamCard
-                key={member.id}
-                member={member}
-                onClick={() => handleSelectMember(member)}
-              />
-            ))}
-          </div>
-        </section>
-
-        <section className="mb-16">
-          <h2 className="font-urbanist text-secondary-color font-semibold text-center mb-8 text-lg">
-            Developmental therapist
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {teamData.psychologists.slice(0, 3).map((member) => (
-              <TeamCard
-                key={member.id}
-                member={member}
-                onClick={() => handleSelectMember(member)}
-              />
-            ))}
-          </div>
-        </section>
+        {specialEducators.length > 0 && (
+          <section className="mb-16">
+            <h2 className="font-urbanist text-secondary-color font-semibold text-center mb-8 text-lg">
+              Special Educator
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+              {specialEducators.map((member) => (
+                <TeamCard
+                  key={member.id}
+                  member={member}
+                  onClick={() => handleSelectMember(member)}
+                />
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );

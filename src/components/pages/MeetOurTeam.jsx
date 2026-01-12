@@ -7,8 +7,9 @@ const MeetOurTeam = forwardRef((props, ref) => {
   const navigate = useNavigate();
 
   const handleViewFullTeam = () => {
-    navigate("/team");
-  };
+  navigate("/team");
+  window.scrollTo(0, 0);
+};
 
   const handleSelectMember = (member) => {
     navigate(`/team/${member.slug}`);

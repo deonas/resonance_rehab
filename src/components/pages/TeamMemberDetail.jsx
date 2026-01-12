@@ -7,8 +7,8 @@ const TeamMemberDetail = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
 
-  // Find member across all categories (though currently only psychologists array exists in data)
-  const member = teamData.psychologists.find((p) => p.slug === slug);
+  // Find member across all categories
+  const member = teamData.allMembers.find((m) => m.slug === slug);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -33,7 +33,7 @@ const TeamMemberDetail = () => {
   }
 
   const handleBack = () => {
-    navigate(-1);
+    navigate("/team");
   };
 
   return (
@@ -122,7 +122,7 @@ const TeamMemberDetail = () => {
 
             <div>
               <h2 className="font-urbanist text-secondary-color text-3xl font-normal mb-6">
-                Her Approach to Therapy
+                Their Approach to Therapy
               </h2>
               <ul className="space-y-4">
                 {member.approach.map((item, index) => (
