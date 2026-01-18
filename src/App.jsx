@@ -1,16 +1,17 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Hero from "./components/pages/Hero";
-import AboutUs from "./components/pages/AboutUs";
-import FrequentlyAsked from "./components/pages/FrequentlyAsked";
-import MeetOurTeam from "./components/pages/MeetOurTeam";
-import Navbar from "./components/layout/Navbar";
-import WhyChooseUs from "./components/pages/WhyChooseUs";
-import Services from "./components/pages/Services";
-import TeamList from "./components/pages/TeamList";
-import TeamMemberDetail from "./components/pages/TeamMemberDetail";
-import Whoweare from "./components/pages/Whoweare";
-import Footer from "./components/layout/Footer";
+import Hero from "@/features/landing/components/Hero";
+import AboutUs from "@/features/about/components/AboutUs";
+import FrequentlyAsked from "@/features/faq/components/FrequentlyAsked";
+// MeetOurTeam seems to be in features/team/components?
+import MeetOurTeam from "@/features/team/components/MeetOurTeam";
+import Navbar from "@/shared/components/layout/Navbar";
+import WhyChooseUs from "@/features/misc/components/WhyChooseUs";
+import Services from "@/features/services/components/Services";
+import TeamList from "@/features/team/components/TeamList";
+import TeamMemberDetail from "@/features/team/components/TeamMemberDetail";
+import Whoweare from "@/features/about/components/Whoweare";
+import Footer from "@/shared/components/layout/Footer";
 
 const App = () => {
   return (
