@@ -605,8 +605,8 @@ export const useHeroAnimation = ({
             scrollTrigger: {
                 trigger: heroContainer,
                 start: "top top",
-                end: "+=700%", // Scroll 7 viewport heights
-                scrub: true,   // Sync with scroll
+                end: "+=600%", // Scroll 7 viewport heights
+                scrub: 0.5,   // Sync with scroll
                 pin: true,     // Pin the Hero
                 anticipatePin: 1, // Smooth pinning
                 invalidateOnRefresh: true, // Recalculate on resize/refresh
@@ -633,26 +633,30 @@ export const useHeroAnimation = ({
              }
          }
 
-         if (whyChooseUsRef.current) {
-             // Init WhyChooseUs for Mobile
-             gsap.set(whyChooseUsRef.current, {
-                 position: "absolute",
-                 top: 0,
-                 left: 0,
-                 width: "100%",
-                 height: "100dvh",
-                 zIndex: 30,
-                 y: "100%",
-                 overflow: "hidden"
-             });
+   if (whyChooseUsRef.current) {
+    // Init WhyChooseUs for Mobile
+    gsap.set(whyChooseUsRef.current, {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100dvh",
+        zIndex: 30,
+        y: "100%",
+        overflowY: "auto",
+        overflowX: "hidden",
+        backgroundColor: "#e8e6f3"
+    });
 
-             // Slide WhyChooseUs Up (Card Stack)
-             scrollTl.to(whyChooseUsRef.current, {
-                 y: "0%",
-                 ease: "none"
-             });
-         }
-
+    // Slide WhyChooseUs Up (Card Stack)
+    scrollTl.to(whyChooseUsRef.current, {
+        y: "0%",
+        ease: "none"
+    });
+}
+    // Hold the section in place for scrolling through content
+/*     scrollTl.to({}, { duration: 5 }); // Gives time to scroll internally
+} */
          if (servicesRef.current) {
              // Init Services for Mobile
              gsap.set(servicesRef.current, {
@@ -663,7 +667,9 @@ export const useHeroAnimation = ({
                  height: "100dvh",
                  zIndex: 40,
                  y: "100%",
-                 overflow: "hidden"
+                 overflowY: "auto",   
+        overflowX: "visible", 
+        backgroundColor: "#e8e6f3"
              });
 
              // Slide Services Up (Card Stack)
@@ -683,7 +689,9 @@ export const useHeroAnimation = ({
                  height: "100dvh",
                  zIndex: 50,
                  y: "100%",
-                 overflow: "hidden"
+                 overflowY: "auto",    
+        overflowX: "hidden",   
+        backgroundColor: "#e8e6f3" 
              });
 
              // Slide Approach Up (Card Stack)
@@ -703,7 +711,9 @@ export const useHeroAnimation = ({
                  height: "100dvh",
                  zIndex: 60,
                  y: "100%",
-                 overflow: "hidden"
+                 overflowY: "auto",      
+        overflowX: "hidden",   
+        backgroundColor: "#e8e6f3"
              });
 
              // Slide Conditions Up (Card Stack)
@@ -723,7 +733,9 @@ export const useHeroAnimation = ({
                  height: "100dvh",
                  zIndex: 70,
                  y: "100%",
-                 overflow: "hidden"
+                 overflowY: "auto",      
+        overflowX: "hidden",
+        backgroundColor: "#e8e6f3"
              });
 
              // Slide MeetTeam Up (Card Stack)
@@ -763,7 +775,9 @@ export const useHeroAnimation = ({
                  height: "100dvh",
                  zIndex: 90,
                  y: "100%",
-                 overflow: "hidden"
+                 overflowY: "auto",      
+        overflowX: "hidden",
+        backgroundColor: "#e8e6f3"
              });
 
              // Slide FAQ Up (Card Stack)

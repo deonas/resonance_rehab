@@ -76,7 +76,19 @@ const Hero = () => {
   return (
     <div
       ref={heroRef}
-      className="relative w-full min-h-screen md:h-screen bg-background overflow-x-hidden md:overflow-hidden flex flex-col md:block"
+      className="
+        relative
+        w-full
+        min-h-screen
+        md:h-screen
+        bg-background
+        overflow-x-hidden
+        overflow-y-visible
+        md:overflow-hidden
+        flex
+        flex-col
+        md:block
+      "
     >
       <HeroSplash titleRef={splashTitleRef} overlayRef={splashOverlayRef} />
 
@@ -96,17 +108,29 @@ const Hero = () => {
         <AboutUs ref={aboutRef} />
       </div>
 
-      {/* Why Choose Us Content - Card Stack Effect on Desktop, Flow on Mobile - Allow natural height */}
-      <div
-        className="relative md:absolute top-0 left-0 w-full z-30 min-h-screen md:min-h-screen md:h-auto md:translate-y-full"
-        ref={whyChooseUsRef}
-      >
-        <WhyChooseUs />
-      </div>
+      {/* Why Choose Us Content - Full natural height on mobile, Card Stack on Desktop */}
+<div
+  className="relative md:absolute top-0 left-0 w-full z-30 md:translate-y-full"
+  ref={whyChooseUsRef}
+>
+  <WhyChooseUs />
+</div>
 
       {/* Services Content - Card Stack Effect on Desktop, Flow on Mobile - Allow natural height */}
       <div
-        className="relative md:absolute top-0 left-0 w-full z-40 min-h-screen md:min-h-screen md:h-auto md:translate-y-full"
+        className="
+          relative
+          md:absolute
+          top-0
+          left-0
+          w-full
+          z-40
+          min-h-screen
+          md:min-h-screen
+          md:h-auto
+          translate-y-0
+          md:translate-y-full
+        "
         ref={servicesRef}
       >
         <Services />

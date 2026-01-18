@@ -90,6 +90,11 @@ const Sidebar = ({ isOpen, onClose }) => {
     }
   }, [isOpen]);
 
+  const handleLinkClick = (e) => {
+    // Close sidebar immediately
+    onClose();
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -123,17 +128,23 @@ const Sidebar = ({ isOpen, onClose }) => {
           {/* Menu Items */}
           <div
             ref={menuRef}
-            className="flex-1 flex flex-col items-center bg justify-center gap-4 px-4 pt-16 md:pt-0 relative z-60"
+            className="flex-1 flex flex-col items-center justify-center gap-4 px-4 pt-16 md:pt-0 relative"
           >
             {menuItems.map((item, index) => (
-              <Link key={index} to={item.path} onClick={onClose}>
-                <Button className="menu-item w-full">{item.label}</Button>
+              <Link 
+                key={index} 
+                to={item.path} 
+                onClick={handleLinkClick}
+              >
+                <Button className="menu-item pointer-events-auto">
+                  {item.label}
+                </Button>
               </Link>
             ))}
           </div>
 
           {/* Footer */}
-          <div className="p-6 md:p-8 flex flex-row justify-between items-end gap-6 text-sm  md:text-lg font-medium font-urbanist w-full">
+          <div className="p-6 md:p-8 flex flex-row justify-between items-end gap-6 text-sm md:text-lg font-medium font-urbanist w-full">
             <div className="address-item flex flex-col gap-2">
               <p>Phone: +91 949 714 8473</p>
               <p>Email: Info@resonancerehab.com</p>

@@ -52,73 +52,77 @@ const WhyChooseUs = forwardRef((props, ref) => {
   return (
     <section
       ref={ref}
-      className="w-full min-h-screen bg-[#e8e6f3] relative overflow-hidden flex flex-col items-center justify-center py-12 sm:py-16 md:py-20 px-4 sm:px-6"
+      className="w-full min-h-screen md:min-h-screen bg-[#e8e6f3] relative flex flex-col items-center justify-start md:justify-center py-16 px-4 sm:px-6 md:py-20"
+      style={{ backgroundColor: '#e8e6f3' }}
     >
-      <Container className="relative z-20 flex flex-col items-center">
-        {/* Title Section */}
-        <div className="relative mb-12 sm:mb-16 md:mb-20 text-center">
-          <h2 className="font-autumn text-3xl sm:text-4xl md:text-6xl lg:text-8xl text-primary-color relative z-10 px-2">
-            Why Choose Us?
-          </h2>
-          <img
-            src={DOODLES.underline}
-            alt="underline"
-            className="absolute -bottom-2 sm:-bottom-3 md:-bottom-4 left-1/2 z-20 -translate-x-1/2 translate-y-1/2 w-3/4 md:w-full max-w-[250px] sm:max-w-[350px] md:max-w-[400px] opacity-80 mt-4 sm:mt-6 md:mt-8"
-          />
-        </div>
+      {/* Scrollable Inner Container for Mobile */}
+      <div className="w-full h-full overflow-y-auto overflow-x-visible md:overflow-visible bg-[#e8e6f3]">
+        <Container className="relative z-20 flex flex-col items-center w-full">
+          {/* Title Section */}
+          <div className="relative mb-12 md:mb-20 text-center">
+            <h2 className="font-autumn text-3xl sm:text-4xl md:text-6xl lg:text-8xl text-primary-color relative z-10 px-2">
+              Why Choose Us?
+            </h2>
+            <img
+              src={DOODLES.underline}
+              alt="underline"
+              className="absolute -bottom-2 sm:-bottom-3 md:-bottom-4 left-1/2 z-20 -translate-x-1/2 translate-y-1/2 w-3/4 md:w-full max-w-[250px] sm:max-w-[350px] md:max-w-[400px] opacity-80 mt-4 sm:mt-6 md:mt-8"
+            />
+          </div>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-16 w-full max-w-5xl mx-auto relative">
-          {/* Central Star Doodle - Absolute centered behind cards */}
-          <img
-            src={DOODLES.star}
-            alt="star"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60px] sm:w-[80px] md:w-[100px] lg:w-[200px] z-40 opacity-60 sm:opacity-70 md:opacity-80"
-          />
+          {/* Cards Container - Reduced gap and increased width */}
+          <div className="w-full max-w-6xl mx-auto relative px-4 md:px-0 py-6 md:py-0 space-y-8 md:space-y-0 md:grid md:grid-cols-2 md:gap-16 pb-8 md:pb-0">
+            {/* Central Star Doodle - Absolute centered behind cards */}
+            <img
+              src={DOODLES.star}
+              alt="star"
+              className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60px] sm:w-[80px] md:w-[100px] lg:w-[200px] z-40 opacity-60 sm:opacity-70 md:opacity-80"
+            />
 
-          {CARDS.map((card, index) => (
-            <div
-              key={index}
-              className={`bg-white rounded-2xl sm:rounded-[25px] md:rounded-[30px] p-6 sm:p-7 md:p-8 lg:p-10 shadow-sm relative transition-transform hover:scale-105 hover:z-30 duration-300 ${
-                index % 2 === 0
-                  ? "md:justify-self-end"
-                  : "md:justify-self-start"
-              }`}
-              style={{
-                transform: window.innerWidth >= 768 ? `rotate(${card.rotation})` : 'rotate(0deg)',
-              }}
-            >
-              {/* Card Doodles */}
-              {card.doodle && (
-                <img
-                  src={card.doodle}
-                  alt="decoration"
-                  className={`absolute pointer-events-none hidden md:block ${card.doodleClass}`}
-                />
-              )}
-              {card.doodle && (
-                <img
-                  src={card.doodle}
-                  alt="decoration"
-                  className={`absolute pointer-events-none block md:hidden ${card.mobileDoodleClass}`}
-                />
-              )}
+            {CARDS.map((card, index) => (
+              <div
+                key={index}
+                className={`bg-white rounded-2xl sm:rounded-[25px] md:rounded-[30px] p-8 sm:p-9 md:p-8 lg:p-10 shadow-sm relative transition-transform hover:scale-105 hover:z-30 duration-300 w-full ${
+                  index % 2 === 0
+                    ? "md:justify-self-end"
+                    : "md:justify-self-start"
+                }`}
+                style={{
+                  transform: window.innerWidth >= 768 ? `rotate(${card.rotation})` : 'rotate(0deg)',
+                }}
+              >
+                {/* Card Doodles - Desktop */}
+                {card.doodle && (
+                  <img
+                    src={card.doodle}
+                    alt="decoration"
+                    className={`absolute pointer-events-none hidden md:block ${card.doodleClass}`}
+                  />
+                )}
+                {/* Card Doodles - Mobile */}
+                {card.doodle && (
+                  <img
+                    src={card.doodle}
+                    alt="decoration"
+                    className={`absolute pointer-events-none block md:hidden ${card.mobileDoodleClass}`}
+                  />
+                )}
 
-              <h3 className="font-urbanist font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-primary-color mb-2 sm:mb-3 md:mb-4">
-                {card.title}
-              </h3>
-              <p className="font-urbanist text-primary-color/80 text-sm sm:text-base md:text-lg leading-relaxed">
-                {card.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </Container>
-
-      {/* Footer Divider */}
-      <div className="absolute bottom-6 sm:bottom-8 md:bottom-10 w-full flex justify-center h-[1px] sm:h-[1.5px] bg-primary-color/20 max-w-6xl"></div>
+                <h3 className="font-urbanist font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-primary-color mb-3 sm:mb-4 md:mb-4">
+                  {card.title}
+                </h3>
+                <p className="font-urbanist text-primary-color/80 text-sm sm:text-base md:text-lg leading-relaxed">
+                  {card.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </div>
     </section>
   );
 });
+
+WhyChooseUs.displayName = "WhyChooseUs";
 
 export default WhyChooseUs;
