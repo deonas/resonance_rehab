@@ -10,8 +10,8 @@ Get the **Resonance Rehab** project up and running locally in minutes.
 ## 1. Clone the Repository
 
 ```bash
-git clone https://github.com/incial/resonance.git
-cd resonance
+git clone https://github.com/incial/resonance_rehab.git
+cd resonance_rehab
 ```
 
 ## 2. Install Dependencies

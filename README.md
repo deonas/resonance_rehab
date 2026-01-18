@@ -79,8 +79,8 @@ Resonance Rehab is built using modern web technologies
 ### Run locally
 
 ```bash
-git clone https://github.com/incial/resonance.git
-cd resonance
+git clone https://github.com/incial/resonance_rehab.git
+cd resonance_rehab
 pnpm install
 
 # Development
@@ -98,8 +98,8 @@ A big thank you to all our contributors who have helped make Resonance Rehab bet
 
 <div align="center">
 
-<a href="https://github.com/incial/resonance/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=incial/resonance&max=500&columns=20" alt="Contributors" />
+<a href="https://github.com/incial/resonance_rehab/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=incial/resonance_rehab&max=500&columns=20" alt="Contributors" />
 </a>
 
 </div>
@@ -124,6 +124,6 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 <br>
 
-⭐ Star this repo if you find it helpful! | 🐛 Found a bug? [Report it](https://github.com/incial/resonance/issues)
+⭐ Star this repo if you find it helpful! | 🐛 Found a bug? [Report it](https://github.com/incial/resonance_rehab/issues)
 
 </div>
