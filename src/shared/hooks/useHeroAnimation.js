@@ -647,6 +647,9 @@ export const useHeroAnimation = ({
                 invalidateOnRefresh: true, // Recalculate on resize/refresh
             }
          });
+         timelineRef.current = scrollTl;
+         scrollTl.addLabel("hero");
+         scrollTl.addLabel("home");
 
          if (aboutContainer) {
              // Slide About Up (y: 100% -> 0%)
@@ -666,6 +669,7 @@ export const useHeroAnimation = ({
              if (navHamburgerLines.length > 0) {
                scrollTl.to(navHamburgerLines, { backgroundColor: "#ffffff", ease: "none" }, "<");
              }
+             scrollTl.addLabel("about");
          }
 
    if (whyChooseUsRef.current) {
@@ -688,6 +692,7 @@ export const useHeroAnimation = ({
         y: "0%",
         ease: "none"
     });
+    scrollTl.addLabel("whyChooseUs");
 }
     // Hold the section in place for scrolling through content
 /*     scrollTl.to({}, { duration: 5 }); // Gives time to scroll internally
@@ -708,10 +713,11 @@ export const useHeroAnimation = ({
              });
 
              // Slide Services Up (Card Stack)
-             scrollTl.to(servicesRef.current, {
-                 y: "0%",
-                 ease: "none"
-             });
+              scrollTl.to(servicesRef.current, {
+                  y: "0%",
+                  ease: "none"
+              });
+              scrollTl.addLabel("services");
          }
 
          if (approachRef.current) {
@@ -730,10 +736,11 @@ export const useHeroAnimation = ({
              });
 
              // Slide Approach Up (Card Stack)
-             scrollTl.to(approachRef.current, {
-                 y: "0%",
-                 ease: "none"
-             });
+              scrollTl.to(approachRef.current, {
+                  y: "0%",
+                  ease: "none"
+              });
+              scrollTl.addLabel("approach");
          }
 
          if (conditionsRef.current) {
@@ -752,10 +759,11 @@ export const useHeroAnimation = ({
              });
 
              // Slide Conditions Up (Card Stack)
-             scrollTl.to(conditionsRef.current, {
-                 y: "0%",
-                 ease: "none"
-             });
+              scrollTl.to(conditionsRef.current, {
+                  y: "0%",
+                  ease: "none"
+              });
+              scrollTl.addLabel("conditions");
          }
 
          if (meetTeamRef.current) {
@@ -774,10 +782,11 @@ export const useHeroAnimation = ({
              });
 
              // Slide MeetTeam Up (Card Stack)
-             scrollTl.to(meetTeamRef.current, {
-                 y: "0%",
-                 ease: "none"
-             });
+              scrollTl.to(meetTeamRef.current, {
+                  y: "0%",
+                  ease: "none"
+              });
+              scrollTl.addLabel("meetTeam");
          }
 
          if (contactRef.current) {
@@ -794,10 +803,11 @@ export const useHeroAnimation = ({
              });
 
              // Slide Contact Up (Card Stack)
-             scrollTl.to(contactRef.current, {
-                 y: "0%",
-                 ease: "none"
-             });
+              scrollTl.to(contactRef.current, {
+                  y: "0%",
+                  ease: "none"
+              });
+              scrollTl.addLabel("contact");
          }
 
          if (faqRef.current) {
@@ -816,10 +826,11 @@ export const useHeroAnimation = ({
              });
 
              // Slide FAQ Up (Card Stack)
-             scrollTl.to(faqRef.current, {
-                 y: "0%",
-                 ease: "none"
-             });
+              scrollTl.to(faqRef.current, {
+                  y: "0%",
+                  ease: "none"
+              });
+              scrollTl.addLabel("faq");
          }
 
          if (footerRef.current) {
@@ -836,10 +847,11 @@ export const useHeroAnimation = ({
              });
 
              // Slide Footer Up (Card Stack)
-             scrollTl.to(footerRef.current, {
-                 y: "0%",
-                 ease: "none"
-             });
+              scrollTl.to(footerRef.current, {
+                  y: "0%",
+                  ease: "none"
+              });
+              scrollTl.addLabel("footer");
          }
       });
       

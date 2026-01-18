@@ -24,7 +24,7 @@ const Contact = forwardRef((props, ref) => {
       <img
         src="/icons/WhyChooseUS/Underline.svg"
         alt="underline"
-        className="absolute top-[50%] right-[10%] lg:right-[28%] transform -translate-y-1/2 w-[420px] lg:w-[450px] h-auto pointer-events-none z-0 opacity-90 rotate-[-5deg] hidden md:block"
+        className="absolute top-[50%] right-[10%] lg:right-[28%] transform -translate-y-1/2 w-[420px] lg:w-[450px] h-10 pointer-events-none z-0 opacity-90 rotate-[-5deg] hidden md:block"
       />
 
       {/* Main Text */}
@@ -63,7 +63,7 @@ const Contact = forwardRef((props, ref) => {
           Book a Session
         </button>
         <button
-          className="bg-[#bbb5fd] text-primary-color font-urbanist font-medium text-[14px] sm:text-[15px] md:text-[16px] px-6 sm:px-7 md:px-8 py-3 sm:py-3.5 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 active:scale-95 focus-ring w-full sm:w-auto"
+          className="bg-[#bbb5fd] text-primary-color font-urbanist font-bold text-[14px] sm:text-[15px] md:text-[16px] px-6 sm:px-7 md:px-8 py-3 sm:py-3.5 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 active:scale-95 focus-ring w-full sm:w-auto"
           aria-label="Talk to our team"
         >
           Talk to Us
@@ -71,7 +71,7 @@ const Contact = forwardRef((props, ref) => {
       </div>
 
       {/* Footer Contact Details */}
-      <div className=" hidden md:block absolute bottom-8 sm:bottom-12 w-full max-w-6xl px-4 flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-4 text-center md:text-left z-10 font-urbanist">
+      <div className=" hidden absolute bottom-8 sm:bottom-12 w-full max-w-6xl px-4 md:flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-4 text-center md:text-left z-10 font-urbanist">
         <div className="flex flex-col gap-1 items-center md:items-start">
           <span className="text-secondary-color text-sm sm:text-base font-medium">
             Phone:
