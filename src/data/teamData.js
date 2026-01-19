@@ -278,8 +278,37 @@ export const teamData = {
         "Avaz AAC Certified"
       ],
       experience: "2.8+ years"
-    }
+    },
+    {
+  id: 11,
+  name: "Silpa Ravindran",
+  slug: "silpa-ravindran",
+  title: "Clinical Psychologist",
+  category: "clinical-psychologist",
+  description: "Compassionate clinical psychologist providing professional support for children and families with behavioral, developmental, and emotional challenges.",
+  image: "/images/meetourteam/silpa.png",
+  credentials: "M.Phil Clinical Psychology, M.Sc Clinical Psychology",
+  age: "Children & Adolescents",
+  languages: "English, Malayalam",
+  about: "My aim is to provide compassionate, professional, and effective psychological support that promotes meaningful and lasting improvement in the well-being of individuals and families. I use proven behavioral and psychological techniques along with reinforcement to support positive changes. I ensure that each session is well-structured, supportive, and encouraging for every client.",
+  areasOfFocus: [
+    "Behavioral concerns",
+    "Developmental challenges",
+    "Learning difficulties",
+    "Emotional regulation",
+    "Stress management",
+    "Anger management"
   ],
+  approach: [
+    "Individualized one-on-one therapy",
+    "Standardized therapeutic approaches",
+    "Evidence-based behavioral techniques",
+    "Structured and supportive sessions"
+  ],
+  experience: "1+ year"
+}
+  ],
+
 
   // Helper functions to get members by category
   getByCategory(category) {

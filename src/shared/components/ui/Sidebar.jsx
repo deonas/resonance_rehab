@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import Button from "./Button";
@@ -24,14 +24,12 @@ const socialIcons = [
 
 import { createPortal } from "react-dom";
 
-// ... (existing imports)
-
 const Sidebar = ({ isOpen, onClose }) => {
   const sidebarRef = useRef(null);
   const menuRef = useRef(null);
   const socialRef = useRef(null);
-  // mounted state to ensure we are on client for portal
   const [mounted, setMounted] = React.useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setMounted(true);
@@ -100,9 +98,13 @@ const Sidebar = ({ isOpen, onClose }) => {
     }
   }, [isOpen]);
 
-  const handleLinkClick = (e) => {
-    // Close sidebar immediately
-    onClose();
+  const handleLinkClick = (e, path) => {
+    e.preventDefault();
+    // Navigate first, then close sidebar with a slight delay
+    navigate(path);
+    setTimeout(() => {
+      onClose();
+    }, 100);
   };
 
   if (!mounted) return null;
@@ -143,7 +145,11 @@ const Sidebar = ({ isOpen, onClose }) => {
             className="flex-1 flex flex-col items-center justify-center gap-4 px-4 pt-16 md:pt-0 relative"
           >
             {menuItems.map((item, index) => (
-              <Link key={index} to={item.path} onClick={handleLinkClick}>
+              <Link 
+                key={index} 
+                to={item.path} 
+                onClick={(e) => handleLinkClick(e, item.path)}
+              >
                 <Button className="menu-item pointer-events-auto">
                   {item.label}
                 </Button>

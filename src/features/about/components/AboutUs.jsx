@@ -11,7 +11,7 @@ const AboutUs = forwardRef((props, ref) => {
   return (
     <section ref={ref} className="w-full flex flex-col md:block relative">
       {/* Mobile-Only Image: To ensure AboutUs stands alone when scroll animation is disabled on mobile */}
-      <div className="block md:hidden relative w-full h-[35vh] shrink-0 z-20">
+      <div className="hidden relative w-full h-[35vh] shrink-0 z-20">
         <HeroBackground simple imageClass="object-cover object-center" />
       </div>
 

@@ -117,7 +117,6 @@ export const useHeroAnimation = ({
         const PRIMARY_COLOR = "#19083B";
 
         if (navbar) gsap.set(navbar, { autoAlpha: 0 });
-        if (navbar) gsap.set(navbar, { autoAlpha: 0 });
         gsap.set(".hero-doodles", { autoAlpha: 0 });
         gsap.set(".hero-footer-caption", { autoAlpha: 0 });
         
@@ -425,13 +424,6 @@ export const useHeroAnimation = ({
             ease: "none"
          }, "<");
 
-         // --- Step 6.2: Rotate Circles on Scroll ---
-         tl.to(approachRef.current.querySelector('.approach-circles'), {
-            rotation: 120, 
-            duration: approachDuration, // Synced with content
-            ease: "none"
-         }, "<"); 
-
 
          // --- Step 7: Conditions Card Stack (Slide Up) ---
          tl.to(conditionsRef.current, {
@@ -549,13 +541,6 @@ export const useHeroAnimation = ({
            ease: "power2.inOut",
            pointerEvents: "all"
          });
-         // Scale down FAQ for stack effect (optional, matches previous pattern)
-        //  tl.to(faqRef.current, {
-        //    scale: 0.95,
-        //    filter: "brightness(0.8)",
-        //    duration: 2,
-        //    ease: "power2.out"
-        //  }, "<");
 
          tl.addLabel("footer");
          tl.call(() => updateUrl("/footer"), null, "<");
@@ -574,286 +559,26 @@ export const useHeroAnimation = ({
 
       });
       
-      // Fix: Adjusted subpixel precision coverage
-      mm.add("(max-width: 767.98px)", () => {
-         // Setup
-         const navbar = document.querySelector(".main-navbar");
-         const heroContainer = heroRef.current;
-         const aboutContainer = aboutRef.current; // The AboutUs component ref
-
-         // --- Initial State for Mobile SCROLL Animation ---
-         // 1. Ensure Hero is full height and locked
-         gsap.set(heroContainer, { 
-             height: "100dvh", // Use dynamic viewport height
-             overflow: "hidden", // Prevent inner scroll
-             overscrollBehavior: "none" // Prevent bounce
-         });
-
-         // 2. Position About Section: 
-         //    - Absolute top:0 to sit on top of Hero (dom-wise)
-         //    - y: "100%" to be pushed down off-screen initially
-         //    - zIndex: 20 to slide OVER hero content
-         if (aboutContainer) {
-             gsap.set(aboutContainer.parentElement, { // Target the wrapper div in Hero.jsx
-                 position: "absolute",
-                 top: 0,
-                 left: 0,
-                 width: "100%",
-                 height: "100dvh", // Use dynamic viewport height
-                 zIndex: 20,
-                 y: "100%",
-                 overflow: "hidden", // Prevent inner scroll
-                 overscrollBehavior: "none"
-             });
-             // Ensure About container itself is full height
-             gsap.set(aboutContainer, { 
-                 height: "100dvh",
-                 overflow: "hidden" 
-             });
-         }
-
-         // Set initial state - keep entry fade logic
-         // ... (rest of opacity sets)
-
-         if (navbar) gsap.set(navbar, { autoAlpha: 0 });
-         
-         // Auto-Play Entry - Animate entire page as one unit
-         const entryTl = gsap.timeline();
-         
-         // Fade out splash
-         entryTl.to(splashOverlayRef.current, { opacity: 0, duration: 1, delay: 0.5 })
-                .to(splashTitleRef.current, { opacity: 0, y: -50, scale: 0.9, duration: 1 }, "<");
-         
-         // Fade in Hero Content
-         const heroChildren = heroContainer.querySelectorAll(':scope > *:not(.hero-splash)');
-         entryTl.to(heroChildren, { 
-             opacity: 1, 
-             duration: 0.8, 
-             ease: "power2.out" 
-         }, "-=0.3");
-         
-         // Show navbar
-         if (navbar) entryTl.to(navbar, { autoAlpha: 1, duration: 0.5 }, "<");
-         
-         // --- Mobile Scroll Transition Logic ---
-         const scrollTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: heroContainer,
-                start: "top top",
-                end: "+=600%", // Scroll 7 viewport heights
-                scrub: 0.5,   // Sync with scroll
-                pin: true,     // Pin the Hero
-                anticipatePin: 1, // Smooth pinning
-                invalidateOnRefresh: true, // Recalculate on resize/refresh
-            }
-         });
-         timelineRef.current = scrollTl;
-         scrollTl.addLabel("hero");
-         scrollTl.addLabel("home");
-
-         if (aboutContainer) {
-             // Slide About Up (y: 100% -> 0%)
-             // Hero stays pinned underneath, creating the overlay effect.
-             scrollTl.to(aboutContainer.parentElement, {
-                 y: "0%",
-                 ease: "none" // Linear movement linked to scroll
-             });
-
-             // Animate Navbar to White for visibility over About Section
-             const navLogo = document.querySelector(".main-navbar a");
-             const navHamburgerLines = document.querySelectorAll(".main-navbar button span");
-
-             if (navLogo) {
-               scrollTl.to(navLogo, { color: "#ffffff", ease: "none" }, "<");
-             }
-             if (navHamburgerLines.length > 0) {
-               scrollTl.to(navHamburgerLines, { backgroundColor: "#ffffff", ease: "none" }, "<");
-             }
-             scrollTl.addLabel("about");
-         }
-
-   if (whyChooseUsRef.current) {
-    // Init WhyChooseUs for Mobile
-    gsap.set(whyChooseUsRef.current, {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100dvh",
-        zIndex: 30,
-        y: "100%",
-        overflowY: "auto",
-        overflowX: "hidden",
-        backgroundColor: "#e8e6f3"
-    });
-
-    // Slide WhyChooseUs Up (Card Stack)
-    scrollTl.to(whyChooseUsRef.current, {
-        y: "0%",
-        ease: "none"
-    });
-    scrollTl.addLabel("whyChooseUs");
-}
-    // Hold the section in place for scrolling through content
-/*     scrollTl.to({}, { duration: 5 }); // Gives time to scroll internally
-} */
-         if (servicesRef.current) {
-             // Init Services for Mobile
-             gsap.set(servicesRef.current, {
-                 position: "absolute",
-                 top: 0,
-                 left: 0,
-                 width: "100%",
-                 height: "100dvh",
-                 zIndex: 40,
-                 y: "100%",
-                 overflowY: "auto",   
-        overflowX: "visible", 
-        backgroundColor: "#e8e6f3"
-             });
-
-             // Slide Services Up (Card Stack)
-              scrollTl.to(servicesRef.current, {
-                  y: "0%",
-                  ease: "none"
-              });
-              scrollTl.addLabel("services");
-         }
-
-         if (approachRef.current) {
-             // Init Approach for Mobile
-             gsap.set(approachRef.current, {
-                 position: "absolute",
-                 top: 0,
-                 left: 0,
-                 width: "100%",
-                 height: "100dvh",
-                 zIndex: 50,
-                 y: "100%",
-                 overflowY: "auto",    
-        overflowX: "hidden",   
-        backgroundColor: "#e8e6f3" 
-             });
-
-             // Slide Approach Up (Card Stack)
-              scrollTl.to(approachRef.current, {
-                  y: "0%",
-                  ease: "none"
-              });
-              scrollTl.addLabel("approach");
-         }
-
-         if (conditionsRef.current) {
-             // Init Conditions for Mobile
-             gsap.set(conditionsRef.current, {
-                 position: "absolute",
-                 top: 0,
-                 left: 0,
-                 width: "100%",
-                 height: "100dvh",
-                 zIndex: 60,
-                 y: "100%",
-                 overflowY: "auto",      
-        overflowX: "hidden",   
-        backgroundColor: "#e8e6f3"
-             });
-
-             // Slide Conditions Up (Card Stack)
-              scrollTl.to(conditionsRef.current, {
-                  y: "0%",
-                  ease: "none"
-              });
-              scrollTl.addLabel("conditions");
-         }
-
-         if (meetTeamRef.current) {
-             // Init MeetTeam for Mobile
-             gsap.set(meetTeamRef.current, {
-                 position: "absolute",
-                 top: 0,
-                 left: 0,
-                 width: "100%",
-                 height: "100dvh",
-                 zIndex: 70,
-                 y: "100%",
-                 overflowY: "auto",      
-        overflowX: "hidden",
-        backgroundColor: "#e8e6f3"
-             });
-
-             // Slide MeetTeam Up (Card Stack)
-              scrollTl.to(meetTeamRef.current, {
-                  y: "0%",
-                  ease: "none"
-              });
-              scrollTl.addLabel("meetTeam");
-         }
-
-         if (contactRef.current) {
-             // Init Contact for Mobile
-             gsap.set(contactRef.current, {
-                 position: "absolute",
-                 top: 0,
-                 left: 0,
-                 width: "100%",
-                 height: "100dvh",
-                 zIndex: 80,
-                 y: "100%",
-                 overflow: "hidden"
-             });
-
-             // Slide Contact Up (Card Stack)
-              scrollTl.to(contactRef.current, {
-                  y: "0%",
-                  ease: "none"
-              });
-              scrollTl.addLabel("contact");
-         }
-
-         if (faqRef.current) {
-             // Init FAQ for Mobile
-             gsap.set(faqRef.current, {
-                 position: "absolute",
-                 top: 0,
-                 left: 0,
-                 width: "100%",
-                 height: "100dvh",
-                 zIndex: 90,
-                 y: "100%",
-                 overflowY: "auto",      
-        overflowX: "hidden",
-        backgroundColor: "#e8e6f3"
-             });
-
-             // Slide FAQ Up (Card Stack)
-              scrollTl.to(faqRef.current, {
-                  y: "0%",
-                  ease: "none"
-              });
-              scrollTl.addLabel("faq");
-         }
-
-         if (footerRef.current) {
-             // Init Footer for Mobile
-             gsap.set(footerRef.current, {
-                 position: "absolute",
-                 top: 0,
-                 left: 0,
-                 width: "100%",
-                 height: "100dvh",
-                 zIndex: 100,
-                 y: "100%",
-                 overflow: "hidden"
-             });
-
-             // Slide Footer Up (Card Stack)
-              scrollTl.to(footerRef.current, {
-                  y: "0%",
-                  ease: "none"
-              });
-              scrollTl.addLabel("footer");
-         }
-      });
+      // Mobile: Snap Scroll Between Sections
+   
+mm.add("(max-width: 767.98px)", () => {
+   const navbar = document.querySelector(".main-navbar");
+   
+   if (navbar) gsap.set(navbar, { autoAlpha: 0 });
+   
+   // Ensure page starts at top
+   window.scrollTo(0, 0);
+   
+   // Auto-Play Entry Animation
+   const entryTl = gsap.timeline();
+   entryTl.to(splashOverlayRef.current, { opacity: 0, duration: 1, delay: 0.5 })
+          .to(splashTitleRef.current, { opacity: 0, y: -50, scale: 0.9, duration: 1 }, "<");
+   
+   const heroChildren = heroRef.current.querySelectorAll(':scope > *:not(.hero-splash)');
+   entryTl.to(heroChildren, { opacity: 1, duration: 0.8, ease: "power2.out" }, "-=0.3");
+   
+   if (navbar) entryTl.to(navbar, { autoAlpha: 1, duration: 0.5 }, "<");
+});
       
       // Force refresh after a short delay to ensure everything is settled in Prod
       setTimeout(() => ScrollTrigger.refresh(), 500);

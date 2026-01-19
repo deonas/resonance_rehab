@@ -6,18 +6,11 @@ const Contact = forwardRef((props, ref) => {
       ref={ref}
       className="relative w-full min-h-screen h-auto sm:h-screen bg-background flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 py-12 sm:py-0"
     >
-      {/* Scribble Decoration */}
-      {/* Underline Decoration */}
-      {/* Doodles - Mobile Only */}
+      {/* Underline Decoration - Mobile (Vector 80.png) */}
       <img
-        src="/images/sidebar/Happyface.svg"
-        alt="smile"
-        className="absolute top-[25%] right-[10%] sm:right-[15%] w-12 sm:w-16 rotate-12 opacity-80 animate-pulse md:hidden"
-      />
-      <img
-        src="/icons/WhyChooseUS/Underline.svg"
+        src="/icons/Vector 80.png"
         alt="underline"
-        className="absolute top-[55%] sm:top-[58%] left-1/2 -translate-x-1/2 w-[280px] sm:w-[350px] h-auto pointer-events-none z-0 opacity-90 rotate-[-2deg] md:hidden"
+        className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[320px] h-auto pointer-events-none z-0 opacity-90 rotate-[-5deg] md:hidden"
       />
 
       {/* Doodles - Desktop Only */}
@@ -27,19 +20,9 @@ const Contact = forwardRef((props, ref) => {
         className="absolute top-[50%] right-[10%] lg:right-[28%] transform -translate-y-1/2 w-[420px] lg:w-[450px] h-10 pointer-events-none z-0 opacity-90 rotate-[-5deg] hidden md:block"
       />
 
-      {/* Main Text */}
+      {/* Main Text - Same layout for mobile and desktop */}
       <div className="relative z-10 text-center mb-10 sm:mb-12 mt-8 sm:mt-0">
-        {/* Mobile Text Layout */}
-        <h2 className="md:hidden font-autumn text-[48px] sm:text-[56px] leading-[1.1] text-primary-color px-2 flex flex-col items-center">
-          <span className="block">Every</span>
-          <span className="text-secondary-color block">small step</span>
-          <span className="block">leads to a</span>
-          <span className="text-secondary-color block">brighter</span>
-          <span className="block">tomorrow.</span>
-        </h2>
-
-        {/* Desktop Text Layout */}
-        <h2 className="hidden md:block font-autumn text-[48px] lg:text-[64px] leading-tight text-primary-color px-2">
+        <h2 className="font-autumn text-[40px] sm:text-[48px] lg:text-[64px] leading-[1.2] sm:leading-tight text-primary-color px-2">
           <span>Every </span>
           <span className="text-secondary-color">small step</span>
           <span> leads</span>
@@ -71,7 +54,7 @@ const Contact = forwardRef((props, ref) => {
       </div>
 
       {/* Footer Contact Details */}
-      <div className=" hidden absolute bottom-8 sm:bottom-12 w-full max-w-6xl px-4 md:flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-4 text-center md:text-left z-10 font-urbanist">
+      <div className="hidden absolute bottom-8 sm:bottom-12 w-full max-w-6xl px-4 md:flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-4 text-center md:text-left z-10 font-urbanist">
         <div className="flex flex-col gap-1 items-center md:items-start">
           <span className="text-secondary-color text-sm sm:text-base font-medium">
             Phone:
