@@ -56,14 +56,14 @@ const WhyChooseUs = forwardRef((props, ref) => {
   return (
     <section
       ref={ref}
-      className="w-full min-h-screen md:min-h-screen bg-[#e8e6f3] relative flex flex-col items-center justify-start pt-8 pb-16 px-4 sm:px-6 md:justify-center md:pt-4 md:pb-4"
+      className="w-full min-h-0 md:min-h-screen bg-[#e8e6f3] relative flex flex-col items-center justify-start pt-2 pb-2 px-4 sm:px-6 md:justify-center md:pt-4 md:pb-4"
       style={{ backgroundColor: "#e8e6f3" }}
     >
       {/* Scrollable Inner Container for Mobile - Removed overflow constraint */}
       <div className="w-full h-auto overflow-visible bg-[#e8e6f3]">
         <Container className="relative z-20 flex flex-col items-center w-full">
           {/* Title Section */}
-          <div className="relative mb-8 md:mb-12 text-center">
+          <div className="relative mb-4 md:mb-12 text-center">
             <h2 className="font-autumn text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-primary-color relative z-10 px-2">
               Why Choose Us?
             </h2>
@@ -75,7 +75,7 @@ const WhyChooseUs = forwardRef((props, ref) => {
           </div>
 
           {/* Cards Container - Reduced gap and increased width */}
-          <div className="w-full max-w-6xl mx-auto relative px-4 md:px-0 py-6 md:py-0 space-y-8 md:space-y-0 md:grid md:grid-cols-2 md:gap-8 lg:gap-12 pb-8 md:pb-0">
+          <div className="w-full max-w-6xl mx-auto relative px-4 md:px-0 py-4 md:py-0 space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-8 lg:gap-12 pb-4 md:pb-0">
             {/* Central Star Doodle - Absolute centered behind cards */}
             <img
               src={DOODLES.star}
@@ -86,7 +86,7 @@ const WhyChooseUs = forwardRef((props, ref) => {
             {CARDS.map((card, index) => (
               <div
                 key={index}
-                className={`bg-white rounded-2xl sm:rounded-[25px] md:rounded-[30px] p-8 sm:p-9 md:p-6 lg:p-8 shadow-sm relative transition-transform hover:scale-105 hover:z-30 duration-300 w-full rotate-0 md:rotate-[var(--card-rotation)] ${
+                className={`bg-white rounded-2xl sm:rounded-[25px] md:rounded-[30px] p-6 sm:p-7 md:p-6 lg:p-8 shadow-sm relative transition-transform hover:scale-105 hover:z-30 duration-300 w-full rotate-0 md:rotate-[var(--card-rotation)] ${
                   index % 2 === 0
                     ? "md:justify-self-end"
                     : "md:justify-self-start"

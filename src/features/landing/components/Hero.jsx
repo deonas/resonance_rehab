@@ -116,13 +116,13 @@ const Hero = () => {
       </div>
 
       {/* 2. ABOUT US - "Care That Connects" - SECOND */}
-      <div className="relative md:absolute top-0 md:top-[100vh] left-0 w-full z-20 min-h-screen snap-start md:snap-none flex flex-col justify-start order-2 pt-0 md:pt-0">
+      <div className="relative md:absolute top-0 md:top-[100vh] left-0 w-full z-20 min-h-0 md:min-h-screen snap-start md:snap-none flex flex-col justify-start order-2 pt-0 md:pt-0">
         <AboutUs ref={aboutRef} />
       </div>
 
       {/* 3. Why Choose Us Content */}
       <div
-        className="relative md:absolute top-0 left-0 w-full z-30 min-h-screen snap-start md:snap-none md:translate-y-full order-3"
+        className="relative md:absolute top-0 left-0 w-full z-30 min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-3"
         ref={whyChooseUsRef}
       >
         <WhyChooseUs />
@@ -130,7 +130,7 @@ const Hero = () => {
 
       {/* 4. Services Content */}
       <div
-        className="relative md:absolute top-0 left-0 w-full z-40 min-h-screen snap-start md:snap-none md:translate-y-full order-4"
+        className="relative md:absolute top-0 left-0 w-full z-40 min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-4"
         ref={servicesRef}
       >
         <Services />
@@ -138,7 +138,7 @@ const Hero = () => {
 
       {/* 5. Approach Content */}
       <div
-        className="relative md:absolute top-0 left-0 w-full z-50 min-h-screen snap-start md:snap-none md:translate-y-full order-5"
+        className="relative md:absolute top-0 left-0 w-full z-50 min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-5"
         ref={approachRef}
       >
         <Approach />
@@ -146,7 +146,7 @@ const Hero = () => {
 
       {/* 6. Conditions Content */}
       <div
-        className="relative md:absolute top-0 left-0 w-full z-[60] min-h-screen snap-start md:snap-none md:translate-y-full order-6"
+        className="relative md:absolute top-0 left-0 w-full z-[60] min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-6"
         ref={conditionsRef}
       >
         <ConditionsWeSupport />
@@ -154,7 +154,7 @@ const Hero = () => {
 
       {/* 7. Meet Our Team Content */}
       <div
-        className="relative md:absolute top-0 left-0 w-full z-[70] min-h-screen snap-start md:snap-none md:translate-y-full order-7"
+        className="relative md:absolute top-0 left-0 w-full z-[70] min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-7"
         ref={meetTeamRef}
       >
         <MeetOurTeam />
@@ -162,7 +162,7 @@ const Hero = () => {
 
       {/* 8. Contact Content */}
       <div
-        className="relative md:absolute top-0 left-0 w-full z-[80] min-h-screen snap-start md:snap-none md:translate-y-full order-8"
+        className="relative md:absolute top-0 left-0 w-full z-[80] min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-8"
         ref={contactRef}
       >
         <Contact />
@@ -170,7 +170,7 @@ const Hero = () => {
 
       {/* 9. FAQ Content */}
       <div
-        className="relative md:absolute top-0 left-0 w-full z-[90] min-h-screen snap-start md:snap-none md:translate-y-full order-9"
+        className="relative md:absolute top-0 left-0 w-full z-[90] min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-9"
         ref={faqRef}
       >
         <FrequentlyAsked />
@@ -178,7 +178,7 @@ const Hero = () => {
 
       {/* 10. Footer Content - LAST */}
       <div
-        className="relative md:absolute top-0 left-0 w-full z-[100] min-h-screen snap-start md:snap-none md:translate-y-full order-10"
+        className="relative md:absolute top-0 left-0 w-full z-[100] min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-10"
         ref={footerRef}
       >
         <Footer />

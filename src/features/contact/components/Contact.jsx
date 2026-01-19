@@ -4,7 +4,7 @@ const Contact = forwardRef((props, ref) => {
   return (
     <div
       ref={ref}
-      className="relative w-full min-h-screen h-auto sm:h-screen bg-background flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 py-12 sm:py-0"
+      className="relative w-full min-h-0 md:min-h-screen h-auto sm:h-screen bg-background flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 py-8 sm:py-0"
     >
       {/* Underline Decoration - Mobile (Vector 80.png) */}
       <img
@@ -23,7 +23,7 @@ const Contact = forwardRef((props, ref) => {
       {/* Content Container */}
       <div className="relative z-10 flex flex-col items-center w-full max-w-sm sm:max-w-none">
         {/* Main Text */}
-        <div className="text-center mb-10 sm:mb-12">
+        <div className="text-center mb-8 sm:mb-10">
           <h2 className="font-autumn text-[40px] sm:text-[48px] lg:text-[64px] leading-[1.2] sm:leading-tight text-primary-color px-2">
             <span>Every </span>
             <span className="text-secondary-color">small step</span>
@@ -34,7 +34,7 @@ const Contact = forwardRef((props, ref) => {
             <span>tomorrow.</span>
           </h2>
 
-          <p className="font-urbanist font-medium text-[16px] sm:text-[20px] lg:text-[24px] text-secondary-color mt-8 sm:mt-8 px-4">
+          <p className="font-urbanist font-medium text-[16px] sm:text-[20px] lg:text-[24px] text-secondary-color mt-6 sm:mt-8 px-4">
             Let's take that step together.
           </p>
         </div>
@@ -56,7 +56,7 @@ const Contact = forwardRef((props, ref) => {
         </div>
 
         {/* Contact Details - Mobile: Below buttons, Desktop: Hidden (shown at bottom) */}
-        <div className="flex flex-col gap-4 mt-8 w-full md:hidden font-urbanist text-center">
+        <div className="flex flex-col gap-3 mt-6 w-full md:hidden font-urbanist text-center">
           <div className="flex flex-col gap-1">
             <span className="text-secondary-color text-sm font-medium">
               Phone:

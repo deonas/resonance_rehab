@@ -74,20 +74,20 @@ const ConditionsWeSupport = forwardRef((props, ref) => {
   return (
     <section
       ref={ref}
-      className="w-full min-h-screen bg-[#e8e6f3] flex flex-col justify-start pt-12 sm:pt-24 md:pt-32 pb-20 sm:pb-16 md:pb-20 relative overflow-hidden"
+      className="w-full min-h-0 md:min-h-screen bg-[#e8e6f3] flex flex-col justify-start pt-2 sm:pt-4 md:pt-32 pb-1 sm:pb-2 md:pb-20 relative overflow-hidden"
       style={{ backgroundColor: "#e8e6f3" }}
     >
       {/* Scrollable wrapper for mobile */}
       <div className="w-full h-full overflow-y-auto overflow-x-hidden md:overflow-visible px-4 sm:px-6 md:px-0">
         <Container className="relative z-10 flex flex-col items-center">
-          <div className="conditions-content-inner w-full flex flex-col items-center gap-8 sm:gap-10">
+          <div className="conditions-content-inner w-full flex flex-col items-center gap-4 sm:gap-6">
             {/* Header */}
-            <div className="relative mb-6 sm:mb-8 text-center px-2 sm:px-4">
+            <div className="relative mb-3 sm:mb-4 text-center px-2 sm:px-4">
               {/* Top Star Doodle */}
               <img
                 src={imgStar}
                 alt=""
-                className="absolute -top-8 sm:-top-10 md:-top-12 left-0 sm:left-2 w-12 sm:w-14 md:w-24 h-auto lg:w-30 -rotate-12"
+                className="absolute -top-6 sm:-top-8 md:-top-12 left-0 sm:left-2 w-10 sm:w-12 md:w-24 h-auto lg:w-30 -rotate-12"
               />
 
               <h2 className="font-autumn text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-[64px] leading-[1.2] text-primary-color relative z-10">
@@ -98,12 +98,12 @@ const ConditionsWeSupport = forwardRef((props, ref) => {
               <img
                 src={imgUnderline}
                 alt=""
-                className="absolute z-10 -bottom-3 sm:-bottom-4 left-1/2 -translate-x-1/2 w-36 sm:w-40 md:w-68 lg:w-64 h-6"
+                className="absolute z-10 -bottom-2 sm:-bottom-3 left-1/2 -translate-x-1/2 w-32 sm:w-36 md:w-68 lg:w-64 h-6"
               />
             </div>
 
             {/* Cards Grid/Stack */}
-            <div className="w-full max-w-4xl space-y-8 md:space-y-6 relative px-0 sm:px-2 md:px-4 pb-8">
+            <div className="w-full max-w-4xl space-y-6 md:space-y-6 relative px-0 sm:px-2 md:px-4 pb-3 sm:pb-4 md:pb-6">
               {/* Doodles Layout */}
 
               {/* Swirl for Autism (Card 1) - Left */}
@@ -153,15 +153,15 @@ const ConditionsWeSupport = forwardRef((props, ref) => {
               {conditions.map((condition, index) => (
                 <div
                   key={index}
-                  className="bg-[#faf9ff] rounded-2xl sm:rounded-[20px] p-6 sm:p-7 md:p-8 lg:p-10 w-full shadow-sm relative z-10"
+                  className="bg-[#faf9ff] rounded-2xl sm:rounded-[20px] p-5 sm:p-6 md:p-8 lg:p-10 w-full shadow-sm relative z-10"
                 >
-                  <h3 className="font-urbanist font-bold text-xl sm:text-2xl md:text-3xl text-primary-color mb-3 sm:mb-4 leading-tight">
+                  <h3 className="font-urbanist font-bold text-xl sm:text-2xl md:text-3xl text-primary-color mb-2.5 sm:mb-3 leading-tight">
                     {condition.title}
                   </h3>
-                  <div className="font-urbanist font-light text-sm sm:text-base md:text-[16px] text-primary-color space-y-1.5 sm:space-y-2">
+                  <div className="font-urbanist font-light text-sm sm:text-base md:text-[16px] text-primary-color space-y-1 sm:space-y-1.5">
                     <p>{condition.description}</p>
                     <p>{condition.signs}</p>
-                    <p className="pt-1.5 sm:pt-2 font-medium">
+                    <p className="pt-1 sm:pt-1.5 font-medium">
                       {condition.therapies}
                     </p>
                   </div>
@@ -170,7 +170,7 @@ const ConditionsWeSupport = forwardRef((props, ref) => {
             </div>
 
             {/* Footer */}
-            <div className="text-center mt-8 sm:mt-10 md:mt-12 space-y-4 sm:space-y-5 md:space-y-6 px-4">
+            <div className="text-center mt-3 sm:mt-4 md:mt-12 space-y-3 sm:space-y-4 md:space-y-6 px-4">
               <p className="font-urbanist text-primary-color/80 text-sm sm:text-base md:text-lg max-w-md mx-auto">
                 Unsure which condition fits your child's needs?
                 <br />
@@ -181,8 +181,8 @@ const ConditionsWeSupport = forwardRef((props, ref) => {
               </Button>
             </div>
 
-            {/* Scroll Padding */}
-            <div className="h-32 sm:h-32 md:h-40"></div>
+            {/* Scroll Padding - Reduced for mobile */}
+            <div className="h-2 sm:h-4 md:h-40"></div>
           </div>
         </Container>
       </div>

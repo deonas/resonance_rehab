@@ -569,6 +569,50 @@ mm.add("(max-width: 767.98px)", () => {
    // Ensure page starts at top
    window.scrollTo(0, 0);
    
+   // CRITICAL: Aggressively remove ALL spacing between sections
+   const sections = [
+       { ref: aboutRef.current, pt: "0.5rem", pb: "0.5rem" },
+       { ref: whyChooseUsRef.current, pt: "0.5rem", pb: "0.5rem" },
+       { ref: servicesRef.current, pt: "0.5rem", pb: "0.5rem" },
+       { ref: approachRef.current, pt: "0.5rem", pb: "0.5rem" },
+       { ref: conditionsRef.current, pt: "0.5rem", pb: "0.5rem" },
+       { ref: meetTeamRef.current, pt: "0.5rem", pb: "0.5rem" },
+       { ref: contactRef.current, pt: "0.5rem", pb: "0.5rem" },
+       { ref: faqRef.current, pt: "0.5rem", pb: "0.5rem" },
+       { ref: footerRef.current, pt: "0.5rem", pb: "0.5rem" }
+   ];
+   
+   sections.forEach(({ ref, pt, pb }) => {
+       if (ref) {
+           gsap.set(ref, { 
+               marginTop: "0 !important",
+               marginBottom: "0 !important",
+               paddingTop: pt,
+               paddingBottom: pb,
+               clearProps: "min-height" // Remove min-h-screen on mobile
+           });
+           
+           // Target ALL inner containers aggressively
+           const allInnerContainers = ref.querySelectorAll('[class*="container"], [class*="pt-"], [class*="pb-"], [class*="py-"], [class*="mt-"], [class*="mb-"], [class*="my-"]');
+           allInnerContainers.forEach(container => {
+               gsap.set(container, {
+                   paddingTop: "0.75rem",
+                   paddingBottom: "0.75rem",
+                   marginTop: 0,
+                   marginBottom: 0
+               });
+           });
+       }
+   });
+   
+   // Force remove spacing on Hero
+   if (heroRef.current) {
+       gsap.set(heroRef.current, {
+           paddingBottom: "0.5rem",
+           marginBottom: 0
+       });
+   }
+   
    // Auto-Play Entry Animation
    const entryTl = gsap.timeline();
    entryTl.to(splashOverlayRef.current, { opacity: 0, duration: 1, delay: 0.5 })
