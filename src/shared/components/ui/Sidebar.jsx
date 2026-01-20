@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import Button from "./Button";
+import { createPortal } from "react-dom";
 
 const menuItems = [
   { label: "Home", path: "/home" },
@@ -22,14 +23,13 @@ const socialIcons = [
   "/icons/Mail.svg",
 ];
 
-import { createPortal } from "react-dom";
-
 const Sidebar = ({ isOpen, onClose }) => {
   const sidebarRef = useRef(null);
   const menuRef = useRef(null);
   const socialRef = useRef(null);
   const [mounted, setMounted] = React.useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     setMounted(true);
@@ -98,13 +98,74 @@ const Sidebar = ({ isOpen, onClose }) => {
     }
   }, [isOpen]);
 
+  const scrollToSectionMobile = (path) => {
+    // Map paths to section indices (based on order in Hero.jsx)
+    const sectionMap = {
+      '/': 0,
+      '/home': 0,
+      '/About-us': 1,
+      '/Why-choose-us': 2,
+      '/Services': 3,
+      '/approach': 4,
+      '/conditions': 5,
+      '/meet-our-team': 6,
+      '/contact': 7,
+      '/frequently-asked': 8,
+      '/footer': 9,
+    };
+
+    const targetIndex = sectionMap[path];
+    if (targetIndex === undefined) return;
+
+    // Use requestAnimationFrame to ensure DOM is ready
+    requestAnimationFrame(() => {
+      // Get all snap sections in the Hero component
+      const snapSections = document.querySelectorAll('.snap-start');
+      
+      if (snapSections && snapSections[targetIndex]) {
+        // Scroll to the section
+        snapSections[targetIndex].scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start',
+          inline: 'nearest'
+        });
+      } else {
+        // Fallback: Calculate scroll position manually
+        const viewportHeight = window.innerHeight;
+        const scrollPosition = targetIndex * viewportHeight;
+        window.scrollTo({
+          top: scrollPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  };
+
   const handleLinkClick = (e, path) => {
     e.preventDefault();
-    // Navigate first, then close sidebar with a slight delay
-    navigate(path);
-    setTimeout(() => {
+    
+    const isMobile = window.innerWidth < 768;
+    
+    if (isMobile) {
+      // Close sidebar first
       onClose();
-    }, 100);
+      
+      // Navigate if not already on the path
+      if (location.pathname !== path) {
+        navigate(path);
+      }
+      
+      // Wait for sidebar close animation + DOM update, then scroll
+      setTimeout(() => {
+        scrollToSectionMobile(path);
+      }, 700);
+    } else {
+      // Desktop: Use existing behavior (handled by useHeroAnimation)
+      navigate(path);
+      setTimeout(() => {
+        onClose();
+      }, 100);
+    }
   };
 
   if (!mounted) return null;

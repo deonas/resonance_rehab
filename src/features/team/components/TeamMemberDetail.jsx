@@ -2,6 +2,19 @@ import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { teamData } from "@/data/teamData";
+const phoneNumber = "919497148473";
+
+const openWhatsAppForMember = (memberName) => {
+  const message = encodeURIComponent(
+    `Hi, I would like to book a session with ${memberName}. Please share the available slots.`
+  );
+
+  window.open(
+    `https://wa.me/${phoneNumber}?text=${message}`,
+    "_blank"
+  );
+};
+
 
 const TeamMemberDetail = () => {
   const { slug } = useParams();
@@ -94,9 +107,13 @@ const TeamMemberDetail = () => {
                   <span className="sm:hidden"> </span>
                   {member.name.split(" ")[0]} today.
                 </p>
-                <button className="bg-button-main text-primary-color font-urbanist font-bold text-xs sm:text-sm py-2.5 sm:py-3 px-5 sm:px-6 rounded-full hover:opacity-90 active:opacity-80 transition-opacity whitespace-nowrap flex-shrink-0 w-full sm:w-auto shadow-md active:scale-95">
-                  Book a session
-                </button>
+             <button
+  onClick={() => openWhatsAppForMember(member.name)}
+  className="bg-button-main text-primary-color font-urbanist font-bold text-xs sm:text-sm py-2.5 sm:py-3 px-5 sm:px-6 rounded-full hover:opacity-90 active:opacity-80 transition-opacity whitespace-nowrap flex-shrink-0 w-full sm:w-auto shadow-md active:scale-95"
+>
+  Book a session
+</button>
+
               </div>
             </div>
           </div>

@@ -129,4 +129,4 @@ const WhyChooseUs = forwardRef((props, ref) => {
 
 WhyChooseUs.displayName = "WhyChooseUs";
 
-export default WhyChooseUs;
+export default WhyChooseUs; 

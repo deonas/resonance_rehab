@@ -4,6 +4,19 @@ import { SOCIAL_LINKS } from "@/constants/heroConstants";
 import HeroBackground from "@/features/landing/components/HeroBackground";
 import Button from "@/shared/components/ui/Button";
 import Container from "@/shared/components/ui/Container";
+const phoneNumber = "919497148473";
+
+const startJourneyMessage = encodeURIComponent(
+  "Hi, I’m exploring your website and would like to start my child’s therapy journey. Please guide me."
+);
+
+const openWhatsApp = () => {
+  window.open(
+    `https://wa.me/${phoneNumber}?text=${startJourneyMessage}`,
+    "_blank"
+  );
+};
+
 
 const AboutUs = forwardRef((props, ref) => {
   const navigate = useNavigate();
@@ -37,21 +50,23 @@ const AboutUs = forwardRef((props, ref) => {
           {/* CTA Button - Mobile */}
           <div className="block md:hidden mb-3 sm:mb-4">
             <Button
-              onClick={() => navigate("/contact")}
-              className="inline-flex items-center justify-center px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-bold tracking-wide transition-transform hover:scale-105 hover:shadow-lg active:scale-95 w-full sm:w-auto max-w-sm mx-auto"
-            >
-              Start Your Child's Journey
-            </Button>
+  onClick={openWhatsApp}
+  className="inline-flex items-center justify-center px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-bold tracking-wide transition-transform hover:scale-105 hover:shadow-lg active:scale-95 w-full sm:w-auto max-w-sm mx-auto"
+>
+  Start Your Child's Journey
+</Button>
+
           </div>
 
           {/* CTA Button - Desktop/Responsive */}
           <div className="hidden md:block mb-8 md:mb-8">
-            <Button
-              onClick={() => navigate("/contact")}
-              className="inline-flex items-center justify-center px-8 py-3 md:px-10 md:py-4 text-base md:text-lg font-bold tracking-wide transition-transform hover:scale-105 hover:shadow-lg active:scale-95"
-            >
-              Start Your Child's Journey
-            </Button>
+           <Button
+  onClick={openWhatsApp}
+  className="inline-flex items-center justify-center px-8 py-3 md:px-10 md:py-4 text-base md:text-lg font-bold tracking-wide transition-transform hover:scale-105 hover:shadow-lg active:scale-95"
+>
+  Start Your Child's Journey
+</Button>
+
           </div>
 
           {/* Body Text */}
