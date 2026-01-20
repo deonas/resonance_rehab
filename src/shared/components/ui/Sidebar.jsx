@@ -181,6 +181,30 @@ const Sidebar = ({ isOpen, onClose }) => {
           className="fixed inset-0 z-[10000] flex flex-col bg-[#e8e6f3] text-[#19083b] overflow-y-auto overflow-x-hidden pt-20 md:pt-10"
           ref={sidebarRef}
         >
+          {/* Close Button */}
+          <button
+            onClick={onClose}
+            className="absolute top-6 right-6 z-[10001] w-10 h-10 flex items-center justify-center rounded-full bg-[#19083b]/10 hover:bg-[#19083b]/20 transition-all duration-300 hover:scale-110 active:scale-95"
+            aria-label="Close menu"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="text-[#19083b]"
+            >
+              <path
+                d="M15 5L5 15M5 5L15 15"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+
           {/* Desktop Title */}
           <div className="hidden md:flex flex-col items-center relative z-50 mt-8 mb-4">
             <div className="relative">
