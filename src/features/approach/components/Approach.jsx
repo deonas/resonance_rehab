@@ -1,6 +1,19 @@
 import React, { forwardRef } from "react";
 import Container from "@/shared/components/ui/Container";
 import Button from "@/shared/components/ui/Button";
+const phoneNumber = "919497148473";
+
+const talkToUsMessage = encodeURIComponent(
+  "Hi, I’d like to talk to your team and learn more about your therapy approach and services."
+);
+
+const openWhatsApp = () => {
+  window.open(
+    `https://wa.me/${phoneNumber}?text=${talkToUsMessage}`,
+    "_blank"
+  );
+};
+
 
 const Approach = forwardRef((props, ref) => {
   return (
@@ -149,9 +162,13 @@ const Approach = forwardRef((props, ref) => {
 
               {/* Right Column: Button */}
               <div className="flex items-end justify-start lg:justify-end pb-2 sm:pb-4 md:pb-8">
-                <Button className="bg-[#D4E75F] text-primary-color px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-bold text-base sm:text-lg hover:scale-105 active:scale-95 transition-transform shadow-lg w-full sm:w-auto max-w-xs sm:max-w-none">
-                  More About Us
-                </Button>
+                <Button
+  onClick={openWhatsApp}
+  className="bg-[#D4E75F] text-primary-color px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-bold text-base sm:text-lg hover:scale-105 active:scale-95 transition-transform shadow-lg w-full sm:w-auto max-w-xs sm:max-w-none"
+>
+  Talk To Us Now
+</Button>
+
               </div>
             </div>
           </div>

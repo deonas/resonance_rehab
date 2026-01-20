@@ -15,6 +15,19 @@ const imgSpeechBubbleSmall =
   "/images/ConditionsWeSupport/speech_bubble_small.svg";
 const imgSquiggles = "/images/ConditionsWeSupport/squiggles.svg";
 
+const phoneNumber = "919497148473"; 
+
+const bookSessionMessage = encodeURIComponent(
+  "Hi, I would like to book a session. Could you please share more details about it?"
+);
+
+const handleBookSession = () => {
+  window.open(
+    `https://wa.me/${phoneNumber}?text=${bookSessionMessage}`,
+    "_blank"
+  );
+};
+
 const conditions = [
   {
     title: "Autism Spectrum Disorder",
@@ -176,9 +189,13 @@ const ConditionsWeSupport = forwardRef((props, ref) => {
                 <br />
                 We'll help you figure it out.
               </p>
-              <Button className="bg-[#dae562] text-primary-color px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-bold text-base sm:text-lg hover:scale-105 active:scale-95 transition-transform shadow-lg w-full sm:w-auto max-w-xs sm:max-w-none">
-                Book a Session
-              </Button>
+              <Button
+  onClick={handleBookSession}
+  className="bg-[#dae562] text-primary-color px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-bold text-base sm:text-lg hover:scale-105 active:scale-95 transition-transform shadow-lg w-full sm:w-auto max-w-xs sm:max-w-none"
+>
+  Book a Session
+</Button>
+
             </div>
 
             {/* Scroll Padding - Reduced for mobile */}
