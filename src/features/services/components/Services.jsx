@@ -7,13 +7,13 @@ const SERVICE_CARDS = [
     title: "Counselling & Psychotherapy",
     description:
       "Supporting children, individuals, couples, and families with evidence-based online counselling that builds emotional strength, clarity, and balance.",
-    image: "/images/services/counselling.png",
+    image: "/images/services/counselling1.png",
   },
   {
     title: "Occupational Therapy",
     description:
       "Helping children strengthen daily living skills, sensory processing, and independence through structured, personalised therapy from home.",
-    image: "/images/services/occupational.png",
+    image: "/images/services/occupational1.png",
   },
   {
     title: "Behavioral Therapy",
@@ -31,13 +31,7 @@ const SERVICE_CARDS = [
     title: "Speech Therapy",
     description:
       "Helping children improve their communication skills, including speech, language, and social interaction, with expert guidance.",
-    image: "/images/services/speech.png",
-  },
-  {
-    title: "Physiotherapy",
-    description:
-      "Physical therapy to help children develop their motor skills, balance, and coordination through personalized exercises.",
-    image: "/images/services/physiotherapy.png",
+    image: "/images/services/occupational.png",
   },
 ];
 

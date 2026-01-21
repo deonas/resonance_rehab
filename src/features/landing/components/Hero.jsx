@@ -120,44 +120,44 @@ const Hero = () => {
         <AboutUs ref={aboutRef} />
       </div>
 
-      {/* 3. Why Choose Us Content */}
+      {/* 3. Meet Our Team Content - MOVED BEFORE Why Choose Us */}
       <div
         className="relative md:absolute top-0 left-0 w-full z-30 min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-3"
+        ref={meetTeamRef}
+      >
+        <MeetOurTeam />
+      </div>
+
+      {/* 4. Why Choose Us Content - MOVED AFTER Meet Our Team */}
+      <div
+        className="relative md:absolute top-0 left-0 w-full z-40 min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-4"
         ref={whyChooseUsRef}
       >
         <WhyChooseUs />
       </div>
 
-      {/* 4. Services Content */}
+      {/* 5. Services Content */}
       <div
-        className="relative md:absolute top-0 left-0 w-full z-40 min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-4"
+        className="relative md:absolute top-0 left-0 w-full z-50 min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-5"
         ref={servicesRef}
       >
         <Services />
       </div>
 
-      {/* 5. Approach Content */}
+      {/* 6. Approach Content */}
       <div
-        className="relative md:absolute top-0 left-0 w-full z-50 min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-5"
+        className="relative md:absolute top-0 left-0 w-full z-[60] min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-6"
         ref={approachRef}
       >
         <Approach />
       </div>
 
-      {/* 6. Conditions Content */}
+      {/* 7. Conditions Content */}
       <div
-        className="relative md:absolute top-0 left-0 w-full z-[60] min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-6"
+        className="relative md:absolute top-0 left-0 w-full z-[70] min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-7"
         ref={conditionsRef}
       >
         <ConditionsWeSupport />
-      </div>
-
-      {/* 7. Meet Our Team Content */}
-      <div
-        className="relative md:absolute top-0 left-0 w-full z-[70] min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-7"
-        ref={meetTeamRef}
-      >
-        <MeetOurTeam />
       </div>
 
       {/* 8. Contact Content */}

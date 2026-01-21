@@ -99,19 +99,19 @@ const Sidebar = ({ isOpen, onClose }) => {
   }, [isOpen]);
 
   const scrollToSectionMobile = (path) => {
-    // Map paths to section indices (based on order in Hero.jsx)
+    // Map paths to section indices (UPDATED ORDER - Meet Our Team before Why Choose Us)
     const sectionMap = {
       '/': 0,
       '/home': 0,
       '/About-us': 1,
-      '/Why-choose-us': 2,
-      '/Services': 3,
-      '/approach': 4,
-      '/conditions': 5,
-      '/meet-our-team': 6,
-      '/contact': 7,
-      '/frequently-asked': 8,
-      '/footer': 9,
+      '/meet-our-team': 2,      // MOVED - Now position 2
+      '/Why-choose-us': 3,       // MOVED - Now position 3
+      '/Services': 4,            // Updated from 3 to 4
+      '/approach': 5,            // Updated from 4 to 5
+      '/conditions': 6,          // Updated from 5 to 6
+      '/contact': 7,             // Updated from 7 to 7 (same)
+      '/frequently-asked': 8,    // Updated from 8 to 8 (same)
+      '/footer': 9,              // Updated from 9 to 9 (same)
     };
 
     const targetIndex = sectionMap[path];

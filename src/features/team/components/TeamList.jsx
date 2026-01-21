@@ -41,7 +41,14 @@ const TeamList = () => {
   };
 
   const handleBack = () => {
-    navigate("/meet-our-team");
+    navigate("/");
+    // Scroll to Meet Our Team section after navigation
+    setTimeout(() => {
+      const meetOurTeamSection = document.querySelector('[data-section="meet-our-team"]');
+      if (meetOurTeamSection) {
+        meetOurTeamSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
   };
 
   // Get members by category
