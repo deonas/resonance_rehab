@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import Hero from "@/features/landing/components/Hero";
 import AboutUs from "@/features/about/components/AboutUs";
 import FrequentlyAsked from "@/features/faq/components/FrequentlyAsked";
-// MeetOurTeam seems to be in features/team/components?
 import MeetOurTeam from "@/features/team/components/MeetOurTeam";
 import Navbar from "@/shared/components/layout/Navbar";
 import WhyChooseUs from "@/features/misc/components/WhyChooseUs";

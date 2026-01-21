@@ -55,11 +55,11 @@ export const useHeroAnimation = ({
       case '/': label = 'hero'; break;
       case '/home': label = 'home'; break;
       case '/About-us': label = 'about'; break;
+      case '/meet-our-team': label = 'meetTeam'; break;
       case '/Why-choose-us': label = 'whyChooseUs'; break;
       case '/Services': label = 'services'; break;
       case '/approach': label = 'approach'; break;
       case '/conditions': label = 'conditions'; break;
-      case '/meet-our-team': label = 'meetTeam'; break;
       case '/contact': label = 'contact'; break;
       case '/frequently-asked': label = 'faq'; break;
       case '/footer': label = 'footer'; break;
@@ -288,7 +288,48 @@ export const useHeroAnimation = ({
             tl.to(navHamburgerLines, { backgroundColor: PRIMARY_COLOR, duration: 2, ease: "none" }, "<");
          }
 
-         // --- Step 4: Why Choose Us Card Stack ---
+         // --- Step 4: Meet Our Team Card Stack (MOVED BEFORE Why Choose Us) ---
+         tl.to(meetTeamRef.current, {
+           y: "0%", 
+           duration: 2,
+           ease: "power2.inOut", 
+           pointerEvents: "all"
+         });
+
+         tl.addLabel("meetTeam");
+         tl.call(() => updateUrl("/meet-our-team"), null, "<");
+         
+         // Step 4.1: Vertical Scroll for Meet Our Team Content
+         const meetTeamContent = meetTeamRef.current.querySelector('.container-custom');
+         
+         // Helper for calculating duration based on scroll distance
+         const getScrollDuration = (element, padding = 100) => {
+            if (!element || typeof window === 'undefined') return 2;
+            const height = element.offsetHeight;
+            const viewHeight = window.innerHeight;
+            const distance = Math.max(0, height - viewHeight + padding);
+            if (distance === 0) return 0.1; // Minimal duration if no scroll
+            return Math.max(2, (distance / viewHeight) * 2.5);
+         };
+         
+         tl.to(meetTeamContent, {
+            y: () => {
+                const container = meetTeamRef.current.querySelector('.container-custom');
+                if (!container) return 0;
+                
+                const containerHeight = container.offsetHeight;
+                const viewHeight = window.innerHeight;
+                
+                if (containerHeight > viewHeight) {
+                     return -(containerHeight - viewHeight + 100); 
+                }
+                return 0;
+            },
+            duration: getScrollDuration(meetTeamContent, 100), 
+            ease: "none"
+          });
+
+         // --- Step 5: Why Choose Us Card Stack (MOVED AFTER Meet Our Team) ---
          tl.to(whyChooseUsRef.current, {
            y: "0%",
            duration: 2,
@@ -298,10 +339,8 @@ export const useHeroAnimation = ({
 
          tl.addLabel("whyChooseUs");
          tl.call(() => updateUrl("/Why-choose-us"), null, "<");
- 
 
-
-         // --- Step 5: Services Card Stack ---
+         // --- Step 6: Services Card Stack ---
          tl.to(servicesRef.current, {
            y: "0%",
            duration: 2,
@@ -312,20 +351,7 @@ export const useHeroAnimation = ({
          tl.addLabel("services");
          tl.call(() => updateUrl("/Services"), null, "<");
 
-         // Helper for calculating duration based on scroll distance
-         const getScrollDuration = (element, padding = 100) => {
-            if (!element || typeof window === 'undefined') return 2;
-            const height = element.offsetHeight;
-            const viewHeight = window.innerHeight;
-            const distance = Math.max(0, height - viewHeight + padding);
-            if (distance === 0) return 0.1; // Minimal duration if no scroll
-            // Factor: 2.5 output units per viewport height of scroll distance
-            // Adjust factor to tune speed: Higher = Slower scroll relative to distance
-            return Math.max(2, (distance / viewHeight) * 2.5);
-         };
-
-         // --- Step 5.4: Vertical Scroll for CONTENT (Parallax) ---
-         // Moves the whole content wrapper up
+         // --- Step 6.1: Vertical Scroll for CONTENT (Parallax) ---
          const servicesContent = servicesRef.current.querySelector('.services-content-inner');
          tl.to(servicesContent, {
             y: () => {
@@ -344,7 +370,7 @@ export const useHeroAnimation = ({
             ease: "none"
          });
 
-         // --- Step 5.5: Horizontal Scroll for Services Cards ---
+         // --- Step 6.2: Horizontal Scroll for Services Cards ---
          tl.to(
              servicesRef.current.querySelector('.services-track'), 
              {
@@ -360,8 +386,7 @@ export const useHeroAnimation = ({
              }
          );
 
-
-         // --- Step 6: Approach Card Stack ---
+         // --- Step 7: Approach Card Stack ---
          tl.to(approachRef.current, {
            y: "0%",
            duration: 2,
@@ -380,7 +405,7 @@ export const useHeroAnimation = ({
             ease: "power2.out"
          }, "<+=1");
 
-         // --- Step 6.1: Vertical Scroll for Approach Content ---
+         // --- Step 7.1: Vertical Scroll for Approach Content ---
          const approachContent = approachRef.current.querySelector('.approach-content-inner');
          
          // Custom duration calculation that accounts for the large top padding
@@ -390,19 +415,15 @@ export const useHeroAnimation = ({
 
              const sectionRect = approachRef.current.getBoundingClientRect();
              const containerRect = container.getBoundingClientRect();
-             // Determine vertical offset within the section (handles pt-80 etc)
-             const relativeTop = containerRect.top - sectionRect.top; // should be positive (~320px)
+             const relativeTop = containerRect.top - sectionRect.top;
              
              const viewHeight = window.innerHeight;
              const totalContentHeight = relativeTop + container.offsetHeight;
              
-             // Target: Scroll until bottom is safely visible (Keep bottom 20% clear)
-             // Using percentage ensures better behavior on small vs large screens
              const targetVisibleBottom = viewHeight * 0.8;
              
              const scrollDistance = Math.max(0, totalContentHeight - targetVisibleBottom);
              
-             // Duration Factor: 2.5s per viewport of scroll
              const duration = Math.max(2, (scrollDistance / viewHeight) * 2.5);
              
              return { y: -scrollDistance, duration };
@@ -417,15 +438,14 @@ export const useHeroAnimation = ({
             ease: "none"
          });
 
-         // --- Step 6.2: Rotate Circles on Scroll ---
+         // --- Step 7.2: Rotate Circles on Scroll ---
          tl.to(approachRef.current.querySelector('.approach-circles'), {
             rotation: 120, 
-            duration: approachDuration, // Synced with content
+            duration: approachDuration,
             ease: "none"
          }, "<");
 
-
-         // --- Step 7: Conditions Card Stack (Slide Up) ---
+         // --- Step 8: Conditions Card Stack (Slide Up) ---
          tl.to(conditionsRef.current, {
            y: "0%",
            duration: 2,
@@ -433,11 +453,10 @@ export const useHeroAnimation = ({
            pointerEvents: "all"
          });
 
-
          tl.addLabel("conditions");
          tl.call(() => updateUrl("/conditions"), null, "<");
 
-         // --- Step 7.1: Vertical Scroll for Conditions Content ---
+         // --- Step 8.1: Vertical Scroll for Conditions Content ---
          const conditionsContent = conditionsRef.current.querySelector('.conditions-content-inner');
          tl.to(conditionsContent, {
             y: () => {
@@ -456,36 +475,6 @@ export const useHeroAnimation = ({
             ease: "none"
          });
 
-         // --- Step 8: Meet Our Team Card Stack (Slide Up) ---
-         tl.to(meetTeamRef.current, {
-           y: "0%", 
-           duration: 2,
-           ease: "power2.inOut", 
-           pointerEvents: "all"
-         });
-
-
-         tl.addLabel("meetTeam");
-         tl.call(() => updateUrl("/meet-our-team"), null, "<");
-         //8.1
-          const meetTeamContent = meetTeamRef.current.querySelector('.container-custom');
-          tl.to(meetTeamContent, {
-            y: () => {
-                const container = meetTeamRef.current.querySelector('.container-custom');
-                if (!container) return 0;
-                
-                const containerHeight = container.offsetHeight;
-                const viewHeight = window.innerHeight;
-                
-                if (containerHeight > viewHeight) {
-                     return -(containerHeight - viewHeight + 100); 
-                }
-                return 0;
-            },
-            duration: getScrollDuration(meetTeamContent, 100), 
-            ease: "none"
-          });
-
          // --- Step 9: Contact Card Stack (Slide Up) ---
          tl.to(contactRef.current, {
            y: "0%", 
@@ -493,7 +482,6 @@ export const useHeroAnimation = ({
            ease: "power2.inOut", 
            pointerEvents: "all"
          });
-
 
          tl.addLabel("contact");
          tl.call(() => updateUrl("/contact"), null, "<");
@@ -506,7 +494,6 @@ export const useHeroAnimation = ({
            pointerEvents: "all"
          });
 
-         
          tl.addLabel("faq");
          tl.call(() => updateUrl("/frequently-asked"), null, "<");
 
@@ -520,17 +507,14 @@ export const useHeroAnimation = ({
                 const containerHeight = container.offsetHeight;
                 const viewHeight = window.innerHeight;
                 
-                // Target: Scroll until bottom is visible with small buffer (10% of viewHeight)
-                // This removes the large 150px gap, using proportional spacing instead
                 const targetVisibleBottom = viewHeight * 0.9;
                 
                 if (containerHeight > targetVisibleBottom) {
-                    // Scroll exactly enough to bring bottom to target
                      return -(containerHeight - targetVisibleBottom);
                 }
                 return 0;
             },
-            duration: getScrollDuration(faqContent, 100), // Slightly reduced buffer duration
+            duration: getScrollDuration(faqContent, 100),
             ease: "none"
          });
 
@@ -546,7 +530,6 @@ export const useHeroAnimation = ({
          tl.call(() => updateUrl("/footer"), null, "<");
 
          // --- Step 12: Release Scroll (End of Stack) ---
-         // Allow Hero to grow and Footer to flow naturally
          tl.set(heroRef.current, { 
              height: "auto", 
              overflow: "visible" 
@@ -572,11 +555,11 @@ mm.add("(max-width: 767.98px)", () => {
    // CRITICAL: Aggressively remove ALL spacing between sections
    const sections = [
        { ref: aboutRef.current, pt: "0.5rem", pb: "0.5rem" },
+       { ref: meetTeamRef.current, pt: "0.5rem", pb: "0.5rem" },
        { ref: whyChooseUsRef.current, pt: "0.5rem", pb: "0.5rem" },
        { ref: servicesRef.current, pt: "0.5rem", pb: "0.5rem" },
        { ref: approachRef.current, pt: "0.5rem", pb: "0.5rem" },
        { ref: conditionsRef.current, pt: "0.5rem", pb: "0.5rem" },
-       { ref: meetTeamRef.current, pt: "0.5rem", pb: "0.5rem" },
        { ref: contactRef.current, pt: "0.5rem", pb: "0.5rem" },
        { ref: faqRef.current, pt: "0.5rem", pb: "0.5rem" },
        { ref: footerRef.current, pt: "0.5rem", pb: "0.5rem" }
@@ -589,10 +572,9 @@ mm.add("(max-width: 767.98px)", () => {
                marginBottom: "0 !important",
                paddingTop: pt,
                paddingBottom: pb,
-               clearProps: "min-height" // Remove min-h-screen on mobile
+               clearProps: "min-height"
            });
            
-           // Target ALL inner containers aggressively
            const allInnerContainers = ref.querySelectorAll('[class*="container"], [class*="pt-"], [class*="pb-"], [class*="py-"], [class*="mt-"], [class*="mb-"], [class*="my-"]');
            allInnerContainers.forEach(container => {
                gsap.set(container, {
@@ -605,7 +587,6 @@ mm.add("(max-width: 767.98px)", () => {
        }
    });
    
-   // Force remove spacing on Hero
    if (heroRef.current) {
        gsap.set(heroRef.current, {
            paddingBottom: "0.5rem",
@@ -626,11 +607,10 @@ mm.add("(max-width: 767.98px)", () => {
       
       // Force refresh after a short delay to ensure everything is settled in Prod
       setTimeout(() => ScrollTrigger.refresh(), 500);
-      setTimeout(() => ScrollTrigger.refresh(), 2000); // Safety fallback
+      setTimeout(() => ScrollTrigger.refresh(), 2000);
 
     }, heroRef);
     
-    // Add load listener for additional safety
     const handleLoad = () => ScrollTrigger.refresh();
     window.addEventListener("load", handleLoad);
 

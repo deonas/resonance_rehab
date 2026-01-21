@@ -16,7 +16,7 @@ const MeetOurTeam = forwardRef((props, ref) => {
   };
 
   return (
-    <div ref={ref} className="min-h-0 md:min-h-screen bg-background relative z-20">
+    <div ref={ref} className="min-h-0 md:min-h-screen bg-background relative z-20" data-section="meet-our-team">
       <div className="container-custom py-2 sm:py-4 md:py-12 px-4 sm:px-6">
         <div className="text-center mb-4 sm:mb-6 md:mb-12 mt-1 sm:mt-2 md:mt-16">
           <h1 className="font-autumn text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-3 sm:mb-4 relative inline-block">
