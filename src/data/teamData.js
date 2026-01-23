@@ -335,6 +335,38 @@ export const teamData = {
       registration: "RCI Certified",
       experience: "1+ year"
     },
+    {
+  id: 13,
+  name: "Anushana V",
+  slug: "anushana-v",
+  title: "Speech-Language Pathologist",
+  category: "speech",
+  description: "RCI certified Speech-Language Pathologist specializing in pediatric speech and language disorders with expertise in autism and developmental delays.",
+  image: "/images/meetourteam/anushana.png",
+  credentials: "B.ASLP (Bachelor of Audiology and Speech-Language Pathology)",
+  age: "Children",
+  languages: "English, Malayalam",
+  about: "Dedicated Speech-Language Pathologist with proven experience in the assessment and management of pediatric speech and language disorders. Demonstrates strong clinical judgment, evidence-based intervention skills, and a consistent track record of improving functional communication through individualized therapy and effective parent collaboration.",
+  areasOfFocus: [
+    "Speech sound disorders",
+    "Receptive-expressive language delays",
+    "Autism spectrum disorders",
+    "Developmental delays",
+    "Augmentative and Alternative Communication (AAC) - PECS",
+    "Individualized treatment planning",
+    "Parent counselling",
+    "Progress monitoring"
+  ],
+  approach: [
+    "Evidence-based therapy approaches",
+    "Individualized treatment planning",
+    "Effective parent collaboration",
+    "Functional communication focus"
+  ],
+  location: "Kerala, India",
+  registration: "RCI Certified",
+  experience: "1+ year"
+},
   ],
 
 
