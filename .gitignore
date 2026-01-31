@@ -23,5 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 dist.zip
-.github/workflows/README.md
 docs/DEPLOYMENT.md
+.github/workflows/README.md
+
+hi
