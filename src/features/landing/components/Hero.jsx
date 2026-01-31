@@ -83,102 +83,102 @@ const Hero = () => {
         md:h-screen
         bg-background
         overflow-x-hidden
-        overflow-y-visible
+        overflow-y-auto
         md:overflow-hidden
+        snap-y
+        snap-mandatory
+        md:snap-none
         flex
         flex-col
         md:block
       "
     >
-      <HeroSplash titleRef={splashTitleRef} overlayRef={splashOverlayRef} />
+      {/* 1. HERO SECTION - "Empowering Young Minds" - MUST BE FIRST */}
+      <div className="relative min-h-screen snap-start md:snap-none order-1 flex flex-col md:block">
+        <HeroSplash titleRef={splashTitleRef} overlayRef={splashOverlayRef} />
 
-      <HeroBackground
-        containerRef={imageContainerRef}
-        bgImageRef={bgImageRef}
-        socialRef={socialRef}
-        doodleOverlayRef={doodleOverlayRef}
-        doodles={DOODLES}
-        onImageLoad={handleResize}
-      />
+        {/* Content at TOP on mobile, overlaid on desktop */}
+        <div className="relative md:absolute md:inset-0 flex flex-col md:justify-center order-1 md:order-none z-10 pb-0 md:pb-0">
+          <HeroContent overlayRef={overlayRef} contentRef={contentRef} />
+        </div>
 
-      <HeroContent overlayRef={overlayRef} contentRef={contentRef} />
+        {/* Background Image - SHARED between Hero and About on mobile */}
+        <div className="block md:absolute md:inset-0 order-2 md:order-none md:z-0 h-[50vh] md:h-auto">
+          <HeroBackground
+            containerRef={imageContainerRef}
+            bgImageRef={bgImageRef}
+            socialRef={socialRef}
+            doodleOverlayRef={doodleOverlayRef}
+            doodles={DOODLES}
+            onImageLoad={handleResize}
+          />
+        </div>
+      </div>
 
-      {/* About Us Content layered into the same scroll context */}
-      <div className="relative md:absolute top-0 md:top-[100vh] left-0 w-full z-20 md:z-20 min-h-screen md:min-h-screen flex flex-col justify-start">
+      {/* 2. ABOUT US - "Care That Connects" - SECOND */}
+      <div className="relative md:absolute top-0 md:top-[100vh] left-0 w-full z-20 min-h-0 md:min-h-screen snap-start md:snap-none flex flex-col justify-start order-2 pt-0 md:pt-0">
         <AboutUs ref={aboutRef} />
       </div>
 
-      {/* Why Choose Us Content - Full natural height on mobile, Card Stack on Desktop */}
+      {/* 3. Meet Our Team Content - MOVED BEFORE Why Choose Us */}
       <div
-        className="relative md:absolute top-0 left-0 w-full z-30 md:translate-y-full"
-        ref={whyChooseUsRef}
-      >
-        <WhyChooseUs />
-      </div>
-
-      {/* Services Content - Card Stack Effect on Desktop, Flow on Mobile - Allow natural height */}
-      <div
-        className="
-          relative
-          md:absolute
-          top-0
-          left-0
-          w-full
-          z-40
-          min-h-screen
-          md:min-h-screen
-          md:h-auto
-          translate-y-0
-          md:translate-y-full
-        "
-        ref={servicesRef}
-      >
-        <Services />
-      </div>
-
-      {/* Approach Content - Card Stack Effect on Desktop, Flow on Mobile - Allow natural height */}
-      <div
-        className="relative md:absolute top-0 left-0 w-full z-50 min-h-screen md:min-h-screen md:h-auto md:translate-y-full"
-        ref={approachRef}
-      >
-        <Approach />
-      </div>
-
-      {/* Conditions Content - Card Stack Effect on Desktop, Flow on Mobile - Allow natural height */}
-      <div
-        className="relative md:absolute top-0 left-0 w-full z-[60] min-h-screen md:min-h-screen md:h-auto md:translate-y-full"
-        ref={conditionsRef}
-      >
-        <ConditionsWeSupport />
-      </div>
-
-      {/* Meet Our Team Content - Card Stack Effect on Desktop, Flow on Mobile */}
-      <div
-        className="relative md:absolute top-0 left-0 w-full z-[70] min-h-screen md:h-screen md:translate-y-full"
+        className="relative md:absolute top-0 left-0 w-full z-30 min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-3"
         ref={meetTeamRef}
       >
         <MeetOurTeam />
       </div>
 
-      {/* Contact Content - Card Stack Effect on Desktop, Flow on Mobile */}
+      {/* 4. Why Choose Us Content - MOVED AFTER Meet Our Team */}
       <div
-        className="relative md:absolute top-0 left-0 w-full z-[80] min-h-screen md:h-screen md:translate-y-full"
+        className="relative md:absolute top-0 left-0 w-full z-40 min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-4"
+        ref={whyChooseUsRef}
+      >
+        <WhyChooseUs />
+      </div>
+
+      {/* 5. Services Content */}
+      <div
+        className="relative md:absolute top-0 left-0 w-full z-50 min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-5"
+        ref={servicesRef}
+      >
+        <Services />
+      </div>
+
+      {/* 6. Approach Content */}
+      <div
+        className="relative md:absolute top-0 left-0 w-full z-[60] min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-6"
+        ref={approachRef}
+      >
+        <Approach />
+      </div>
+
+      {/* 7. Conditions Content */}
+      <div
+        className="relative md:absolute top-0 left-0 w-full z-[70] min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-7"
+        ref={conditionsRef}
+      >
+        <ConditionsWeSupport />
+      </div>
+
+      {/* 8. Contact Content */}
+      <div
+        className="relative md:absolute top-0 left-0 w-full z-[80] min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-8"
         ref={contactRef}
       >
         <Contact />
       </div>
 
-      {/* FAQ Content - Card Stack Effect on Desktop, Flow on Mobile - Allow natural height */}
+      {/* 9. FAQ Content */}
       <div
-        className="relative md:absolute top-0 left-0 w-full z-[90] min-h-screen md:min-h-screen md:h-auto md:translate-y-full"
+        className="relative md:absolute top-0 left-0 w-full z-[90] min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-9"
         ref={faqRef}
       >
         <FrequentlyAsked />
       </div>
 
-      {/* Footer Content - Card Stack Effect on Desktop, Flow on Mobile - Allow natural height */}
+      {/* 10. Footer Content - LAST */}
       <div
-        className="relative md:absolute top-0 left-0 w-full z-[100] min-h-screen md:min-h-screen md:h-auto md:translate-y-full"
+        className="relative md:absolute top-0 left-0 w-full z-[100] min-h-0 md:min-h-screen snap-start md:snap-none md:translate-y-full order-10"
         ref={footerRef}
       >
         <Footer />

@@ -278,8 +278,158 @@ export const teamData = {
         "Avaz AAC Certified"
       ],
       experience: "2.8+ years"
-    }
+    },
+    {
+  id: 11,
+  name: "Silpa Ravindran",
+  slug: "silpa-ravindran",
+  title: "Clinical Psychologist",
+  category: "clinical-psychologist",
+  description: "Compassionate clinical psychologist providing professional support for children and families with behavioral, developmental, and emotional challenges.",
+  image: "/images/meetourteam/silpa.png",
+  credentials: "M.Phil Clinical Psychology, M.Sc Clinical Psychology",
+  age: "Children & Adolescents",
+  languages: "English, Malayalam",
+  about: "My aim is to provide compassionate, professional, and effective psychological support that promotes meaningful and lasting improvement in the well-being of individuals and families. I use proven behavioral and psychological techniques along with reinforcement to support positive changes. I ensure that each session is well-structured, supportive, and encouraging for every client.",
+  areasOfFocus: [
+    "Behavioral concerns",
+    "Developmental challenges",
+    "Learning difficulties",
+    "Emotional regulation",
+    "Stress management",
+    "Anger management"
   ],
+  approach: [
+    "Individualized one-on-one therapy",
+    "Standardized therapeutic approaches",
+    "Evidence-based behavioral techniques",
+    "Structured and supportive sessions"
+  ],
+  experience: "1+ year"
+}, {
+      id: 12,
+      name: "Shahana Sherin",
+      slug: "shahana-sherin",
+      title: "Speech-Language Pathologist",
+      category: "speech",
+      description: "RCI certified SLP providing comprehensive speech and language evaluations with expertise in OPT, AAC, and parent-led interventions.",
+      image: "/images/meetourteam/shahana.png",
+      credentials: "B.ASLP (Bachelor of Audiology and Speech-Language Pathology)",
+      age: "Children & Adults",
+      languages: "English, Malayalam",
+      about: "I am a dedicated Speech-Language Pathologist focused on providing high-quality health services and support to my clients. I create personalized treatment plans based on careful assessments and an understanding of each client's unique challenges. I use modern assessment tools and effective therapy techniques to help patients improve their speech and language skills. I continue to develop my professional skills to stay updated with the latest advancements in speech and hearing, ensuring that I offer the best care possible to those I serve.",
+      areasOfFocus: [
+        "Speech and language disorder evaluation",
+        "Targeted speech and language interventions",
+        "Oral Placement Therapy (OPT)",
+        "Parent-Led Intervention Programs",
+        "Augmentative and Alternative Communication (AAC)"
+      ],
+      approach: [
+        "Personalized treatment plans",
+        "Modern assessment tools",
+        "Evidence-based therapy techniques",
+        "Client-centered care"
+      ],
+      location: "Kerala",
+      registration: "RCI Certified",
+      experience: "1+ year"
+    },
+    {
+  id: 13,
+  name: "Anushana V",
+  slug: "anushana-v",
+  title: "Speech-Language Pathologist",
+  category: "speech",
+  description: "RCI certified Speech-Language Pathologist specializing in pediatric speech and language disorders with expertise in autism and developmental delays.",
+  image: "/images/meetourteam/anushana.png",
+  credentials: "B.ASLP (Bachelor of Audiology and Speech-Language Pathology)",
+  age: "Children",
+  languages: "English, Malayalam",
+  about: "Dedicated Speech-Language Pathologist with proven experience in the assessment and management of pediatric speech and language disorders. Demonstrates strong clinical judgment, evidence-based intervention skills, and a consistent track record of improving functional communication through individualized therapy and effective parent collaboration.",
+  areasOfFocus: [
+    "Speech sound disorders",
+    "Receptive-expressive language delays",
+    "Autism spectrum disorders",
+    "Developmental delays",
+    "Augmentative and Alternative Communication (AAC) - PECS",
+    "Individualized treatment planning",
+    "Parent counselling",
+    "Progress monitoring"
+  ],
+  approach: [
+    "Evidence-based therapy approaches",
+    "Individualized treatment planning",
+    "Effective parent collaboration",
+    "Functional communication focus"
+  ],
+  location: "Kerala, India",
+  registration: "RCI Certified",
+  experience: "1+ year"
+},{
+  id: 14,
+  name: "Athira",
+  slug: "athira",
+  title: "Behaviour Therapist",
+  category: "behaviour-therapist",
+  description: "Experienced behaviour therapist specializing in ABA with a focus on evidence-based interventions for children and youth with neurodevelopmental disorders.",
+  image: "/images/meetourteam/athira.png",
+  credentials: "M.Sc Clinical and Counselling Psychology, Graduate Certificate in Research Analysis",
+  age: "Children & Youth",
+  languages: "English, Malayalam",
+about:"Works closely with children and youth, supporting their development through evidence-based and individualized behavioural interventions. She is deeply passionate about helping individuals reach their full potential and is committed to creating a positive, supportive, and inclusive therapeutic environment. Her approach is personalized, ensuring that each child’s unique strengths and needs guide the intervention process.",
+  areasOfFocus: [
+    "Applied Behaviour Analysis (ABA)",
+    "Early intervention and skill development",
+    "Behaviour management and positive behaviour support",
+    "Autism Spectrum Disorder (ASD)",
+    "Neurodevelopmental disorders",
+    "Social skills training",
+    "Communication development",
+    "Parent and caregiver coaching"
+  ],
+  approach: [
+    "Evidence-based behavioural interventions",
+    "Individualized and goal-oriented therapy plans",
+    "Strength-based and child-centred approach",
+    "Collaboration with families and caregivers"
+  ],
+  location: "Canada",
+  experience: "5+ years in psychology, 2+ years in ABA"
+},
+{
+  id: 15,
+  name: "Jen Ponnachan",
+  slug: "jen-ponnachan",
+  title: "Occupational Therapist",
+  category: "occupational",
+  description: "Pediatric occupational therapist with expertise in sensory integration therapy and rehabilitation-based approaches for children's development.",
+  image: "/images/meetourteam/jen.png",
+  credentials: "Bachelor's in Occupational Therapy",
+  age: "Pediatric (2.5+ years)",
+  languages: "English, Malayalam, Hindi",
+  about: "Hi, I'm a pediatric occupational therapist with 2+ years of clinical experience, with expertise in sensory integration therapy and rehabilitation-based approaches. I work with children to improve sensory processing, motor skills, functional independence, and overall participation in daily activities using evidence-based, child-centered interventions.",
+  areasOfFocus: [
+    "Developmental and neurological conditions",
+    "Early intervention",
+    "Sensory integration therapy",
+    "Participation in home, school and community activities",
+    "Functional independence",
+    "Sensory processing",
+    "Motor skills development"
+  ],
+  approach: [
+    "Child-centered and evidence-based practice",
+    "Structured, play-based therapeutic activities",
+    "Tailored treatment plans",
+    "Individualized goal-oriented intervention planning",
+    "Active parent education and caregiver collaboration"
+  ],
+  location: "Kerala",
+  experience: "2+ years"
+},
+  ],
+
 
   // Helper functions to get members by category
   getByCategory(category) {

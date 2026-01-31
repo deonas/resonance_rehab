@@ -8,7 +8,7 @@ export const faqData = {
       },
       {
         question: "How long is a typical session?",
-        answer: "Standard sessions usually range from 30 to 60 minutes, depending on the client's age, specific needs, and individualized therapy plan."
+        answer: "Standard sessions usually range from 45 to 60 minutes, depending on the client's age, specific needs, and individualized therapy plan."
       },
       {
         question: "How can I get the most benefit?",
@@ -88,16 +88,9 @@ export const faqData = {
     ]
   },
   specialEducation: {
-    title: "Special & Developmental Education",
+    title: "Developmental Therapy",
     questions: [
-      {
-        question: "What is online special education?",
-        answer: "A structured learning program delivered digitally, designed to support children with learning disabilities (e.g., dyslexia, dyscalculia) or developmental challenges."
-      },
-      {
-        question: "How is online special education different from traditional schooling?",
-        answer: "It offers one-on-one attention, customized learning plans, and a flexible pace tailored specifically to the child's unique needs unlike regular classrooms."
-      },
+ 
       {
         question: "What is developmental therapy?",
         answer: "Therapy that uses a holistic, play-based approach to support physical, social, emotional, and cognitive growth in children during the critical years of birth to 5."

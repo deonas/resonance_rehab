@@ -27,9 +27,9 @@ const Footer = forwardRef((props, ref) => {
     <>
       <div
         ref={ref}
-        className="relative w-full px-4 sm:px-6 md:px-12 mx-auto bg-background overflow-hidden min-h-screen mb-2 sm:mb-3 md:mb-4 text-primary-color"
+        className="relative w-full px-4 sm:px-6 md:px-12 mx-auto bg-background overflow-hidden min-h-[600px] md:min-h-screen mb-0 md:mb-4 text-primary-color"
       >
-        <div className="flex flex-col items-start justify-center pt-20 sm:pt-24 md:pt-[150px] pb-16 sm:pb-20 md:pb-[100px] relative h-full min-h-[500px]">
+        <div className="flex flex-col items-start justify-start md:justify-center pt-0 md:pt-[150px] pb-16 sm:pb-20 md:pb-[100px] relative h-auto md:h-full min-h-0 md:min-h-[500px]">
           <div className="relative mb-12 sm:mb-16 md:mb-20">
             {/* Smiley Doodle */}
             <div className="absolute -top-8 sm:-top-10 md:-top-12 -right-8 sm:-right-10 md:-right-12 w-[48px] sm:w-[56px] md:w-[64px] h-[48px] sm:h-[56px] md:h-[65px] rotate-[20.84deg]">
@@ -184,5 +184,7 @@ const Footer = forwardRef((props, ref) => {
     </>
   );
 });
+
+Footer.displayName = "Footer";
 
 export default Footer;

@@ -41,7 +41,14 @@ const TeamList = () => {
   };
 
   const handleBack = () => {
-    navigate("/meet-our-team");
+    navigate("/");
+    // Scroll to Meet Our Team section after navigation
+    setTimeout(() => {
+      const meetOurTeamSection = document.querySelector('[data-section="meet-our-team"]');
+      if (meetOurTeamSection) {
+        meetOurTeamSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
   };
 
   // Get members by category
@@ -145,7 +152,7 @@ const TeamList = () => {
         {specialEducators.length > 0 && (
           <section className="mb-12 sm:mb-16">
             <h2 className="font-urbanist text-secondary-color font-semibold text-center mb-6 sm:mb-8 text-base sm:text-lg px-4">
-              Special Educator
+              Developmental Therapist
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 max-w-7xl mx-auto">
               {specialEducators.map((member) => (

@@ -16,9 +16,9 @@ const FrequentlyAsked = forwardRef((props, ref) => {
           document.body,
         )}
 
-      <div ref={ref} className="min-h-screen bg-background">
-        <div className="container-custom py-6 sm:py-8 md:py-12 px-4 md:px-6 pb-10">
-          <div className="text-center mb-6 sm:mb-8 md:mb-12 mt-6 sm:mt-8 md:mt-16">
+      <div ref={ref} className="bg-background">
+        <div className="container-custom pt-4 sm:pt-6 md:pt-12 px-4 md:px-6 pb-0 md:pb-6">
+          <div className="text-center mb-4 sm:mb-6 md:mb-12 mt-4 sm:mt-6 md:mt-16">
             <h1 className="font-autumn text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-2 sm:mb-3 md:mb-4 px-2 sm:px-4">
               <span className="text-primary-color">Frequently </span>
               <span className="text-secondary-color italic">Asked</span>
@@ -27,11 +27,11 @@ const FrequentlyAsked = forwardRef((props, ref) => {
           </div>
 
           <div className="max-w-3xl mx-auto px-2 sm:px-4 md:px-0">
-            <h2 className="font-urbanist text-secondary-color text-center text-[10px] sm:text-sm md:text-base font-medium mb-4 sm:mb-5 md:mb-8">
+            <h2 className="font-urbanist text-secondary-color text-center text-[10px] sm:text-sm md:text-base font-medium mb-3 sm:mb-4 md:mb-8">
               General & Technical
             </h2>
 
-            <div className="space-y-2.5 sm:space-y-3 md:space-y-6">
+            <div className="space-y-2 sm:space-y-2.5 md:space-y-6">
               {questions.slice(0, 3).map((faq, index) => (
                 <FAQCard
                   key={index}
@@ -41,7 +41,7 @@ const FrequentlyAsked = forwardRef((props, ref) => {
               ))}
             </div>
 
-            <div className="relative mt-2.5 sm:mt-3 md:mt-6">
+            <div className="relative mt-2 sm:mt-2.5 md:mt-6">
               <div className="bg-white rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 shadow-sm max-h-[70px] sm:max-h-[80px] md:max-h-[150px] overflow-hidden">
                 <h3 className="font-urbanist text-primary-color font-bold text-sm md:text-[12px] mb-1 sm:mb-1.5 md:mb-2">
                   {questions[3].question}
@@ -53,7 +53,7 @@ const FrequentlyAsked = forwardRef((props, ref) => {
 
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-14 sm:h-16 md:h-28 bg-gradient-to-t from-background via-background/90 to-transparent rounded-b-xl sm:rounded-b-2xl" />
 
-              <div className="absolute inset-0 flex items-end justify-center pb-2.5 sm:pb-3 md:pb-8">
+              <div className="absolute inset-0 flex items-end justify-center pb-2 sm:pb-2.5 md:pb-8">
                 <button
                   onClick={() => setShowFullFAQ(true)}
                   className="bg-button-main text-primary-color font-urbanist font-bold px-4 sm:px-5 md:px-6 py-2 sm:py-2 md:py-2.5 rounded-full shadow-lg hover:opacity-90 active:opacity-80 transition text-[10px] sm:text-sm md:text-base focus-ring z-10 active:scale-95"

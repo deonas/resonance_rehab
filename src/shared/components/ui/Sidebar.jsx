@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import Button from "./Button";
+import { createPortal } from "react-dom";
 
 const menuItems = [
   { label: "Home", path: "/home" },
@@ -22,16 +23,13 @@ const socialIcons = [
   "/icons/Mail.svg",
 ];
 
-import { createPortal } from "react-dom";
-
-// ... (existing imports)
-
 const Sidebar = ({ isOpen, onClose }) => {
   const sidebarRef = useRef(null);
   const menuRef = useRef(null);
   const socialRef = useRef(null);
-  // mounted state to ensure we are on client for portal
   const [mounted, setMounted] = React.useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     setMounted(true);
@@ -100,9 +98,74 @@ const Sidebar = ({ isOpen, onClose }) => {
     }
   }, [isOpen]);
 
-  const handleLinkClick = (e) => {
-    // Close sidebar immediately
-    onClose();
+  const scrollToSectionMobile = (path) => {
+    // Map paths to section indices (UPDATED ORDER - Meet Our Team before Why Choose Us)
+    const sectionMap = {
+      '/': 0,
+      '/home': 0,
+      '/About-us': 1,
+      '/meet-our-team': 2,      // MOVED - Now position 2
+      '/Why-choose-us': 3,       // MOVED - Now position 3
+      '/Services': 4,            // Updated from 3 to 4
+      '/approach': 5,            // Updated from 4 to 5
+      '/conditions': 6,          // Updated from 5 to 6
+      '/contact': 7,             // Updated from 7 to 7 (same)
+      '/frequently-asked': 8,    // Updated from 8 to 8 (same)
+      '/footer': 9,              // Updated from 9 to 9 (same)
+    };
+
+    const targetIndex = sectionMap[path];
+    if (targetIndex === undefined) return;
+
+    // Use requestAnimationFrame to ensure DOM is ready
+    requestAnimationFrame(() => {
+      // Get all snap sections in the Hero component
+      const snapSections = document.querySelectorAll('.snap-start');
+      
+      if (snapSections && snapSections[targetIndex]) {
+        // Scroll to the section
+        snapSections[targetIndex].scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start',
+          inline: 'nearest'
+        });
+      } else {
+        // Fallback: Calculate scroll position manually
+        const viewportHeight = window.innerHeight;
+        const scrollPosition = targetIndex * viewportHeight;
+        window.scrollTo({
+          top: scrollPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  };
+
+  const handleLinkClick = (e, path) => {
+    e.preventDefault();
+    
+    const isMobile = window.innerWidth < 768;
+    
+    if (isMobile) {
+      // Close sidebar first
+      onClose();
+      
+      // Navigate if not already on the path
+      if (location.pathname !== path) {
+        navigate(path);
+      }
+      
+      // Wait for sidebar close animation + DOM update, then scroll
+      setTimeout(() => {
+        scrollToSectionMobile(path);
+      }, 700);
+    } else {
+      // Desktop: Use existing behavior (handled by useHeroAnimation)
+      navigate(path);
+      setTimeout(() => {
+        onClose();
+      }, 100);
+    }
   };
 
   if (!mounted) return null;
@@ -118,6 +181,30 @@ const Sidebar = ({ isOpen, onClose }) => {
           className="fixed inset-0 z-[10000] flex flex-col bg-[#e8e6f3] text-[#19083b] overflow-y-auto overflow-x-hidden pt-20 md:pt-10"
           ref={sidebarRef}
         >
+          {/* Close Button */}
+          <button
+            onClick={onClose}
+            className="absolute top-6 right-6 z-[10001] w-10 h-10 flex items-center justify-center rounded-full bg-[#19083b]/10 hover:bg-[#19083b]/20 transition-all duration-300 hover:scale-110 active:scale-95"
+            aria-label="Close menu"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="text-[#19083b]"
+            >
+              <path
+                d="M15 5L5 15M5 5L15 15"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+
           {/* Desktop Title */}
           <div className="hidden md:flex flex-col items-center relative z-50 mt-8 mb-4">
             <div className="relative">
@@ -143,7 +230,11 @@ const Sidebar = ({ isOpen, onClose }) => {
             className="flex-1 flex flex-col items-center justify-center gap-4 px-4 pt-16 md:pt-0 relative"
           >
             {menuItems.map((item, index) => (
-              <Link key={index} to={item.path} onClick={handleLinkClick}>
+              <Link 
+                key={index} 
+                to={item.path} 
+                onClick={(e) => handleLinkClick(e, item.path)}
+              >
                 <Button className="menu-item pointer-events-auto">
                   {item.label}
                 </Button>

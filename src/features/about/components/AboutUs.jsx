@@ -4,26 +4,39 @@ import { SOCIAL_LINKS } from "@/constants/heroConstants";
 import HeroBackground from "@/features/landing/components/HeroBackground";
 import Button from "@/shared/components/ui/Button";
 import Container from "@/shared/components/ui/Container";
+const phoneNumber = "919497148473";
+
+const startJourneyMessage = encodeURIComponent(
+  "Hi, I’m exploring your website and would like to start my child’s therapy journey. Please guide me."
+);
+
+const openWhatsApp = () => {
+  window.open(
+    `https://wa.me/${phoneNumber}?text=${startJourneyMessage}`,
+    "_blank"
+  );
+};
+
 
 const AboutUs = forwardRef((props, ref) => {
   const navigate = useNavigate();
 
   return (
-    <section ref={ref} className="w-full flex flex-col md:block relative">
+    <section ref={ref} className="w-full flex flex-col md:block relative min-h-0 md:min-h-screen">
       {/* Mobile-Only Image: To ensure AboutUs stands alone when scroll animation is disabled on mobile */}
-      <div className="block md:hidden relative w-full h-[35vh] shrink-0 z-20">
+      <div className="hidden relative w-full h-[35vh] shrink-0 z-20">
         <HeroBackground simple imageClass="object-cover object-center" />
       </div>
 
-      <div className="about-content-inner bg-background w-full items-center px-4 sm:px-6 pt-6 sm:pt-8 pb-8 sm:pb-10 text-center flex-1 h-full z-10 md:h-auto md:overflow-visible md:justify-center md:py-8 md:px-0">
+      <div className="about-content-inner bg-background w-full items-center px-4 sm:px-6 pt-2 sm:pt-4 pb-2 sm:pb-4 text-center flex-1 h-full z-10 md:h-auto md:overflow-visible md:justify-center md:py-8 md:px-0">
         <Container>
           {/* Subtitle */}
-          <h3 className="font-urbanist text-primary-color/70 uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[10px] sm:text-xs md:text-base mb-4 sm:mb-6 md:mb-8">
+          <h3 className="font-urbanist text-primary-color/70 uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[10px] sm:text-xs md:text-base mb-2 sm:mb-3 md:mb-8">
             About Resonance Rehab
           </h3>
 
           {/* Main Title */}
-          <h1 className="font-autumn text-3xl sm:text-4xl md:text-5xl lg:text-7xl leading-[0.9] mb-4 sm:mb-5 md:mb-6 flex flex-col items-center">
+          <h1 className="font-autumn text-3xl sm:text-4xl md:text-5xl lg:text-7xl leading-[0.9] mb-2 sm:mb-3 md:mb-6 flex flex-col items-center">
             <div className="block">
               <span className="text-secondary-color">Care</span>{" "}
               <span className="text-primary-color">That Connects.</span>
@@ -35,27 +48,29 @@ const AboutUs = forwardRef((props, ref) => {
           </h1>
 
           {/* CTA Button - Mobile */}
-          <div className="block md:hidden mb-6 sm:mb-8">
+          <div className="block md:hidden mb-3 sm:mb-4">
             <Button
-              onClick={() => navigate("/contact")}
-              className="inline-flex items-center justify-center px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-bold tracking-wide transition-transform hover:scale-105 hover:shadow-lg active:scale-95 w-full sm:w-auto max-w-sm mx-auto"
-            >
-              Start Your Child's Journey
-            </Button>
+  onClick={openWhatsApp}
+  className="inline-flex items-center justify-center px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-bold tracking-wide transition-transform hover:scale-105 hover:shadow-lg active:scale-95 w-full sm:w-auto max-w-sm mx-auto"
+>
+  Start Your Child's Journey
+</Button>
+
           </div>
 
           {/* CTA Button - Desktop/Responsive */}
           <div className="hidden md:block mb-8 md:mb-8">
-            <Button
-              onClick={() => navigate("/contact")}
-              className="inline-flex items-center justify-center px-8 py-3 md:px-10 md:py-4 text-base md:text-lg font-bold tracking-wide transition-transform hover:scale-105 hover:shadow-lg active:scale-95"
-            >
-              Start Your Child's Journey
-            </Button>
+           <Button
+  onClick={openWhatsApp}
+  className="inline-flex items-center justify-center px-8 py-3 md:px-10 md:py-4 text-base md:text-lg font-bold tracking-wide transition-transform hover:scale-105 hover:shadow-lg active:scale-95"
+>
+  Start Your Child's Journey
+</Button>
+
           </div>
 
           {/* Body Text */}
-          <div className="space-y-3 sm:space-y-4 md:space-y-4 max-w-2xl mx-auto font-urbanist text-primary-color/80 text-sm sm:text-base md:text-xl leading-relaxed mb-6 sm:mb-7 md:mb-0">
+          <div className="space-y-2 sm:space-y-2.5 md:space-y-4 max-w-2xl mx-auto font-urbanist text-primary-color/80 text-sm sm:text-base md:text-xl leading-relaxed mb-3 sm:mb-4 md:mb-0">
             <p>
               At Resonance Rehab, we believe every child deserves the best start
               in life.
@@ -68,7 +83,7 @@ const AboutUs = forwardRef((props, ref) => {
           </div>
 
           {/* Social Icons */}
-          <div className="flex items-center gap-3 sm:gap-4 md:gap-6 mt-6 sm:mt-7 md:mt-8 justify-center">
+          <div className="flex items-center gap-3 sm:gap-4 md:gap-6 mt-3 sm:mt-4 md:mt-8 justify-center">
             {SOCIAL_LINKS.map((icon) => (
               <a
                 key={icon}
