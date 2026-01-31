@@ -408,7 +408,7 @@ about:"Works closely with children and youth, supporting their development throu
   credentials: "Bachelor's in Occupational Therapy",
   age: "Pediatric (2.5+ years)",
   languages: "English, Malayalam, Hindi",
-  about: "Hi, I'm a pediatric occupational therapist with 2+ years of clinical experience, with expertise in sensory integration therapy and rehabilitation-based approaches. I work with children to improve sensory processing, motor skills, functional independence, and overall participation in daily activities using evidence-based, child-centered interventions.",
+  about: "Pediatric occupational therapist with 2+ years of clinical experience, with expertise in sensory integration therapy and rehabilitation-based approaches. I work with children to improve sensory processing, motor skills, functional independence, and overall participation in daily activities using evidence-based, child-centered interventions.",
   areasOfFocus: [
     "Developmental and neurological conditions",
     "Early intervention",
@@ -427,7 +427,42 @@ about:"Works closely with children and youth, supporting their development throu
   ],
   location: "Kerala",
   experience: "2+ years"
-},
+}, {
+      id: 16,
+      name: "Mohammed Siyadh",
+      slug: "mohammed-siyadh",
+      title: "Occupational Therapist",
+      category: "occupational",
+      description: "DHA and AIOTA licensed pediatric occupational therapist specializing in sensory integration, reflex integration and family-centered tele-rehabilitation.",
+      image: "/images/meetourteam/mohammed.png",
+      credentials: "Bachelor's in Occupational Therapy",
+      age: "Pediatric (2+ years)",
+      languages: "English, Malayalam, Hindi",
+      about: "Pediatric Occupational Therapist specializing in sensory integration, reflex integration and family-centered tele-rehabilitation, with 2+ years of clinical experience supporting children with ASD, ADHD and developmental challenges toward functional independence.",
+      areasOfFocus: [
+        "Autism Spectrum Disorder",
+        "Attention Deficit Hyperactivity Disorder",
+        "Sensory Processing Disorders",
+        "Developmental delays",
+        "Learning Difficulties"
+      ],
+      approach: [
+        "Sensory Integration Therapy",
+        "Reflex Integration Therapy",
+        "Handwriting Interventions",
+        "Play based therapy",
+        "Behavioral strategies",
+        "Developmental therapy",
+        "Brain Gym Exercises"
+      ],
+      registration: "DHA and AIOTA Licensed",
+      certifications: [
+        "Reflex Integration Certified",
+        "Applied Behavior Analysis (ABA) certified",
+        "Licensed Movement Program Provider"
+      ],
+      experience: "2+ years"
+    },
   ],
 
 
