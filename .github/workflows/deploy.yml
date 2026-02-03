@@ -8,7 +8,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -43,30 +43,28 @@ jobs:
       - name: Build project
         run: pnpm run build
 
-      - name: Deploy to Hostinger via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      # ✅ Deploy React build via SFTP
+      - name: Deploy dist to Hostinger (SFTP)
+        uses: appleboy/scp-action@v0.1.7
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: /public_html/react/
-          dangerous-clean-slate: true
-          exclude: |
-            **/.git*
-            **/.git*/**
+          host: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USERNAME }}
+          password: ${{ secrets.HOSTINGER_PASSWORD }}
+          port: 65002
+          source: "dist/*"
+          target: "/public_html/react"
+          strip_components: 1
 
-      - name: Upload .htaccess to root
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      # ✅ Upload .htaccess to root
+      - name: Upload .htaccess
+        uses: appleboy/scp-action@v0.1.7
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
-          server-dir: /public_html/
-          exclude: |
-            **/*
-            !.htaccess
+          host: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USERNAME }}
+          password: ${{ secrets.HOSTINGER_PASSWORD }}
+          port: 65002
+          source: ".htaccess"
+          target: "/public_html"
 
       - name: Deployment complete
         run: |
