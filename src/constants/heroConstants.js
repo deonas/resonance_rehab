@@ -79,4 +79,10 @@ export const DOODLES = [
   },
 ];
 
-export const SOCIAL_LINKS = ["Linkedin", "X", "Insta", "fb", "Whatsapp", "Mail"];
+export const SOCIAL_LINKS = [
+  { id: "Linkedin", url: "https://www.linkedin.com/company/resonance-rehab/" },
+  { id: "Insta", url: "https://www.instagram.com/resonancerehab?igsh=NG5oaTByZjAwa3My" },
+  { id: "fb", url: "https://www.facebook.com/profile.php?id=61587608773411" }, 
+  { id: "Whatsapp", url: "https://wa.me/918921065634" },
+  { id: "Mail", url: "https://mail.google.com/mail/?view=cm&fs=1&to=info@resonancerehab.com" },
+];

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const HeroContent = ({ overlayRef, contentRef }) => {
   const navigate = useNavigate();
-  const phoneNumber = "919497148473"; 
+  const phoneNumber = "918921065634"; 
 
 const bookSessionMessage = encodeURIComponent(
   "Hi, I would like to book a session. Could you please share more details about it?"
@@ -21,10 +21,10 @@ const handleBookSession = () => {
   return (
     <div
       ref={overlayRef}
-      className="relative z-10 w-full py-2 pb-6 flex flex-col items-start pt-20 md:absolute md:top-0 md:left-0 md:h-[55vh] md:bg-white md:pt-[75px] md:justify-center md:items-start order-1 shadow-xl"
+      className="relative z-10 w-full py-2 pb-6 flex flex-col items-start pt-20 md:absolute md:top-0 md:left-0 md:h-[55vh] md:bg-white md:pt-[75px] md:justify-center md:items-start md:pointer-events-none order-1 shadow-xl"
     >
       <Container ref={contentRef} className="flex flex-col md:items-start">
-        <h2 className="text-5xl leading-[0.95] md:text-7xl lg:text-[6rem] font-autumn text-secondary-color font-bold tracking-tight text-left">
+        <h2 className="text-5xl leading-[0.95] md:text-7xl lg:text-[6rem] font-autumn text-secondary-color font-bold tracking-tight text-left md:pointer-events-none">
           <span className="hero-text-item block md:inline text-primary-color mb-0 md:mb-0 md:mr-4">
             Empowering
           </span>
@@ -40,12 +40,12 @@ const handleBookSession = () => {
           </span>
         </h2>
 
-        <p className="hero-description mt-2 text-primary-color/80 text-sm md:text-xl md:max-w-lg font-urbanist leading-relaxed text-left max-w-[90%]">
+        <p className="hero-description mt-2 text-primary-color/80 text-sm md:text-xl md:max-w-lg font-urbanist leading-relaxed text-left max-w-[90%] md:pointer-events-none">
           Compassionate, certified online therapy for children and teens, where
           every little mind feels understood, supported, and safe to grow.
         </p>
 
-        <div className="hero-button absolute bottom-0 right-6 translate-y-1/2 z-30 flex w-auto md:right-24 md:left-auto md:bottom-0 md:translate-x-0 md:translate-y-1/2 md:px-0">
+        <div className="hero-button absolute bottom-0 right-6 translate-y-1/2 z-30 flex w-auto md:right-24 md:left-auto md:bottom-0 md:translate-x-0 md:translate-y-1/2 md:px-0 md:pointer-events-auto">
           <Button
             onClick={handleBookSession}
             className="bg-button-main text-primary-color px-4 py-1.5 md:px-6 md:py-2 rounded-full text-sm md:text-lg font-medium hover:scale-105 transition-transform shadow-lg"

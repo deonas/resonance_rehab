@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { teamData } from "@/data/teamData";
-const phoneNumber = "919497148473";
+const phoneNumber = "918921065634";
 
 const openWhatsAppForMember = (memberName) => {
   const message = encodeURIComponent(

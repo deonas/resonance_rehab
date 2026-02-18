@@ -8,12 +8,11 @@ const smileyDoodle = "/images/sidebar/Happyface.svg";
 const underlineDoodle = "/images/sidebar/Underline.svg";
 
 const socialLinks = [
-  { name: "Linkedin", url: "#", icon: "/icons/Linkedin.svg" },
-  { name: "X", url: "#", icon: "/icons/X.svg" },
-  { name: "Insta", url: "#", icon: "/icons/Insta.svg" },
-  { name: "Facebook", url: "#", icon: "/icons/fb.svg" },
-  { name: "Whatsapp", url: "#", icon: "/icons/Whatsapp.svg" },
-  { name: "Mail", url: "#", icon: "/icons/Mail.svg" },
+  { name: "Linkedin", url: "https://www.linkedin.com/company/resonance-rehab/", icon: "/icons/Linkedin.svg" },
+  { name: "Insta", url: "https://www.instagram.com/resonancerehab?igsh=NG5oaTByZjAwa3My", icon: "/icons/Insta.svg" },
+  { name: "Facebook", url: "https://www.facebook.com/profile.php?id=61587608773411", icon: "/icons/fb.svg" },
+  { name: "Whatsapp", url: "https://wa.me/918921065634", icon: "/icons/Whatsapp.svg" },
+  { name: "Mail", url: "mailto:Info@resonancerehab.com", icon: "/icons/Mail.svg" },
 ];
 
 const Footer = forwardRef((props, ref) => {
@@ -52,36 +51,62 @@ const Footer = forwardRef((props, ref) => {
 
           {/* Social Links - Desktop Only */}
           <div className="absolute right-[60px] top-[400px] -translate-y-1/2 hidden md:flex flex-col gap-6">
-            {socialLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.url}
-                className="block w-[22px] h-[22px] hover:scale-110 transition-transform duration-300"
-              >
-                <img
-                  src={link.icon}
-                  alt={link.name}
-                  className="w-full h-full object-contain"
-                />
-              </a>
-            ))}
+            {socialLinks.map((link) => {
+              const isMail = link.url && link.url.startsWith("mailto:");
+              return (
+                <a
+                  key={link.name}
+                  href={link.url}
+                  target={isMail ? undefined : "_blank"}
+                  rel={isMail ? undefined : "noreferrer noopener"}
+                  onClick={
+                    isMail
+                      ? (e) => {
+                          e.preventDefault();
+                          window.location.href = link.url;
+                        }
+                      : undefined
+                  }
+                  className="block w-[22px] h-[22px] hover:scale-110 transition-transform duration-300"
+                >
+                  <img
+                    src={link.icon}
+                    alt={link.name}
+                    className="w-full h-full object-contain"
+                  />
+                </a>
+              );
+            })}
           </div>
 
           {/* Social Links - Mobile Only */}
           <div className="flex md:hidden gap-4 sm:gap-5 mb-8 sm:mb-10">
-            {socialLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.url}
-                className="block w-5 h-5 sm:w-6 sm:h-6 hover:scale-110 active:scale-95 transition-transform duration-300"
-              >
-                <img
-                  src={link.icon}
-                  alt={link.name}
-                  className="w-full h-full object-contain opacity-70 hover:opacity-100 transition-opacity"
-                />
-              </a>
-            ))}
+            {socialLinks.map((link) => {
+              const isMail = link.url && link.url.startsWith("mailto:");
+              return (
+                <a
+                  key={link.name}
+                  href={link.url}
+                  target={isMail ? undefined : "_blank"}
+                  rel={isMail ? undefined : "noreferrer noopener"}
+                  onClick={
+                    isMail
+                      ? (e) => {
+                          e.preventDefault();
+                          window.location.href = link.url;
+                        }
+                      : undefined
+                  }
+                  className="block w-5 h-5 sm:w-6 sm:h-6 hover:scale-110 active:scale-95 transition-transform duration-300"
+                >
+                  <img
+                    src={link.icon}
+                    alt={link.name}
+                    className="w-full h-full object-contain opacity-70 hover:opacity-100 transition-opacity"
+                  />
+                </a>
+              );
+            })}
           </div>
         </div>
 
@@ -144,8 +169,20 @@ const Footer = forwardRef((props, ref) => {
               Contact
             </h3>
             <div className="flex flex-col gap-1.5 sm:gap-2 font-medium">
-              <p>Phone: +91 949 714 8473</p>
-              <p>Email: Info@resonancerehab.com</p>
+              <p>Phone: +91 8921065634</p>
+              <p>
+                Email: 
+                <a
+                  href="mailto:Info@resonancerehab.com"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = "mailto:Info@resonancerehab.com";
+                  }}
+                  className="hover:underline"
+                >
+                  Info@resonancerehab.com
+                </a>
+              </p>
               <p>Location: Kerala, India</p>
             </div>
           </div>
