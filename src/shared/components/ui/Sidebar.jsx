@@ -15,12 +15,11 @@ const menuItems = [
 ];
 
 const socialIcons = [
-  "/icons/Linkedin.svg",
-  "/icons/X.svg",
-  "/icons/Insta.svg",
-  "/icons/fb.svg",
-  "/icons/Whatsapp.svg",
-  "/icons/Mail.svg",
+  { src: "/icons/Linkedin.svg", url: "https://www.linkedin.com/company/resonance-rehab/" },
+  { src: "/icons/Insta.svg", url: "https://www.instagram.com/resonancerehab?igsh=NG5oaTByZjAwa3My" },
+  { src: "/icons/fb.svg", url: "https://www.facebook.com/profile.php?id=61587608773411" },
+  { src: "/icons/Whatsapp.svg", url: "https://wa.me/918921065634" },
+  { src: "/icons/Mail.svg", url: "mailto:Info@resonancerehab.com" },
 ];
 
 const Sidebar = ({ isOpen, onClose }) => {
@@ -245,8 +244,20 @@ const Sidebar = ({ isOpen, onClose }) => {
           {/* Footer */}
           <div className="p-6 md:p-8 flex flex-row justify-between items-end gap-6 text-sm md:text-lg font-medium font-urbanist w-full">
             <div className="address-item flex flex-col gap-2">
-              <p>Phone: +91 949 714 8473</p>
-              <p>Email: Info@resonancerehab.com</p>
+              <p>Phone: +91 8921065634</p>
+              <p>
+                Email: 
+                <a
+                  href="mailto:Info@resonancerehab.com"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = "mailto:Info@resonancerehab.com";
+                  }}
+                  className="hover:underline"
+                >
+                  Info@resonancerehab.com
+                </a>
+              </p>
               <p>Location: Kerala, India</p>
             </div>
 
@@ -256,19 +267,32 @@ const Sidebar = ({ isOpen, onClose }) => {
               className="flex flex-col gap-4 items-end md:items-center self-end md:self-auto md:absolute md:right-8 md:top-1/2 md:-translate-y-1/2 md:gap-6"
             >
               <div className="flex flex-col gap-3 md:gap-6">
-                {socialIcons.map((icon, idx) => (
-                  <a
-                    key={idx}
-                    href="#"
-                    className="social-icon block hover:scale-110 transition-transform"
-                  >
-                    <img
-                      src={icon}
-                      alt="social"
-                      className="w-5 h-5 md:w-6 md:h-6"
-                    />
-                  </a>
-                ))}
+                {socialIcons.map((icon, idx) => {
+                  const isMail = icon.url && icon.url.startsWith("mailto:");
+                  return (
+                    <a
+                      key={idx}
+                      href={icon.url}
+                      target={isMail ? undefined : "_blank"}
+                      rel={isMail ? undefined : "noreferrer noopener"}
+                      onClick={
+                        isMail
+                          ? (e) => {
+                              e.preventDefault();
+                              window.location.href = icon.url;
+                            }
+                          : undefined
+                      }
+                      className="social-icon block hover:scale-110 transition-transform"
+                    >
+                      <img
+                        src={icon.src}
+                        alt="social"
+                        className="w-5 h-5 md:w-6 md:h-6"
+                      />
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </div>

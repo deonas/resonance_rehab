@@ -6,16 +6,15 @@ const HeroBackground = ({
   bgImageRef,
   socialRef,
   doodleOverlayRef,
-  doodles = [], // Default to empty array
+  doodles = [],
   onImageLoad,
-  simple = false, // New prop
-  imageClass = "object-top md:object-bottom", // Mobile: Top (faces), Desktop: Bottom (original)
+  simple = false,
+  imageClass = "object-top md:object-bottom",
 }) => {
   return (
     <div
       ref={containerRef}
       className={`relative w-full flex-1 min-h-0 md:mt-0 md:absolute md:inset-0 md:z-10 order-2 ${
-        // Removed min-h-[40vh] to allow flex shrinking if necessary, but flex-1 should fill
         simple ? "h-full" : ""
       }`}
     >
@@ -31,32 +30,10 @@ const HeroBackground = ({
         />
       </picture>
 
-      {/* Desktop Social Icons (Right) */}
-      {!simple && (
-        <div
-          ref={socialRef}
-          className="hidden md:flex flex-col absolute right-8 top-1/2 -translate-y-1/2 gap-6 z-30"
-        >
-          {SOCIAL_LINKS.map((icon) => (
-            <a
-              key={icon}
-              href="#"
-              className="social-icon-link hover:scale-110 transition-transform"
-            >
-              <img
-                src={`/icons/${icon}.svg`}
-                alt={icon}
-                className="w-5 h-5 opacity-80 hover:opacity-100 brightness-0 invert"
-              />
-            </a>
-          ))}
-        </div>
-      )}
-
       {/* Desktop Scroll Indicator (Left) */}
       {!simple && (
         <div className="hidden md:flex flex-col absolute left-12 top-1/2 -translate-y-1/2 z-30 items-center gap-2 opacity-60">
-          <div className="w-px h-12 bg-white/50 md:bg-gray-500/50"></div>
+          <div className="w-px h-12 bg-white/50 md:bg-gray-500/50" />
           <div className="border border-white/50 md:border-gray-500/50 rounded-full py-3 px-1.5 animate-bounce">
             <svg
               width="12"
@@ -90,12 +67,11 @@ const HeroBackground = ({
                 top: `${doodle.top}%`,
                 left: `${doodle.left}%`,
                 width: `${doodle.width || 10}%`,
-                // Combine transforms: Centering + User Scale/Rotation
                 transform: `
-                    ${doodle.isCentered ? "translate(-50%, -50%)" : ""} 
-                    scale(${doodle.scale || 1}) 
-                    rotate(${doodle.rotation || 0}deg)
-                  `,
+                  ${doodle.isCentered ? "translate(-50%, -50%)" : ""}
+                  scale(${doodle.scale || 1})
+                  rotate(${doodle.rotation || 0}deg)
+                `,
               }}
             />
           ))}

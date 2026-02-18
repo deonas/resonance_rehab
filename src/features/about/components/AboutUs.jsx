@@ -4,7 +4,7 @@ import { SOCIAL_LINKS } from "@/constants/heroConstants";
 import HeroBackground from "@/features/landing/components/HeroBackground";
 import Button from "@/shared/components/ui/Button";
 import Container from "@/shared/components/ui/Container";
-const phoneNumber = "919497148473";
+const phoneNumber = "918921065634";
 
 const startJourneyMessage = encodeURIComponent(
   "Hi, I’m exploring your website and would like to start my child’s therapy journey. Please guide me."
@@ -84,20 +84,26 @@ const AboutUs = forwardRef((props, ref) => {
 
           {/* Social Icons */}
           <div className="flex items-center gap-3 sm:gap-4 md:gap-6 mt-3 sm:mt-4 md:mt-8 justify-center">
-            {SOCIAL_LINKS.map((icon) => (
-              <a
-                key={icon}
-                href="#"
-                className="group transition-transform hover:scale-110 active:scale-95 p-2"
-                aria-label={icon}
-              >
-                <img
-                  src={`/icons/${icon}.svg`}
-                  alt={icon}
-                  className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 text-primary-color brightness-0 opacity-70 group-hover:opacity-100 transition-opacity object-contain"
-                />
-              </a>
-            ))}
+            {SOCIAL_LINKS.map((icon) => {
+              const isMail = icon.url && icon.url.startsWith("mailto:");
+              return (
+                <a
+  key={icon.id}
+  href={icon.url}
+  target={icon.url.startsWith("mailto:") ? undefined : "_blank"}
+  rel={icon.url.startsWith("mailto:") ? undefined : "noreferrer noopener"}
+  className="group transition-transform hover:scale-110 active:scale-95 p-2"
+  aria-label={icon.id}
+>
+  <img
+    src={`/icons/${icon.id}.svg`}
+    alt={icon.id}
+    className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 text-primary-color brightness-0 opacity-70 group-hover:opacity-100 transition-opacity object-contain"
+  />
+</a>
+
+              );
+            })}
           </div>
         </Container>
       </div>
