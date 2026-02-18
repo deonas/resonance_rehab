@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-const phoneNumber = "919497148473"; 
+const phoneNumber = "918921065634"; 
 
 const bookSessionMessage = encodeURIComponent(
   "Hi, I would like to book a session. Could you please share more details about it?"
@@ -83,10 +83,10 @@ const Contact = forwardRef((props, ref) => {
               Phone:
             </span>
             <a
-              href="tel:+919497148473"
+              href="tel:+918921065634"
               className="text-primary-color text-[14px] sm:text-[15px] md:text-[16px] font-bold hover:opacity-80 transition-opacity"
             >
-              +91 949 714 8473
+              +91 8921065634
             </a>
           </div>
 
@@ -96,6 +96,10 @@ const Contact = forwardRef((props, ref) => {
             </span>
             <a
               href="mailto:Info@resonancerehab.com"
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.href = "mailto:Info@resonancerehab.com";
+              }}
               className="text-primary-color text-[14px] sm:text-[15px] md:text-[16px] font-bold hover:opacity-80 transition-opacity"
             >
               Info@resonancerehab.com
@@ -120,10 +124,10 @@ const Contact = forwardRef((props, ref) => {
             Phone:
           </span>
           <a
-            href="tel:+919497148473"
+            href="tel:+918921065634"
             className="text-primary-color text-lg sm:text-xl font-bold hover:opacity-80 transition-opacity"
           >
-            +91 949 714 8473
+            +91 8921065634
           </a>
         </div>
 
@@ -133,6 +137,10 @@ const Contact = forwardRef((props, ref) => {
           </span>
           <a
             href="mailto:Info@resonancerehab.com"
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href = "mailto:Info@resonancerehab.com";
+            }}
             className="text-primary-color text-lg sm:text-xl font-bold hover:opacity-80 transition-opacity"
           >
             Info@resonancerehab.com

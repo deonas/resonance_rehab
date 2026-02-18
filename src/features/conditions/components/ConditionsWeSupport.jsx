@@ -15,7 +15,7 @@ const imgSpeechBubbleSmall =
   "/images/ConditionsWeSupport/speech_bubble_small.svg";
 const imgSquiggles = "/images/ConditionsWeSupport/squiggles.svg";
 
-const phoneNumber = "919497148473"; 
+const phoneNumber = "918921065634"; 
 
 const bookSessionMessage = encodeURIComponent(
   "Hi, I would like to book a session. Could you please share more details about it?"

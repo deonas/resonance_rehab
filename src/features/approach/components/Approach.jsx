@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import Container from "@/shared/components/ui/Container";
 import Button from "@/shared/components/ui/Button";
-const phoneNumber = "919497148473";
+const phoneNumber = "918921065634";
 
 const talkToUsMessage = encodeURIComponent(
   "Hi, I’d like to talk to your team and learn more about your therapy approach and services."
