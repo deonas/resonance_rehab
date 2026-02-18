@@ -1,0 +1,137 @@
+# Apache Configuration for WordPress + React Deployment
+# This file routes traffic between WordPress (in /wp) and React (in /react)
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # ====================
+    # WordPress Routing
+    # ====================
+    
+    # Route WordPress admin requests to /wp/
+    RewriteRule ^wp-admin(.*)$ wp/wp-admin$1 [L]
+    
+    # Route WordPress login to /wp/
+    RewriteRule ^wp-login\.php$ wp/wp-login.php [L]
+    
+    # Route wp-content requests to /wp/
+    RewriteRule ^wp-content/(.*)$ wp/wp-content/$1 [L]
+    
+    # Route wp-includes requests to /wp/
+    RewriteRule ^wp-includes/(.*)$ wp/wp-includes/$1 [L]
+    
+    # Route other WordPress core files
+    RewriteRule ^xmlrpc\.php$ wp/xmlrpc.php [L]
+    RewriteRule ^wp-cron\.php$ wp/wp-cron.php [L]
+    
+    # Route API requests to WordPress REST API
+    RewriteRule ^wp-json/(.*)$ wp/wp-json/$1 [L]
+    
+    # ====================
+    # React App Routing
+    # ====================
+    
+    # Route /react/ requests to React build directory
+    RewriteCond %{REQUEST_URI} ^/react/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^react/(.*)$ react/index.html [L]
+    
+    # Serve static React assets directly
+    RewriteRule ^react/assets/(.*)$ react/assets/$1 [L]
+    
+    # Fallback: Route /assets/* to /react/assets/* (for builds without proper base path)
+    RewriteRule ^assets/(.*)$ react/assets/$1 [L]
+    
+    # Route public folder assets (images, fonts, icons)
+    RewriteRule ^images/(.*)$ react/images/$1 [L]
+    RewriteRule ^fonts/(.*)$ react/fonts/$1 [L]
+    RewriteRule ^icons/(.*)$ react/icons/$1 [L]
+    
+    # Route favicon
+    RewriteRule ^favicon\.ico$ react/favicon.ico [L]
+    
+    # ====================
+    # Root Level Routing
+    # ====================
+    
+    # Default: Route root to React app (change to wp/index.php if you want WordPress as default)
+    RewriteCond %{REQUEST_URI} ^/$
+    RewriteRule ^$ react/index.html [L]
+    
+    # If file exists, serve it directly
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+    
+    # If directory exists, serve it directly
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+    
+    # Fallback: All other requests to React (for client-side routing)
+    # Comment this out if you want WordPress to handle unknown routes
+    RewriteRule ^(.*)$ react/index.html [L]
+</IfModule>
+
+# ====================
+# Security Headers
+# ====================
+
+<IfModule mod_headers.c>
+    # Prevent directory browsing
+    Options -Indexes
+    
+    # Security headers
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# ====================
+# Compression
+# ====================
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# ====================
+# Cache Control
+# ====================
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    
+    # CSS and JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    
+    # Fonts
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/ttf "access plus 1 year"
+    
+    # HTML (no cache for dynamic content)
+    ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# ====================
+# PHP Configuration
+# ====================
+
+<IfModule mod_php7.c>
+    php_value upload_max_filesize 64M
+    php_value post_max_size 64M
+    php_value memory_limit 256M
+    php_value max_execution_time 300
+    php_value max_input_time 300
+</IfModule>
