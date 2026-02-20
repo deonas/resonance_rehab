@@ -46,86 +46,37 @@ jobs:
       - name: Prepare deployment
         run: |
           # Copy build files and .htaccess
-          mkdir -p deploy
-          cp -r dist/* deploy/
+          mkdir -p deploy/react
+          cp -r dist/* deploy/react/
           cp .htaccess deploy/.htaccess
           echo "✅ Deployment directory prepared"
           ls -la deploy/
 
-      - name: Validate SSH secrets
-        run: |
-          if [ -z "${{ secrets.SSH_PRIVATE_KEY }}" ]; then
-            echo "❌ ERROR: SSH_PRIVATE_KEY secret is not set"
-            exit 1
-          fi
-          if [ -z "${{ secrets.SSH_HOST }}" ]; then
-            echo "❌ ERROR: SSH_HOST secret is not set"
-            exit 1
-          fi
-          if [ -z "${{ secrets.SSH_USER }}" ]; then
-            echo "❌ ERROR: SSH_USER secret is not set"
-            exit 1
-          fi
-          if [ -z "${{ secrets.SSH_DEPLOY_PATH }}" ]; then
-            echo "❌ ERROR: SSH_DEPLOY_PATH secret is not set"
-            exit 1
-          fi
-          echo "✅ All SSH secrets are configured"
+      - name: Deploy React app to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./deploy/react/
+          server-dir: /public_html/react/
+          state-name: .ftp-deploy-sync-state-react.json
+          dangerous-clean-slate: false
+          log-level: verbose
 
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          echo "🔑 Private key installed"
-          
-          # Validate private key format
-          if ! grep -q "BEGIN" ~/.ssh/id_rsa; then
-            echo "❌ ERROR: Private key does not contain BEGIN marker"
-            echo "Please ensure SSH_PRIVATE_KEY secret contains the full private key with BEGIN/END lines"
-            exit 1
-          fi
-          
-          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts 2>&1
-          echo "✅ SSH configured for ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}"
-          
-          # Test SSH connection
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o ConnectTimeout=10 \
-            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo '✅ SSH connection successful'" || \
-            (echo "❌ SSH connection failed. Check your SSH secrets." && exit 1)
-
-      - name: Deploy to Hostinger via rsync
-        run: |
-          # Deploy React build to public_html/react/
-          rsync -avz --delete --ignore-times --no-perms --no-owner --no-group \
-            -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
-            --exclude='.htaccess' \
-            deploy/ \
-            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_DEPLOY_PATH }}/react/
-          
-          # Deploy .htaccess to public_html/
-          rsync -avz --ignore-times --no-perms --no-owner --no-group \
-            -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
-            deploy/.htaccess \
-            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_DEPLOY_PATH }}/.htaccess
-          
-          echo "✅ Files synced successfully (forced replacement)"
-          echo "  - React app: ${{ secrets.SSH_DEPLOY_PATH }}/react/"
-          echo "  - .htaccess: ${{ secrets.SSH_DEPLOY_PATH }}/.htaccess"
-
-      - name: Verify deployment
-        run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no \
-            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
-            "echo '📁 Checking deployment paths...' && \
-             ls -la ${{ secrets.SSH_DEPLOY_PATH }}/.htaccess && \
-             echo '---' && \
-             ls -la ${{ secrets.SSH_DEPLOY_PATH }}/react/ | head -20"
-          echo "✅ Deployment verified"
-
-      - name: Cleanup
-        if: always()
-        run: rm -f ~/.ssh/id_rsa
+      - name: Deploy .htaccess to root via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./deploy/
+          server-dir: /public_html/
+          state-name: .ftp-deploy-sync-state-htaccess.json
+          dangerous-clean-slate: false
+          log-level: verbose
+          exclude: |
+            react/**
 
       - name: Deployment complete
         run: |
