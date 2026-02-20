@@ -53,13 +53,33 @@ jobs:
           ls -la deploy/
           ls -la deploy/react/
 
+      - name: Validate SSH secrets
+        run: |
+          if [ -z "${{ secrets.SSH_PRIVATE_KEY }}" ]; then
+            echo "❌ ERROR: SSH_PRIVATE_KEY secret is not set"
+            exit 1
+          fi
+          if [ -z "${{ secrets.SSH_HOST }}" ]; then
+            echo "❌ ERROR: SSH_HOST secret is not set"
+            exit 1
+          fi
+          if [ -z "${{ secrets.SSH_USER }}" ]; then
+            echo "❌ ERROR: SSH_USER secret is not set"
+            exit 1
+          fi
+          if [ -z "${{ secrets.SSH_DEPLOY_PATH }}" ]; then
+            echo "❌ ERROR: SSH_DEPLOY_PATH secret is not set"
+            exit 1
+          fi
+          echo "✅ All SSH secrets are configured"
+
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-          echo "✅ SSH configured"
+          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+          echo "✅ SSH configured for ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}"
 
       - name: Deploy to Hostinger via rsync
         run: |
