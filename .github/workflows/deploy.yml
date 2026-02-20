@@ -77,8 +77,22 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+          echo "🔑 Private key installed"
+          
+          # Validate private key format
+          if ! grep -q "BEGIN" ~/.ssh/id_rsa; then
+            echo "❌ ERROR: Private key does not contain BEGIN marker"
+            echo "Please ensure SSH_PRIVATE_KEY secret contains the full private key with BEGIN/END lines"
+            exit 1
+          fi
+          
+          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts 2>&1
           echo "✅ SSH configured for ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}"
+          
+          # Test SSH connection
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o ConnectTimeout=10 \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo '✅ SSH connection successful'" || \
+            (echo "❌ SSH connection failed. Check your SSH secrets." && exit 1)
 
       - name: Deploy to Hostinger via rsync
         run: |
