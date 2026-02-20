@@ -49,23 +49,42 @@ jobs:
           mkdir -p deploy/react
           cp -r dist/* deploy/react/
           cp .htaccess deploy/.htaccess
-          echo "Deployment directory prepared"
+          echo "✅ Deployment directory prepared"
           ls -la deploy/
           ls -la deploy/react/
 
-      - name: Deploy to Hostinger via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./deploy/
-          server-dir: /public_html/
-          dangerous-clean-slate: false
-          log-level: verbose
-          exclude: |
-            **/.git*
-            **/.git*/**
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          echo "✅ SSH configured"
+
+      - name: Deploy to Hostinger via rsync
+        run: |
+          rsync -avz --delete --ignore-times --no-perms --no-owner --no-group \
+            -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
+            deploy/react/ \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_DEPLOY_PATH }}/react/
+          
+          rsync -avz --ignore-times --no-perms --no-owner --no-group \
+            -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
+            deploy/.htaccess \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_DEPLOY_PATH }}/.htaccess
+          
+          echo "✅ Files synced successfully (forced replacement)"
+
+      - name: Verify deployment
+        run: |
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+            "ls -la ${{ secrets.SSH_DEPLOY_PATH }} && ls -la ${{ secrets.SSH_DEPLOY_PATH }}/react/"
+          echo "✅ Deployment verified"
+
+      - name: Cleanup
+        if: always()
+        run: rm -f ~/.ssh/id_rsa
 
       - name: Deployment complete
         run: |
