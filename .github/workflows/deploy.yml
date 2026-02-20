@@ -43,30 +43,29 @@ jobs:
       - name: Build project
         run: pnpm run build
 
+      - name: Prepare deployment
+        run: |
+          # Create a deployment directory with both dist and .htaccess
+          mkdir -p deploy/react
+          cp -r dist/* deploy/react/
+          cp .htaccess deploy/.htaccess
+          echo "Deployment directory prepared"
+          ls -la deploy/
+          ls -la deploy/react/
+
       - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: /public_html/react/
-          dangerous-clean-slate: true
+          local-dir: ./deploy/
+          server-dir: /public_html/
+          dangerous-clean-slate: false
+          log-level: verbose
           exclude: |
             **/.git*
             **/.git*/**
-
-      - name: Upload .htaccess to root
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
-          server-dir: /public_html/
-          exclude: |
-            **/*
-            !.htaccess
 
       - name: Deployment complete
         run: |
