@@ -45,13 +45,12 @@ jobs:
 
       - name: Prepare deployment
         run: |
-          # Create a deployment directory with both dist and .htaccess
-          mkdir -p deploy/react
-          cp -r dist/* deploy/react/
+          # Copy build files and .htaccess
+          mkdir -p deploy
+          cp -r dist/* deploy/
           cp .htaccess deploy/.htaccess
           echo "✅ Deployment directory prepared"
           ls -la deploy/
-          ls -la deploy/react/
 
       - name: Validate SSH secrets
         run: |
@@ -83,23 +82,31 @@ jobs:
 
       - name: Deploy to Hostinger via rsync
         run: |
+          # Deploy React build to public_html/react/
           rsync -avz --delete --ignore-times --no-perms --no-owner --no-group \
             -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
-            deploy/react/ \
+            --exclude='.htaccess' \
+            deploy/ \
             ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_DEPLOY_PATH }}/react/
           
+          # Deploy .htaccess to public_html/
           rsync -avz --ignore-times --no-perms --no-owner --no-group \
             -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
             deploy/.htaccess \
             ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_DEPLOY_PATH }}/.htaccess
           
           echo "✅ Files synced successfully (forced replacement)"
+          echo "  - React app: ${{ secrets.SSH_DEPLOY_PATH }}/react/"
+          echo "  - .htaccess: ${{ secrets.SSH_DEPLOY_PATH }}/.htaccess"
 
       - name: Verify deployment
         run: |
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no \
             ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
-            "ls -la ${{ secrets.SSH_DEPLOY_PATH }} && ls -la ${{ secrets.SSH_DEPLOY_PATH }}/react/"
+            "echo '📁 Checking deployment paths...' && \
+             ls -la ${{ secrets.SSH_DEPLOY_PATH }}/.htaccess && \
+             echo '---' && \
+             ls -la ${{ secrets.SSH_DEPLOY_PATH }}/react/ | head -20"
           echo "✅ Deployment verified"
 
       - name: Cleanup
