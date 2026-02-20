@@ -1,3 +1,4 @@
+// CI/CD Test - Deployment verification v1.0
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Hero from "@/features/landing/components/Hero";
