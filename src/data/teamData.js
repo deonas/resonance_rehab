@@ -463,6 +463,37 @@ about:"Works closely with children and youth, supporting their development throu
       ],
       experience: "2+ years"
     },
+    {
+  id: 17,
+  name: "Joicy Joy",
+  slug: "joicy-joy",
+  title: "Rehabilitation Psychologist",
+  category: "clinical-psychologist",
+  description: "RCI Licensed Rehabilitation Psychologist with 6+ years of experience specializing in children with disabilities and couple, adult & family counseling.",
+  image: "/images/meetourteam/joicy.png",
+  credentials: "Rehabilitation Psychologist, RCI Licensed",
+  age: "Children, Adults & Families",
+  languages: "English, Malayalam",
+  about: "I specialize in working with children with disabilities, helping them develop emotional, behavioral, and social skills while supporting their families throughout the rehabilitation process. In addition, I provide couple counseling, adult counseling, and family counseling, assisting clients in managing relationship issues, emotional challenges, stress, and life transitions.",
+  areasOfFocus: [
+    "Children with disabilities",
+    "Emotional and behavioral skill development",
+    "Social skills training",
+    "Couple counseling",
+    "Adult counseling",
+    "Family counseling",
+    "Rehabilitation support",
+    "Stress and life transition management"
+  ],
+  approach: [
+    "Holistic rehabilitation-centered care",
+    "Family involvement throughout the process",
+    "Individualized emotional and behavioral support",
+    "Evidence-based counseling techniques"
+  ],
+  registration: "RCI Licensed",
+  experience: "6+ years"
+},
   ],
 
 
