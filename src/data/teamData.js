@@ -494,6 +494,34 @@ about:"Works closely with children and youth, supporting their development throu
   registration: "RCI Licensed",
   experience: "6+ years"
 },
+{
+  id: 18,
+  name: "Nasarath Sulthana",
+  slug: "nasarath-sulthana",
+  title: "Consultant Psychologist",
+  category: "clinical-psychologist",
+  description: "Consultant Psychologist specializing in child and adolescent behavioral, emotional, and social development with expertise in assessments and evidence-based interventions.",
+  image: "/images/meetourteam/nasarath.png",
+  credentials: "",
+  age: "Children & Adolescents",
+  languages: "English, Malayalam",
+  about: "Nasarath Sulthana is a Consultant Psychologist with specialization in child and adolescent behavioral, emotional, and social development. She provides comprehensive psychological assessments and evidence-based therapeutic interventions for a range of developmental and behavioral concerns. She is committed to delivering ethical, client-centered care within a multidisciplinary rehabilitation framework, with the objective of enhancing functional outcomes and overall quality of life for children and adolescents.",
+  areasOfFocus: [
+    "Attention-related difficulties",
+    "Emotional regulation challenges",
+    "Anxiety and mood disturbances",
+    "Social skills deficits",
+    "School adjustment issues",
+    "Developmental and behavioral concerns"
+  ],
+  approach: [
+    "Structured, goal-oriented therapy",
+    "Standardized assessment tools",
+    "Individualized intervention strategies",
+    "Parental counseling and family guidance",
+    "Multidisciplinary rehabilitation framework"
+  ]
+},
   ],
 
 
